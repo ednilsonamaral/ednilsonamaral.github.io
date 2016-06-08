@@ -1,0 +1,34 @@
+# Site settings
+title: Ednilson Amaral - Desenvolvedor Front-End
+email: ednilsonamaral.ti@gmail.com
+description: > # this means to ignore newlines until "baseurl:"
+  Site e blog pessoal onde tenho meu portfolio com trabalhos e projetos já desenvolvidos, além de alguns artigos com o intuito de compartilhar meus conhecimentos com a comunidade web.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://ednilsonamaral.github.io" # the base hostname & protocol for your site
+twitter_username: ednilsonaamaral
+github_username:  ednilsonamaral
+facebook_username: ednilson.amaral
+
+# Build settings
+markdown: kramdown
+highlighter: pygments
+permalink: /:title/
+paginate: 5
+
+# Links to include in menu navigation
+links:
+  - title: Home
+    url: /
+  - title: Séries
+    url: /series
+  - title: Tags
+    url: /tags
+  - title: Sobre mim
+    url: /about
+  - title: Blog
+    url: /blog
+  - title: Portfolio
+    url: /portfolio
+
+# exclude
+exclude: [node_modules","package.json"]
