@@ -30,5 +30,9 @@ links:
   - title: Portfolio
     url: /portfolio
 
+# Internal variables
+footerTitleEn: Desenvolvido por Ednilson Amaral
+footerTitlePtBr: Desenvolvido por Ednilson Amaral
+
 # exclude
 exclude: [node_modules","package.json"]
