@@ -1,33 +1,36 @@
 .menu-home
-    width auto
-    height auto
-    background-color red
+    center(290px)
     margin-top 20px
+    margin-bottom 20px
+    opacity 0
+    @extends .menuHomeAnimation
+
+
+    ul
+        list-style none
+        width 100%
 
     li
-        width 70px
-        margin 0 auto
-        text-align center
-        margin-right 9px
-        padding 10px
-        background-color $gray-one
-        border-radius 50%
-        border 2px solid $yellow-cheese
-        display inline
         float left
-        list-style none !important
-        text-align center
-        cursor pointer
+        position relative
+        width auto
+        margin-right 15px
 
         &:last-child
             margin-right 0
 
+        &:nth-child(2)
+            width 82px
+
+    a
+        background-color $gray-two
+        color $green-one
+        border 1px solid $yellow-cheese
+        border-radius 50%
+        display block
+        padding 10px
+
+    li:hover
         a
-            color $green-one
-            font-weight bold
-
-        &:hover
             background-color $green-one
-
-            a
-                color $yellow-cheese
+            color $yellow-cheese
