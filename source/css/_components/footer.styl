@@ -1,4 +1,6 @@
 .footer
+    margin-top 20px
+    border-top 1px solid $green-one
     .text
         padding 10px
 
@@ -9,6 +11,13 @@
 
             +above($tablet)
                 set-font-size(16px)
+
+            a
+                color $green-one
+                font-weight bold
+
+                &:hover
+                    text-decoration underline
 
     .social-icons
         center(165px)
