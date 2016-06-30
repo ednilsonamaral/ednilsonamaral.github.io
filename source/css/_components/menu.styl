@@ -1,0 +1,93 @@
+.move-to-bottom
+    //transform translateY(340px)
+    //transition all 300ms ease-in-out
+    margin-top 266px
+
+.menu
+    nav
+        +below($tablet)
+            width $mobile
+            padding 70px 0 15px
+
+        ul
+            list-style none
+            margin 0
+            padding 0
+
+            +below($tablet)
+                display none
+
+            li
+                float left
+                position relative
+
+                +below($tablet)
+                    float none
+
+                a
+                    display block
+                    padding 0 20px
+                    line-height 70px
+                    background $green-one
+                    color $yellow-cheese
+
+                    +below($tablet)
+                        padding 15px
+                        line-height 20px
+
+                    &:hover
+                        background $yellow-cheese
+                        color $green-one
+
+        .menu-list
+            +above($mobile)
+                display block !important
+
+        .menu-toggle
+            display none
+            position absolute
+            top 0
+            right 0
+            background $green-one
+            height 70px
+            width 70px
+
+            +below($tablet)
+                display block
+
+        #nav-toggle
+            position absolute
+            left 18px
+            top 22px
+            cursor pointer
+            padding 10px 35px 16px 0
+
+            span, span:before, span:after
+                cursor pointer
+                height 5px
+                width 35px
+                background $yellow-cheese
+                position absolute
+                display block
+                content ""
+                transition all 300ms ease-in-out
+
+            span
+                &:before
+                    top -10px
+
+                &:after
+                    bottom -10px
+
+                &.active
+                    span
+                        background-color transparent
+
+                        &:before, &:after
+                            top 0
+
+                        &:before
+                            transform rotate(45deg)
+
+                        &:after
+                            transform rotate(-45deg)

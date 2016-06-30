@@ -1,0 +1,47 @@
+.post
+    padding 0 10px 10px
+
+    +above($tablet)
+        padding 0 20px 20px
+
+    .post-header
+        //-
+
+        .post-title
+            color $green-one
+            text-decoration underline
+            set-font-size(20px)
+            margin-bottom 30px
+
+            +above($tablet)
+                set-font-size(50px)
+
+    .post-content
+        set-font-size(14px)
+        text-align justify
+        letter-spacing 1px
+        font-weight normal
+        color $gray-three
+
+        +above($tablet)
+            set-font-size(20px)
+
+        +below($tablet)
+            set-font-size(14px) !important
+
+        p
+            margin-bottom 30px
+
+        h2, h3, h4
+            margin-top 15px
+            margin-bottom 15px
+
+        h2, h3
+            text-decoration underline
+
+        h4
+            font-style italic
+
+        ul
+            list-style disc
+            margin-left 50px

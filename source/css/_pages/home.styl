@@ -9,7 +9,17 @@
     +below($tablet)
         height auto
 
-    .header
+    .wrapper-home
+        center(1440px)
+        position absolute
+        display block
+        top 25%
+
+        +below($tablet)
+            top 0
+            position relative
+
+    .header-home
         width auto
         margin 0 auto
         text-align center
