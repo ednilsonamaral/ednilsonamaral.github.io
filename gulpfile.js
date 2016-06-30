@@ -64,20 +64,20 @@ gulp.task('imagemin', function() {
 // JS Compile Task
 gulp.task('js', function(){
     return gulp.src('source/js/**/*.js')
-        .pipe(plumber())
-        .pipe(concat('main.js'))
-        .pipe(uglify())
+        //.pipe(plumber())
+        //.pipe(concat('main.js'))
+        //.pipe(uglify())
         .pipe(gulp.dest('assets/js'))
         .pipe(browserSync.reload({stream: true}));
 });
 
 // Watch Task
 gulp.task('watch', function () {
-	gulp.watch('source/css/**/*.styl', ['stylus', 'jekyll-rebuild']);
+	gulp.watch('source/css/**/*.styl', ['stylus']);
 	gulp.watch('source/js/**/*.js', ['js']);
-    gulp.watch('source/img/**/*.{jpg,png,gif}', ['imagemin', 'jekyll-rebuild']);
-	gulp.watch(['**/*.html', 'about.md', 'index.html', '_includes/*.html', '_layouts/*.html', '_posts/*'], ['jekyll-rebuild']);
+    gulp.watch('source/img/**/*.{jpg,png,gif}', ['imagemin']);
+	gulp.watch(['**/*.html', 'about.md', 'index.html', '_includes/*.html', '_layouts/*.html', '_posts/*'], ['jekyll-build']);
 });
 
 // Default Task
-gulp.task('default', ['js', 'stylus', 'imagemin', 'watch', 'browser-sync'])
+gulp.task('default', ['js', 'stylus', 'imagemin', 'watch', 'browser-sync']);
