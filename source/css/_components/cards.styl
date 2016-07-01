@@ -45,3 +45,57 @@
             .link-resultado
                 text-align center
                 font-style italic
+
+    .card-post
+        height auto
+        background white
+        box-shadow 1px 1px 2px $gray-three
+        margin 10px 0
+
+        +above($tablet)
+            col(1/2, cycle:2)
+
+        +above($laptop)
+            col(1/3, uncycle:2, cycle:3)
+
+        .image
+            //-
+
+            img
+                width 100%
+                height 288px
+
+        .text
+            padding 10px
+
+            .title-project
+                set-font-size(24px)
+                font-weight bold
+                text-align center
+                color $green-one
+
+            .post-meta
+                set-font-size(12px)
+                font-style italic
+
+            p
+                set-font-size(14px)
+                margin 10px 0
+                text-align justify
+
+            .link-leia-mais
+                background $green-one
+                padding 2px 8px
+                margin-bottom 10px
+
+                &:hover
+                    background $yellow-cheese
+                    border 1px solid $green-one
+
+                    a
+                        color $green-one
+                        text-decoration none
+
+                a
+                    color $yellow-cheese
+                    text-decoration none
