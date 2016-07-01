@@ -3,6 +3,9 @@ layout: post
 comments: true  
 title: MEAN, o que é isso?  
 date: 2015-12-08 00:58:00  
+image: '/assets/img/mean.jpg'
+description: Do que se trata essa Stack e o que podemos desenvolver com ela. E onde aprender mais sobre essa stack. Uma visão introdutória e básica sobre esse belezinha de stack.
+introduction: Do que se trata essa Stack e o que podemos desenvolver com ela. E onde aprender mais sobre essa stack. Uma visão introdutória e básica sobre esse belezinha de stack.
 ---
 
 **MongoDB** - banco de dados NoSQL, orientado a documentos;  

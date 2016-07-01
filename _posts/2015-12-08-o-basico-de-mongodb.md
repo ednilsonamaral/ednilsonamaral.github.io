@@ -3,6 +3,9 @@ layout: post
 comments: true  
 title: O Básico de MongoDB  
 date: 2015-12-08 23:00:00  
+image: '/assets/img/mongodb.png'
+description: Um pouco sobre esse famoso banco de dados NoSQL e muito utilizado em aplicações de grande porte. Se você é obcecado por JavaSript e não conhece essa tecnologia, leia esse artigo!
+introduction: Um pouco sobre esse famoso banco de dados NoSQL e muito utilizado em aplicações de grande porte. Se você é obcecado por JavaSript e não conhece essa tecnologia, leia esse artigo!
 ---
 
 
