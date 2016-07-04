@@ -33,7 +33,7 @@ Porém, se nos depararmos com um objeto vazio, o seu protótpio é o ancestral d
 Podemos consedirar a maneira mais simples de criar objetos que vai herdar algum *prototype* é através de um construtor. Para isso, ao chamarmos uma função, basta à invocarmos com a palavra-chave `new`, fazendo assim que ela seja um construtor.
 
 
-```js  
+{% highlight javascript %}
 var Aluno = function (nome, idade) {  
 	this.nome = nome;  
 	this.idade = idade;  
@@ -45,7 +45,7 @@ Aluno.prototype.serie = "1º Ano";
 var bruna = new Aluno("Bruna", 7);  
 console.log(bruna);  
 console.log(bruna.serie);  
-```
+{% endhighlight %}
 
 
 O *prototype* de um construtor é o `Function.prototype`, onde sua propriedade *prototype* será o *prototype* de instâncias criadas através dele, porém não será seu próprio *prototype*. Enquanto outros objetos têm um *prototype* que pode ser obtido através do `Object.getPrototypeOf`.  
