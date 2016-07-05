@@ -29,7 +29,7 @@ Nowadays I work as Junior Front-End Developer at [EWTI](http://www.ewti.com.br/)
 
 #### Tools, Frameworks, Stacks and Front End Methodologies  
 
-* AngularJS (*basic*)  
+* AngularJS (*basic*) / jQuery (*basic*)  
 * [MEAN](https://github.com/Webschool-io/be-mean-instagram) (*studying a lot this prettiness stack*)  
 * [Ionic](ionicframework.com) (*studying a lot this prettiness framework*)  
 * CSS Frameworks - Bootstrap (*basic*) / Jeet (*basic*)  
