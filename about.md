@@ -14,6 +14,8 @@ I've very facility to make new friends and love to work and collaborate with tea
 
 I'm always studying new things, new technologies, and I never give up of study! After all, what we learning is the only capital what we never lose, nobody can take this of us!
 
+My first contact with HTML and CSS was when I was 16 years old. But, my professional career started as IT Technical Support, with the same age. At the same time, I developed some web projects how freelancer, but never in agencies. At 2014 I returned to study web development and update my knowledges. Since then, I never stopped.  
+
 Nowadays I work as Junior Front-End Developer at [EWTI](http://www.ewti.com.br/), remotely. I living in Itapeva, a town city of Sao Paulo State. In addition to developing some projects as a freelancer. Up to half of 2017, I long to move to a large city, Sao Paulo or Curitiba, in search of new challenges and higher flights. And by 2020 I hope to move to another country, USA, Europe or Australia. Always looking for personal and professional growth.
 
 
@@ -36,6 +38,7 @@ Nowadays I work as Junior Front-End Developer at [EWTI](http://www.ewti.com.br/)
 * CSS Preprocessors - SASS (*basic*) / Stylus (*basic*)  
 * Mobile First / Responsive Web Design  
 * Atomic Design (*basic*)  
+* CMS - Wordpress  
 * JS Task Runners - Gulp (*basic*) / NPM Scripts (*basic*)  
 * Unit Tests - TDD (*basic*)
 
@@ -95,7 +98,7 @@ Nowadays I work as Junior Front-End Developer at [EWTI](http://www.ewti.com.br/)
 * [Twitter](https://twitter.com/ednilsonaamaral)
 
 
-You can look my portfolio [here](/portfolio).
+You can look my portfolio [here](/portfolio). And you can look my intire resume [here](https://github.com/ednilsonamaral/resume).
 
 If you've a suggestion, review or clain, please, contact me. Send me an email or tweet, my email is my email is **ednilsonamaral.ti@gmail.com**. We talk about this, no problems.
 
