@@ -2,8 +2,15 @@
     center(1440px)
     //background-color red
 
+    +below($laptop)
+        width auto
+        max-width 800px
+
 .container-bg
     background $main-white
 
 .wrapper
     margin-top 20px
+
+    +below($tablet)
+        padding 10px

@@ -1,6 +1,9 @@
 .wrapper-cards
     margin-top 30px
 
+    +below($tablet)
+        padding 10px
+
     .card-legend
         position relative
         display block
@@ -9,7 +12,7 @@
 
     .card
         margin 15px 0
-        background white
+        background $main-white
         box-shadow 1px 1px 2px $gray-three
 
         +above($tablet)
@@ -28,6 +31,9 @@
 
             img
                 width 100%
+
+                +below($tablet)
+                    height 200px
 
         .text
             padding 10px
@@ -48,7 +54,7 @@
 
     .card-post
         height auto
-        background white
+        background $main-white
         box-shadow 1px 1px 2px $gray-three
         margin 10px 0
 

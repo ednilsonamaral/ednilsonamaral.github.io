@@ -1,5 +1,10 @@
 .post
     padding 0 10px 10px
+    background $main-white
+    box-shadow 1px 1px 1px $gray-three
+
+    +below($tablet)
+        box-shadow none
 
     +above($tablet)
         padding 0 20px 20px
@@ -14,26 +19,26 @@
             margin-bottom 30px
 
             +above($tablet)
-                set-font-size(50px)
+                set-font-size(40px)
 
     .post-content
-        set-font-size(14px)
         text-align justify
         letter-spacing 1px
         font-weight normal
-        color $gray-three
-
-        +above($tablet)
-            set-font-size(20px)
 
         +below($tablet)
-            set-font-size(14px) !important
+            set-font-size(14px)
 
         img
             center(100%)
 
         p
+            set-font-size(16px)
             margin-bottom 30px
+            color $gray-four
+
+            +below($tablet)
+                set-font-size(14px)
 
             img
                 center(100%)
