@@ -100,13 +100,9 @@ indent_size = 2
 Visualizando o código acima, temos:
 
 * Linha 4: seta a configuração de `root = true` para que o editor de código ou IDE aceite as configurações do `.editorconfig` em todos os arquivos, acima das configurações da IDE ou editor de código;  
-
 * Nele, podemos definir como as quebras de linha serão representadas, através dos `lf`, `cr` ou `crlf`;  
-
 * Podemos definir nosso *charset*;  
-
 * No trecho `[*.py]`, definimos que todos os arquivos que possuem a extensão `.py` terão 4 espaços, representados pela **tecla de espaço**;  
-
 * Enquanto nos trechos `[*.js]` e `[{package.json,.travis.yml}]` definimos que todos os arquivos de JS, o `package.json` e o arquivo `travis.yml` irá ter 2 espaços representado pela **tecla de espaço**.
 
 
@@ -146,26 +142,19 @@ indent_size = 2
 Ficou mais claro nesse exemplo? Acho que sim, né! Bom, vamos a explicação desse exemplo:
 
 * Nele, defino o *charset* de arquivos JS, PUG (Jade) e HTML;  
-
 * Defino também, 4 espaços para arquivos PUG (Jade) e HTML, representados pela **tecla de TAB**;
-
 * E para os arquivos de CSS, Stylus e JS, defino 2 espaços, representados pela **tecla de TAB**;  
-
 * Assim como para os demais arquivos com extensão `.json`, defino 2 espaços, representados pela **tecla de TAB**.
 
 
-Viu como é simples, sem complicações? Agora, você tem o poder em suas mãos. Seja em equipe ou sozinho, o EditorConfig é **indispensável**!
-
-Caso você queira explorar ainda mais os poderes do EditorConfig, basta entrar no site e dar uma olhada na [documentação oficial](http://editorconfig.org/) dele.
+Viu como é simples, sem complicações? Agora, você tem o poder em suas mãos. Seja em equipe ou sozinho, o EditorConfig é **indispensável**! Caso você queira explorar ainda mais os poderes do EditorConfig, basta entrar no site e dar uma olhada na [documentação oficial](http://editorconfig.org/) dele.
 
 
 ## Concluindo
 
 O poder que o EditorConfig nos fornece pode parecer muito simples, mas não é. Ele em si, é simples. Porém o que podemos fazer com ele é de muito valor para nossos projetos de desenvolvimento.
 
-Sua configuração é muito simples, em poucos minutos você padroniza os espaçamentos com facilidade. A curva de aprendizado para utilizar o EditorConfig é muito baixa.
-
-Hoje em dia, a cada novo projeto que estou/contribuo, um dos primeiros arquivos que crio é o `.editorconfig`.
+Sua configuração é muito simples, em poucos minutos você padroniza os espaçamentos com facilidade. A curva de aprendizado para utilizar o EditorConfig é muito baixa. Hoje em dia, a cada novo projeto que estou/contribuo, um dos primeiros arquivos que crio é o `.editorconfig`.
 
 Não perca tempo, comece a usar você também! =D
 
