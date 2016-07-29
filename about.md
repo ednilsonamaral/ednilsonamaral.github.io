@@ -8,9 +8,7 @@ Hello, folks! I'm Ednilson Amaral, 24 years old, front-end developer. Father of 
 
 I love everything related to web, agile development, readable coding, semantic and reusable. Writing codes without losing my sanity. I love projects with solid and robust architectures, well organized. Today, I work with front-end development, but study a lot for work with MEAN Stack and Ionic in a near future.  
 
-I love coding. I'm not so god, but I'm not so bad! And the most attractive for me are projects with biggest challenges, if what I don't know or I've anything difficulty, I going to my friend Google get help, learning with best practices, and always learning new things, new technologies.  
-
-I've very facility to make new friends and love to work and collaborate with teams. And nothing better what work with teams and share our knowledge and experience in favor of always evolve as people and professional.  
+The most attractive for me are projects with biggest challenges, if what I don't know or I've anything difficulty, I going to my friend Google get help, learning with best practices, and always learning new things, new technologies. I've very facility to make new friends and love to work and collaborate with teams. And nothing better what work with teams and share our knowledge and experience in favor of always evolve as people and professional.  
 
 I'm always studying new things, new technologies, and I never give up of study! After all, what we learning is the only capital what we never lose, nobody can take this of us!
 
@@ -100,8 +98,6 @@ Nowadays I work as Junior Front-End Developer at [EWTI](http://www.ewti.com.br/)
 
 You can look my portfolio [here](/portfolio). And you can look my intire resume [here](https://github.com/ednilsonamaral/resume).
 
-If you've a suggestion, review or clain, please, contact me. Send me an email or tweet, my email is my email is **ednilsonamaral.ti@gmail.com**. We talk about this, no problems.
-
-But, if you hire me for a web project, either front-end or web app with MEAN Stack or app with Ionic, please, contact me, send me an email to **ednilsonamaral.ti@gmail.com**. Or we can talk via Skype, my nickname is **ednilson.amaral**. Thanks a lot!
+If you've a suggestion, review or clain, please, contact me. Or, if you hire me for a web project, either front-end, or web app with MEAN Stack, or app with Ionic, please, contact me, send me an email to **ednilsonamaral.ti@gmail.com**, a [tweet](https://twitter.com/ednilsonaamaral). Or we can talk via Skype, my nickname is **ednilson_amaral**. Thanks a lot!
 
 *Portuguese is my native language. I decided to develop my personal website in English as a matter of* **practice** *the language itself. Some posts even write in Portuguese, but in the future, I hope to write here 100% in English!*
