@@ -14,7 +14,7 @@ I'm always studying new things, new technologies, and I never give up of study! 
 
 My first contact with HTML and CSS was when I was 16 years old. But, my professional career started as IT Technical Support, with the same age. At the same time, I developed some web projects how freelancer, but never in agencies. At 2014 I returned to study web development and update my knowledges. Since then, I never stopped.  
 
-Nowadays I work as Junior Front-End Developer at [EWTI](http://www.ewti.com.br/), remotely. I living in Itapeva, a town city of Sao Paulo State. In addition to developing some projects as a freelancer. Up to half of 2017, I long to move to a large city, Sao Paulo or Curitiba, in search of new challenges and higher flights. And by 2020 I hope to move to another country, USA, Europe or Australia. Always looking for personal and professional growth.
+Nowadays I work as Junior Front-End Developer at [EWTI](http://www.ewti.com.br/) and as Fullstack JavaScript Developer (Junior) at [AIDAX](http://www.aidaxbi.com/), both home office. I living in Itapeva, a town city of Sao Paulo State. In addition to developing some projects as a freelancer. Up to half of 2017, I long to move to a large city, Sao Paulo or Curitiba, in search of new challenges and higher flights. And by 2020 I hope to move to another country, USA, Europe or Australia. Always looking for personal and professional growth.
 
 
 ## Skills  
@@ -27,7 +27,7 @@ Nowadays I work as Junior Front-End Developer at [EWTI](http://www.ewti.com.br/)
 
 #### Tools, Frameworks, Stacks and Front End Methodologies  
 
-* AngularJS (*basic*) / jQuery (*basic*)  
+* AngularJS (*basic*) / jQuery (*basic*) / Vue.js (*basic*)  
 * [MEAN](https://github.com/Webschool-io/be-mean-instagram) (*studying a lot this prettiness stack*)  
 * [Ionic](ionicframework.com) (*studying a lot this prettiness framework*)  
 * CSS Frameworks - Bootstrap (*basic*) / Jeet (*basic*)  
@@ -45,7 +45,14 @@ Nowadays I work as Junior Front-End Developer at [EWTI](http://www.ewti.com.br/)
 
 * PHP (*basic CRUD, some basics functions, a little bit of Object-oriented programming with PHP*)  
 * PHP Frameworks - OpenCart (*basic*)  
-* NodeJS (*basic, I started studying and practicing few months ago*)
+* NodeJS (*basic*) / Express.js (*basic*)
+
+
+#### Deploy  
+
+* DigitalOcean  
+* Heroku  
+* MongoLab
 
 
 ### Databases - Relational and NoSQL  
@@ -62,6 +69,7 @@ Nowadays I work as Junior Front-End Developer at [EWTI](http://www.ewti.com.br/)
 * GitHub  
 * GitHub Pages  
 * BitBucket
+* GitLab
 
 
 ### Agile Methodologies  
