@@ -1,8 +1,10 @@
 .home
     width auto
     height 100%
-    padding 20px 10px
+    padding 0 10px
     background-color $green-one
+    background url('../img/background-home.jpg') center center no-repeat
+    background-size cover
     justify-content center
     text-align center
 
@@ -20,7 +22,7 @@
         width auto
         margin 0 auto
         text-align center
-        border-bottom 1px solid $yellow-cheese
+        // border-bottom 1px solid $yellow-cheese
         opacity 0
         @extends .titleAnimation
         animation-duration .8s
@@ -32,32 +34,35 @@
             width 180px
             height 180px
             border-radius 50%
-            border 2px solid $yellow-cheese
-            padding 5px
+            // border 2px solid $yellow-cheese
+            box-shadow 1px 5px 5px rgba(42, 67, 58, .8)
+            // padding 5px
 
         .heading-group
-            border-bottom 1px solid $yellow-cheese
+            // border-bottom 1px solid $yellow-cheese
             padding-bottom 20px
 
             .title
                 display block
                 opacity 0
-                color $yellow-cheese
                 font-weight bold
+                color $main-white
+                text-shadow 1px 1px $green-one
                 @extends .titleAnimation
 
             .description
                 opacity 0
                 display block
-                color $yellow-cheese
                 font-weight normal
+                color $main-white
+                text-shadow 1px 1px $green-one
                 @extends .titleAnimation
 
     .intro
-        opacity 0
         height auto
-        border-bottom 2px solid $yellow-cheese
+        // border-bottom 2px solid $yellow-cheese
         padding 20px 0
+        opacity 0
         @extends .titleAnimation
         animation-duration 1.6s
         animation-delay 1.4s
@@ -66,8 +71,9 @@
 
         .text
             set-font-size(12px)
-            color $gray-two
+            color $main-white
             text-align center
+            text-shadow 1px 1px $green-one
 
             +above($laptop)
                 set-font-size(20px)

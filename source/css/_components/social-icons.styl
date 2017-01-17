@@ -1,0 +1,47 @@
+.social-icons
+    center(205px)
+    margin-bottom 10px
+    padding 10px
+    padding-bottom 0
+
+    ul
+        list-style none
+        width 100%
+
+    li
+        float left
+        position relative
+        width auto
+        margin-right 5px
+
+        &:last-child
+            margin-right 0
+
+    a
+        display block
+        set-font-size(40px)
+        color $main-white
+        text-shadow 1px 5px 5px rgba(42, 67, 58, .8)
+
+        &:hover
+            text-decoration none
+
+        .fa-github, .fa-linkedin, .fa-twitter, .fa-facebook
+            &:hover
+                transition background-color .3s ease-in-out, color .4s linear, font-weight .5s linear
+
+        .fa-github
+            &:hover
+                color #171515
+
+        .fa-linkedin
+            &:hover
+                color #0274b3
+
+        .fa-twitter
+            &:hover
+                color #2b97df
+
+        .fa-facebook
+            &:hover
+                color #3b5998

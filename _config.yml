@@ -1,5 +1,5 @@
 # Site settings
-title: Ednilson Amaral - Front-End Developer
+title: Ednilson Amaral - Desenvolvedor Full Stack JavaScript
 email: ednilsonamaral.ti@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   Site e blog pessoal onde tenho meu portfolio com trabalhos e projetos já desenvolvidos, além de alguns artigos com o intuito de compartilhar meus conhecimentos com a comunidade web.
@@ -16,16 +16,18 @@ permalink: /:title/
 
 # Links to include in menu navigation
 links:
-  - title: Home
+  - title: Inicio
     url: /
-  - title: About Me
-    url: /about
-  - title: Blog
-    url: /blog
+  - title: Sobre
+    url: /sobre
   - title: Portfolio
     url: /portfolio
-  - title: Contact
-    url: /contact
+  - title: Serviços
+    url: /servicos
+  - title: Blog
+    url: /blog
+  - title: Contato
+    url: /contato
 
 # exclude
 exclude: [node_modules","package.json"]

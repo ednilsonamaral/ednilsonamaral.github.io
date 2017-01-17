@@ -1,5 +1,5 @@
 .menu-home
-    center(290px)
+    center(100%)
     margin-top 20px
     margin-bottom 20px
     opacity 0
@@ -11,29 +11,30 @@
         width 100%
 
     li
-        float left
-        position relative
-        width auto
+        display inline-block
         margin-right 15px
 
         +below($tablet)
-            margin-right 10px
+            margin-right 0
+            margin-bottom 10px
 
         &:last-child
             margin-right 0
 
-        &:nth-child(2)
-            width 82px
-
     a
-        background-color $gray-two
-        color $green-one
-        border 1px solid $yellow-cheese
-        border-radius 50%
+        width 100px
+        color $main-white
+        border 1px solid $main-white
+        text-shadow 1px 1px $green-one
+        border-radius 6%
         display block
         padding 10px
 
     li:hover
         a
-            background-color $green-one
-            color $yellow-cheese
+            background-color $gray-one
+            color $green-one
+            text-shadow none
+            text-decoration none
+            font-weight bold
+            transition background-color .3s ease-in-out, color .4s linear, font-weight .5s linear
