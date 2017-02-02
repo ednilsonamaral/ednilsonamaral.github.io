@@ -27,7 +27,7 @@ Podemos construir uma aplicação complexa facilmente com Vue.js e trabalhar o b
 
 O Vue.js destaca-se entre outros frameworks principalmente pela sua simplicidade e métodos de como trabalhar, baseado em componentes e focado apenas na view da sua aplicação.
 
-Não irei entrar em detalhes do que é e como ele funciona. Para isso, eu e meu amigo [Igor Luiz] estamos desenvolvendo um curso prático de Vue.js pela Webschool.io e estaremos disponibilizando nas próximas semanas, ainda nesse mês de fevereiro. Então, você não conhece Vue.js? Poderá **estudar de graça**! Assim que as aulas estiverem disponíveis ao público, irei postar um artigo especial aqui no blog! :D
+Não irei entrar em detalhes do que é e como ele funciona. Para isso, meu amigo [Igor Luiz](https://github.com/Halfeld) e eu estamos desenvolvendo um curso prático de Vue.js pela Webschool.io e estará disponível nas próximas semanas, ainda nesse mês de fevereiro. Então, você não conhece Vue.js? Poderá **estudar de graça**! Assim que as aulas estiverem disponíveis ao público, irei postar um artigo especial aqui no blog! :D
 
 Esse artigo tratará apenas de desenvolvimento de componentes básicos com Vue.js. É necessário ter uma familiriadade básica com Vue.js para dar continuidade na leitura..
 
