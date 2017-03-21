@@ -12,7 +12,7 @@ Tenho facilidade em fazer novas amizades e ter comunicação entre equipes, e, n
 
 Sempre estou estudando algo novo, e nunca canso de estudar. **Afinal, o que aprendemos é o único capital que não perdemos, ninguém pode tirar isso de nós!**
 
-Atualmente trabalho como Front-End para a EWTI, remotamente. Além de atuar como freelancer em projetos de front-end e/ou sistemas web com MEAN Stack, MEVN Stack e/ou Vue.js.
+Atualmente trabalho como Front-End para a agência EWTI, remotamente. Além de atuar como freelancer em projetos de front-end e/ou sistemas web completos com MEAN Stack, e/ou Vue.js. Também, estou ministrando o curso de **Vue.js na Prática** pela [Webschool.io](https://www.youtube.com/playlist?list=PL77JVjKTJT2hpxOjdD6VDc1JDXAKs08z5), juntamente com o [Igor Luiz](https://github.com/Halfeld).
 
 Meu primeiro contato com HTML e CSS foi quando eu tinha 16 anos. Porém, minha carreira profissional começou como Suporte de TI, na mesma idade. Paralelamente, eu desenvolvia projetos web como freelancer. Durante a faculdade, devido a grande demanda de tempo que me custou trabalhar e estudar ao mesmo tempo, deixei um pouco de lado o desenvolvimento web e foquei meus estudos na faculdade. Em 2014, eu retornei com força todal ao desenvolvimento web e me atualizei do que havia perdido. Desde então, nunca mais parei!
 
@@ -27,18 +27,18 @@ Meu primeiro contato com HTML e CSS foi quando eu tinha 16 anos. Porém, minha c
 
 #### Ferramentas, Frameworks, Stacks e Metodologias Front-End  
 
-* AngularJS (*1.x*) / jQuery / Vue.js (*1 e 2*)  
+* AngularJS / jQuery / Vue.js  
 * [MEAN](https://github.com/Webschool-io/be-mean-instagram)  
-* [Ionic](ionicframework.com) (*1.x*)  
+* [Ionic](ionicframework.com)  
 * Frameworks CSS - Bootstrap / Jeet / Materialize  
 * Geradores Estáticos - Jekyll  
-* Template Engine - Pug (*Jade*)  
+* Template Engine - Pug  
 * Pré-processadores CSS - SASS / Stylus  
 * Mobile First / Responsive Web Design  
 * Atomic Design  
 * CMS - Wordpress  
 * JS Task Runners - Gulp / NPM Scripts  
-* Testes - TDD (*basic*)  
+* Testes - TDD  
 * Bundles - Webpack
 
 
@@ -102,7 +102,9 @@ Meu primeiro contato com HTML e CSS foi quando eu tinha 16 anos. Porém, minha c
 
 * [GitHub](https://github.com/ednilsonamaral)  
 * [LinkedIn](https://br.linkedin.com/in/ednilson-amaral-02a984106)  
-* [Twitter](https://twitter.com/ednilsonaamaral)
+* [Twitter](https://twitter.com/ednilsonaamaral)  
+* **Telegram:** @ednilsonamaral  
+* **Skype:** ednilson_amaral
 
 
 Você pode visualizar meu portfolio [aqui](/portfolio). E, você também pode ver meu currículo completo [aqui](https://github.com/ednilsonamaral/resume).
