@@ -4,7 +4,7 @@ title: Sobre
 permalink: /sobre/
 ---
 
-Olá, sou **Ednilson Amaral**, o cara da foto acima! Tenho 25 anos, e, atualmente moro em **Itapeva/SP** e trabalho como **Desenvolvedor Full Stack Javascript** e **Desenvolvedor Front-end**, remotamente. Sou pai do *baby boy* Rodrigo, apaixonado por tudo que é relacionado à tecnologias web, e, também, sou lutador de Jiu Jitsu, amante de NFL, comida japonesa, UFC, games, filmes, séries *(geek detected)*. Aqui você pode ver um pouco sobre mim, sobre minhas habilidades, meu blog, portfolio e projetos pessoais.
+Olá, sou **Ednilson Amaral**! Tenho 25 anos, e, atualmente moro em **Itapeva/SP** e trabalho como **Desenvolvedor Full Stack Javascript** e **Desenvolvedor Front-end**, remotamente. Sou pai do *baby boy* Rodrigo, apaixonado por tudo que é relacionado à tecnologias web, e, também, sou lutador de Jiu Jitsu, amante de NFL, comida japonesa, UFC, games, filmes, séries *(geek detected)*. Aqui você pode ver um pouco sobre mim, sobre minhas habilidades, meu blog, portfolio e projetos pessoais.
 
 O que mais me atrai são projetos desafiadores, o que não consigo fazer e vou atrás de como fazer da maneira correta, com as melhores práticas e sempre aprendendendo coisas novas.
 
