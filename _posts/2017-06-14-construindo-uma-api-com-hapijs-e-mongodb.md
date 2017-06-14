@@ -609,7 +609,7 @@ O `GET` *by id* e `DELETE` basta passar na URL da requisição o `_id` da catego
 ![Exemplo de DELETE Categorias via Postman](/assets/img/delete_categorie_ecommerce_api.png)
 
 
-## Conclusão
+## Concluindo
 
 Prontinho, temos nossa API desenvolvida com Hapi.js e MongoDB para consumirmos em um aplicativo web e/ou mobile. Agora, você pode realizar o *deploy* para produção no Heroku, DigitalOcean, AWS, Google Cloud, *whatever*, que irá funcionar perfeitamente.
 
@@ -622,3 +622,9 @@ Todos os códigos que utilizei nesse artigo pode ser encontrado [nesse repositó
 Não perca tempo, comece a usar você também o Hapi.js e nos conte como foi a experiência. Caso tenha alguma dúvida, sugestão, reclamação, please, entre em contato comigo, através de um simples comentário ou via redes sociais. Se gostou ou não, compartilhe com seus amiguinhos desenvolvedores! =p
 
 É isso aí pessoal, vaaleu, até mais! =D
+
+
+## Referências e Links importantes
+
+[- Documentação oficial do Hapi.js em PT-BR](https://hapijs.com/tutorials?lang=pt_BR)  
+[- Repositório oficial com todos os códigos](https://github.com/ednilsonamaral/vuejs-ecommerce-api)
