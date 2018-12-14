@@ -4,7 +4,7 @@ title: Sobre
 permalink: /sobre/
 ---
 
-Olá, sou **Ednilson Amaral**! Tenho 25 anos, moro em **Itapeva/SP** e trabalho como **Desenvolvedor Full Stack Javascript** e **Desenvolvedor Front-end**, remotamente. Sou pai do *baby boy* Rodrigo, apaixonado por tudo que é relacionado à tecnologias web, e, também, sou lutador de Jiu Jitsu, amante de NFL, comida japonesa, UFC, games, filmes, séries *(geek detected)*. Aqui você pode ver um pouco sobre mim, sobre minhas habilidades, meu blog, portfolio e projetos pessoais.
+Olá, sou **Ednilson Amaral**! Tenho 26 anos, moro em **Itapeva/SP** e trabalho como **Desenvolvedor Full Stack Javascript** e **Desenvolvedor Front-end**, remotamente. Sou pai do *baby boy* Rodrigo, apaixonado por tudo que é relacionado à tecnologias web, e, também, sou atleta de Jiu Jitsu, amante de NFL, comida japonesa, UFC, games, filmes, séries *(geek detected)*. Aqui você pode ver um pouco sobre mim, sobre minhas habilidades, meu blog, portfolio e projetos pessoais.
 
 O que mais me atrai são projetos desafiadores, o que não consigo fazer e vou atrás de como fazer da maneira correta, com as melhores práticas e sempre aprendendendo coisas novas.
 
@@ -12,9 +12,10 @@ Tenho facilidade em fazer novas amizades e ter comunicação entre equipes, e, n
 
 Sempre estou estudando algo novo, e nunca canso de estudar. **Afinal, o que aprendemos é o único capital que não perdemos, ninguém pode tirar isso de nós!**
 
-Atualmente trabalho como Front-End para a agência EWTI, remotamente. Além de atuar como freelancer em projetos de front-end e/ou sistemas web completos com MEAN Stack, e/ou Vue.js. Também, estou ministrando o curso de **Vue.js na Prática** pela [Webschool.io](https://www.youtube.com/playlist?list=PL77JVjKTJT2hpxOjdD6VDc1JDXAKs08z5), juntamente com o [Igor Luiz](https://github.com/Halfeld).
-
 Meu primeiro contato com HTML e CSS foi quando eu tinha 16 anos. Porém, minha carreira profissional começou como Suporte de TI, na mesma idade. Paralelamente, eu desenvolvia projetos web como freelancer. Durante a faculdade, devido a grande demanda de tempo que me custou trabalhar e estudar ao mesmo tempo, deixei um pouco de lado o desenvolvimento web e foquei meus estudos na faculdade. Em 2014, eu retornei com força todal ao desenvolvimento web e me atualizei do que havia perdido. Desde então, nunca mais parei!
+
+Atualmente trabalho como **Desenvolvedor Full Stack Javascript**, remotamente. Além de atuar como freelancer em projetos de front-end e/ou sistemas web completos; APIs REST com NodeJS + Express + MongoDB; dashboards e SPAs com AngularJS ou VueJS; aplicativos híbridos com Ionic; temas para Wordpress; temas para OpenCart, etc.
+
 
 
 ## Habilidades  
@@ -23,28 +24,28 @@ Meu primeiro contato com HTML e CSS foi quando eu tinha 16 anos. Porém, minha c
 
 * HTML/HTML5  
 * CSS/CSS3  
-* JavaScript  
+* JavaScript
 
-#### Ferramentas, Frameworks, Stacks e Metodologias Front-End  
 
-* AngularJS / jQuery / Vue.js  
+#### Ferramentas, Frameworks, Stacks e Metodologias Fron-End  
+
+* AngularJS  / jQuery  / Vue.js  
 * [MEAN](https://github.com/Webschool-io/be-mean-instagram)  
-* [Ionic](ionicframework.com)  
-* Frameworks CSS - Bootstrap / Jeet / Materialize  
-* Geradores Estáticos - Jekyll  
-* Template Engine - Pug  
-* Pré-processadores CSS - SASS / Stylus  
+* [ionic](ionicframework.com)  
+* Frameworks CSS - Bootstrap  / Jeet   
+* Geradores Estáticos - Jekyll   
+* Template Engine - Jade   
+* Préprocessadores CSS - SASS  / Stylus   
 * Mobile First / Responsive Web Design  
-* Atomic Design  
+* Atomic Design   
 * CMS - Wordpress  
-* JS Task Runners - Gulp / NPM Scripts  
-* Testes - TDD  
-* Bundles - Webpack
+* JS Task Runners - Gulp  / NPM Scripts   
+* Bundles - Webpack  
+* Testes Unitários - TDD
 
 
 ### Back-End  
 
-* PHP Frameworks - OpenCart  
 * NodeJS / Express.js / Hapi.js
 
 
@@ -55,32 +56,31 @@ Meu primeiro contato com HTML e CSS foi quando eu tinha 16 anos. Porém, minha c
 * MongoLab
 
 
-### Banco de Dados - Relaciona e NoSQL  
+### Banco de Dados - Relacional e NoSQL  
 
-* MySQL  
-* SQLite  
-* MongoDB / Mongoose  
-* SQL Server / SQL Express  
-* Firebase
+* MySQL
+* SQLite   
+* MongoDB  / Mongoose   
+* SQL Server e SQL Express
 
 
-### Versionamento  
+### Sistemas de Controle de Versão  
 
 * Git  
 * GitHub  
 * GitHub Pages  
-* BitBucket
+* BitBucket  
 * GitLab
 
 
 ### Metodologias Ágeis  
 
-* Scrum  
-* Extreme Programming  
+* Scrum   
+* Extreme Programming   
 * Kanban
 
 
-### Conhecimentos sobre Startup e Empreendedorismo  
+### Negócios e Startup  
 
 * Lean Canvas  
 * Business Model Canvas
@@ -88,25 +88,118 @@ Meu primeiro contato com HTML e CSS foi quando eu tinha 16 anos. Porém, minha c
 
 ### IT Service Management (ITSM)  
 
-* ITIL Foundation (*conhecimentos básicos das funcionalidades*)
+* ITIL Foundation (*não certificado, apenas fundamentos e funcionalidades básicas*)
 
 
 ### Sistemas Operacionais  
 
 * Comandos Unix  
-* Linux (*Mint, Ubuntu, Debian s2*)  
-* Windows
+* Linux (*Mint, Ubuntu, incluindo Ubuntu Server para ferramentas como Squid e Samba, Debian :heart:*)  
+* Windows (*desde o Windows ME até as versões mais recentes, incluindo Windows Server para ferramentas como AD e proxy*)  
+* Mac OS X
+
+
+## Experiências Profissionais
+
+
+**Desenvolvedor Fullstack JavaScript** - *[ABR/2017 ~ JUL/2018]*  
+[Clube de Apostas - Betfellows](https://www.betfellows.com/)
+> Desenvolvidmento de APIs em Node.js e front-end em Vue.js + Nuxt.js.
+
+
+**Desenvolvedor Fullstack JavaScript** - *[JUN/2017 ~ DEZ/2017]*  
+[Manatee](https://www.manatee.art.br/)
+> Desenvolvidmento de APIs e editor de vídeos com Node.js e Electron.js.
+
+
+**Desenvolvedor Mobile** - *[FEV/2017 ~ DEZ/2017]*  
+[ADH - Advanced Digital Health](https://www.advanced-dh.com/)
+> Desenvolvimento de aplicações mobile híbridas com Ionic.
+
+
+**Desenvolvedor Fullstack JavaScript (Junior)** - *[AGO/2016 ~ JAN/2017]*  
+AIDAX
+> Desenvolvimento de aplicações com Vue.js, implementações de layouts com HTML e CSS. Instalação e configurações de servidores (VPS) para deploy de projetos em NodeJS, utilizando Express.js.
+
+
+**Desenvolvedor Front-End Junior** - *[FEV/2016 ~ NOV/2017]*  
+EWTI  
+> Desenvolvimento de aplicações web, com foco no Front-End, utilizando HTML, CSS, JavaScript. Também, desenvolvimento de layouts utilizando Bootstrap e Jade, implementações de layout em projetos de ecommerce utilizando OpenCart e criação de animações em HTML e CSS.
+
+
+**Analista de Suporte I** - *[NOV/2014 ~ OUT/2015]*  
+G&P Projetos e Sistemas  
+> Aqui continuei no mesmo projeto da PRODESP, do trabalho anterior. Houve apenas uma mudança de empresa.
+
+
+**Técnico de Suporte de TI Pleno 2** - *[JAN/2014 ~ NOV/2014]*  
+Asyst International + Rhealeza Informática  
+> Implantação de Novos Projetos de TI nos novos Postos Poupatempo no Estado de São Paulo, pela PRODESP. Treinamento de novos Técnicos aos sistemas e normas de TI dentro do Poupatempo. Suporte de primeiro e segundo nível. Instalação, configuração e monitoramento de Sistemas.
+
+
+**Auxiliar de Secretaria** - *[DEZ/2013 ~ JAN/2014]*  
+Colégio Leme Presbiteriano de Itapeva  
+> Atendimento ao público; trabalho e monitoramento de sistemas ERP; abertura e fechamento de caixa; desenvolvimento e fechamento de Ficha 100; criação e manutenção de planilhas de RH; entre outras atividades.
+
+
+**Empreendimento (startup) FAIL** - *[NOV/2012 ~ NOV/2013]*  
+> Esse periodo, junto com mais dois colegas, tentamos abrir uma startup de desenvolvimento de software. Porém, não sabiamos nada sobre empreendedorimos, apenas sobre PHP. E pensavamos que o sistema deveria estar 100%, e não sabiamos o que era um simples MVP. Resultado? Fechamos as portas por falta de experiência. Fica aqui, os erros aprendidos e nunca mais serão cometidos!
+
+
+**Estagiário de Sistemas de Informação** - *[OUT/2010 ~ OUT/2012]*  
+Secretaria Municipal da Educação de Itapeva  
+> Atendimento ao público; desenvolvimento de soluções ERP voltadas para a Gestão Escolar; suporte de primeiro nível; treinamento a novos usuários de soluções ERP.
+
+
+**Assistente Administrativo** - *[MAR/2010 ~ JUN/2010]*  
+FAIT - Faculdade de Ciências Sociais e Agrárias de Itapeva  
+> Atendimento ao público; trabalho e monitoramento de sistemas ERP; abertura e fechamento de caixa; recebimento de taxas e boletos; criação e manutenção de planilhas financeiras e analiticas; entre outras atividades.
+
+
+**Técnico de Infórmática** - *[AGO/2008 ~ FEV/2010]*  
+FAIT - Faculdade de Ciências Sociais e Agrárias de Itapeva  
+> Monitoramento e atualizações de sistemas ERP; montagem e manutenção de computadores e servidores; monitoramento e atualizações de infraestrutura e redes; treinamento de novas ferramentas para discentes e docentes; manutenção do site da instituição, desenvolvido com Joomla!; entre outras atividades.
+
+
+**Auxiliar de Secretaria** - *[MAR/2008 ~ JUL/2008]*  
+FAIT - Faculdade de Ciências Sociais e Agrárias de Itapeva  
+> Atendimento ao público; trabalho com sistemas ERP; emissão de declarações e históricos escolares; criação e manutenção de planilhas acadêmicas; entre outras atividades.
+
+
+## Formação  
+
+**Bacharel em Sistemas de Informação**, concluído em dezembro de 2013.  
+FAIT - Faculdade de Ciências Sociais e Agrárias de Itapeva
+
+
+**Técnico em Hardware**, concluído em 2008.  
+CENAIC - Itapeva
+
+
+## Cursos Ministrados
+
+* [Vue.js na Prática](https://www.youtube.com/playlist?list=PL77JVjKTJT2hpxOjdD6VDc1JDXAKs08z5), pela [Webschool.io](http://webschool.io/), juntamente com o [Igor Luiz](https://github.com/Halfeld).
+
+
+## Cursos  
+
+* Gestão Estratégica de TI - ITIL, pela Escola Virtual Fundação Bradesco;  
+* Apreender a Empreender, pelo EaD Sebrae;  
+* Iniciando um Pequeno e Grande Negócio, pelo EaD Sebrae;  
+* Planejamento Estratégico, pela Endeavor;  
+* MEI - Micro Empreendedor Individual, pelo EaD Sebrae;  
+* [Be MEAN](https://github.com/Webschool-io/be-mean-instagram) (em andamento);  
+* JavaScript Road Trip, pela CodeSchool.
 
 
 ## Contatos  
 
 * [GitHub](https://github.com/ednilsonamaral)  
 * [LinkedIn](https://br.linkedin.com/in/ednilson-amaral-02a984106)  
-* [Twitter](https://twitter.com/ednilsonaamaral)  
 * **Telegram:** @ednilsonamaral  
 * **Skype:** ednilson_amaral
 
 
 Você pode visualizar meu portfolio [aqui](/portfolio). E, você também pode ver meu currículo completo [aqui](https://github.com/ednilsonamaral/resume).
 
-Se você tem alguma sugestão, crítica ou reclamação, por favor, entre em contato comigo. Se você está procurando um desenvolvedor web profissional, que trabalha com eficiência e qualidade, seja projeto front-end, aplicativos web com MEAN/MEVN Stack, ou aplicativos híbridos com Ionic, por favor, entre em contato comigo para conversarmos e fecharmos uma parceria. Basta me enviar um e-mail para **ednilsonamaral.ti@gmail.com** ou me chamar no Hangouts com esse mesmo e-mail, [meu Twitter](https://twitter.com/ednilsonaamaral). Ou então, pode me chamar direto no Skype, meu nickname é **ednilson_amaral**. Thanks a lot!
+Se você tem alguma sugestão, crítica ou reclamação, por favor, entre em contato comigo. Se você está procurando um desenvolvedor web profissional, que trabalha com eficiência e qualidade, seja projeto front-end, aplicativos web com MEAN/MEVN Stack, ou aplicativos híbridos com Ionic, por favor, entre em contato comigo para conversarmos e fecharmos uma parceria. Basta me enviar um e-mail para **ednilsonamaral.ti@gmail.com** ou me chamar no Hangouts com esse mesmo e-mail. Ou então, pode me chamar direto no Skype, meu nickname é **ednilson_amaral**. Thanks a lot!
