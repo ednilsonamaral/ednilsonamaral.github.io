@@ -54,6 +54,16 @@
             .content
                 padding 10px
 
+                .box-stores
+                  display flex
+                  justify-content center
+                  align-items center
+
+                  a
+                    width 120px
+                    height 40px
+                    margin 0 5px
+
             .title-project, .partner-project
                 text-align center
                 color $green-one
@@ -74,19 +84,21 @@
                 margin-bottom 10px
 
             .result-project
-                width 80%
+                width 50%
                 background #5290e9
                 margin 0 auto
+                margin-top 30px
                 padding 10px 15px
-                font-style italic
                 text-align center
                 text-transform uppercase
                 color $main-white
+                border-radius 12px
 
                 a
                   cursor pointer
+                  color $main-white
 
-                  &:active, &:visited, &:hover
+                  &:active, &:visited, &:hover, &:focus
                       color $main-white
 
     .card-post
