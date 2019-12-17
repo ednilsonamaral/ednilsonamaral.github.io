@@ -1,0 +1,223 @@
+I"sf<p>Salve salve peoples, tudo na paz?</p>
+
+<p>Não sei apenas eu ou mais alguém já passou por isso. A cada novo projeto, ter que refazer o workflow, com task runner, pré-processador CSS, template engine, frameworks, mi-mi-mi.</p>
+
+<p>Fui um pouquinho tapado em demorar pra ter um repositório como base de workflow! Eis que surgiu esse workflow simples, porém muito eficiente!</p>
+
+<p>Fiquei tão encanado com isso, que resolvi criar um workflow. Porém, uma coisa acabou me tirando o sono, literalmente. As tarefas do Gulp, muitas e muitas linhas no gulpfile.js.</p>
+
+<p>Sobre as tarefas do Gulp, tá lá no final do artigo. Mas leia tudinho, sem pressa! =D</p>
+
+<p>Nesse workflow utilizei as seguintes tecnologias:</p>
+
+<ul>
+  <li>Gulp, como task runner;</li>
+  <li>Stylus, pré-processador CSS;</li>
+  <li>Nib, para alguns mixins Stylus, utilidades básicas;</li>
+  <li>Pug (Jade), como template engine;</li>
+  <li>CleanCSS, para minificar o CSS;</li>
+  <li>Gulp-concat, para concatenar os arquivos;</li>
+  <li>Imagemin, para minificar/otimizar imagens;</li>
+  <li>Gulp-rename, para renomear arquivos via tarefas do Gulp;</li>
+  <li>Plumber, para prever erros causados pelos pipe de plugins do Gulp;</li>
+  <li>Uglify, para minificar arquivos com UgliifyJS;</li>
+  <li>BrowserSync, para ter reload automático no browser durante o desenvolvimento;</li>
+  <li>Rupture, para media queries;</li>
+  <li>Jeet, como system grid. Mesmo estando descontinuado (ainda) é um excelente grid system e estável.</li>
+</ul>
+
+<p>Para entendermos melhor como ficou tudo, vamos começar pela estrutura de arquivos:</p>
+
+<p><img src="/assets/img/workflow-estrutura.png" alt="Estrutura de Diretórios utilizadas nesse workflow" /></p>
+
+<p><code class="highlighter-rouge">_public/</code></p>
+<ul>
+  <li>Nessa pasta ficam os arquivos compilados, após o desenvolvimento. Vísivel no navegador; pronto para ser enviado para homologação. Separados pelas pastas css / img / js / <code class="highlighter-rouge">_includes</code>.</li>
+</ul>
+
+<p><code class="highlighter-rouge">_source/</code></p>
+<ul>
+  <li>Aqui é onde a magia realmente acontece! rs’</li>
+  <li>Nosso ambiente de produção. Onde utilizo o Pug como template engine</li>
+  <li>Stylus como pré-processador CSS. Tentei implementar RSCSS &amp; ITCSS como metodologias. Além da combinação Jeet + Nib + Rupture como grid system, mixins para Stylus e media queries, respectivamente.</li>
+</ul>
+
+<p><code class="highlighter-rouge">tasks</code></p>
+<ul>
+  <li>Meu bebê do s2! Nessa pasta possui um arquivo.js para cada tarefa do Gulp.</li>
+  <li>No decorrer desse artigo irei entrar em mais detalhes de como modularizei as tarefas do Gulp.</li>
+</ul>
+
+<h2 id="rscss-e-itcss-why">RSCSS e ITCSS? Why??</h2>
+
+<p>Sempre busco formas de padronizar minhas declarações CSS e uma arquitetura boa, de fácil manutenção. Li um pouco sobre <strong>BEM</strong>, porém não gostei. Achei a nomenclatura das classes sugerida muito extensa e em determinados projetos completos poderia ser confuso para manutenção. Visto isso, encontrei dois artigos do <a href="https://twitter.com/willian_justen', target='_blank'">Willian Justen</a>) sobre ambas as metodologias, <a href="http://willianjusten.com.br/falando-sobre-rscss/">RSCSS</a> e <a href="href='http://willianjusten.com.br/organizando-seu-css-com-itcss/">ITCSS</a>.</p>
+
+<p>Posso trabalhar com <strong>BEM</strong> normalmente, sem problemas. Depende do projeto e especificações do cliente, óbvio. Porém, se puder trabalhar com RSCSS e ITCSS, trabalharei com essas metodologias. :)</p>
+
+<p>Ele explicou com uma didática tão leve que foi de longe um dos melhores artigos sobre arquiteturas CSS. Já tinha optado por ITCSS em outras leituras, porém esse artigo em específico concretizei minha decisão.</p>
+
+<p>Aqui, não irei entrar em detalhes de como funciona o ITCSS ou RSCSS. Para isso, passa lá no link do artigo que o Willian Justen compartilhou conosco, que praticamente é uma documentação em pt-BR! =)</p>
+
+<p>Digamos que você vá desenvolver um projeto complexo, de um portal para uma grande empresa/agência, um portal estático ou dinâmico, por exemplo, que irá ter 20 páginas ou mais. No momento em que formos definir a arquitetura CSS para o desenvolvimento vai começar a complicar. Visto isso, o <strong>ITCSS</strong> surgiu, para organizar nosso CSS de forma escalável e de fácil manutenção.</p>
+
+<p><em>Beleza, tio! Definimos a arquitetura. Mas e como iremos nomear as classes? Que tipo de padrão podemos utilizar pra isso?</em></p>
+
+<p>Entra em cena o <strong>RSCSS</strong>!!!!</p>
+
+<p>Quanto maior o projeto, maior vai ser o número de linhas de declarações CSS. E, acredite, se não houver um padrão, VAI DAR BO! Quem nunca se perguntou pra que classe X ou Y serve, pra que repetiu Z ou A, etc, etc.</p>
+
+<p>Nisso, o <strong>RSCSS</strong> nos dá ideias claras de como nomear classes sem medo de nos perdemos futuramente. Facilitando assim que o processo de desenvolvimento do nosso CSS seja rentável para qualquer projeto front-end.</p>
+
+<p>Juntar as duas metodologias foi praticamente um casamento perfeito! Parece que as duas são feitas uma para a outra! =D</p>
+
+<p>Mais um ponto a favor do <strong>RSCSS</strong> é que podemos utilizar essa metodologia junto com <strong>Atomic Design</strong>. Já temos um padrão de atoms, molecules e organisms nas classes, porém podemos facilmente integrar as duas metodologias. E, podemos ir além, não parar nos atoms.</p>
+
+<p>Baseando-se nas aulas do curso <a href="https://github.com/Webschool-io/be-mean-instagram">Be MEAN</a> do <a href="https://twitter.com/osuissa">Suissa</a> onde ele nos ensina a utilizar Quarks, Hadrons, etc no back-end. <a href="https://github.com/Webschool-io/Node-Atomic-Design-Modelo-Padrao">Física louca</a>, sem dó, porém, muito efetiva. E sim, podemos basearmos nisso e utilizar em nosso front-end!</p>
+
+<h2 id="e-aquela-pastinha-_includes-ali-pra-que-serve">E aquela pastinha <code class="highlighter-rouge">_includes</code> ali, pra que serve?</h2>
+
+<p>No <strong>Pug (Jade)</strong> podemos utilizar includes. Digamos que você tenha um projeto web complexo, com front e back-end. No front-end, 90% das páginas irão utilizar o mesmo menu, mesmo header, mesmo footer. Apenas o conteúdo de cada página irá mudar. Pra que repetir esse código em todas as páginas ou porque não usar <code class="highlighter-rouge">extend template block content</code>?</p>
+
+<p>Simples, tornando a integração do back-end mais fácil, sem complicações, dinâmico. Com um simples include, podemos trabalhar no back-end para trocar o include X de poucas linhas em certos eventos. Já o extend teria um bloco maior, com mais linhas. O carregamento seria um pouco mais demorado que o include, mesmo não sendo notado a olho nú, mas seria.</p>
+
+<p>Visando a performance, fácil integração com back-end e fácil manutenção, a escolha para projetos complexos é ir de <code class="highlighter-rouge">include</code>. Uma escolha pessoal, não é regra, não é padrão!</p>
+
+<h2 id="gulp-deixando-o-mais-bonitinho-ainda-">Gulp, deixando-o mais bonitinho ainda =)</h2>
+
+<p>A justificava para modularizar as tarefas <strong>Gulp</strong> foi simples:</p>
+
+<p><em>“Se eu posso componetizar/modularizar meu CSS; com aplicações AngularJS; com aplicações PHP (MVC); com aplicações NodeJS s2; porque não posso fazer isso com as minhas tarefas do Gulp?”</em></p>
+
+<p>Você, dev front-end que conhece e trabalha com Gulp, quantas vezes você parou pra pensar:</p>
+
+<p><em>“Poxa meu, quantas linhas eu não tenho em um simples gulpfile.js? Já passaram 110 linhas, que saco! Como posso melhorar isso? Não posso modularizar/componetizar igual fazemos com CSS?</em>”</p>
+
+<p>Fiquei extremamente estressado em ver aquele horror. Então, mais noites com poucas horas de sono se foram, rsrs’.</p>
+
+<p>Encontrei inúmeros tutoriais a respeito, porém a maioria utilizava o Browserify ou Webpack. Lendo um pouco sobre cada um deles, acabei chegando a conclusão de que eles são indicados para projetos mais complexos. Um site, portal de notícias, portfolio, hotsite não vi necessidade de implementá-los. Seria um desperdício de tecnologia!</p>
+
+<p>Depois de tantas pesquisas, conheci a dependência
+<a href="https://www.npmjs.com/package/gulp-load-plugins">gulp-load-plugins</a> encontrando no blog da editora <a href="https://www.packtpub.com/books/content/blogs">Packt Publishing</a> um EXCELENTE artigo escrito por Brian Hough: <a href="https://www.packtpub.com/books/content/how-to-simplify-your-development-workflow-with-gulp">How to Simplify Your Development Workflow with Gulp</a>.</p>
+
+<p>Após todas as tarefas em arquivos separados, Gulp modularizado, belezinha, o arquivo <code class="highlighter-rouge">gulpfile.js</code> ficou dessa forma:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="dl">'</span><span class="s1">use strict</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="c1">//Dev dependencies</span>
+<span class="kd">const</span> <span class="nx">gulp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">gulp</span><span class="dl">'</span><span class="p">),</span>
+      <span class="nx">plugins</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">gulp-load-plugins</span><span class="dl">'</span><span class="p">)(),</span>
+      <span class="nx">config</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./config.json</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">//Browser Sync Task</span>
+<span class="nx">require</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">tasksPath</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">/browser-sync</span><span class="dl">'</span><span class="p">)(</span><span class="nx">gulp</span><span class="p">,</span> <span class="nx">plugins</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+
+<span class="c1">//Stylus Task</span>
+<span class="nx">require</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">tasksPath</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">/stylus</span><span class="dl">'</span><span class="p">)(</span><span class="nx">gulp</span><span class="p">,</span> <span class="nx">plugins</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+
+<span class="c1">//Pug Task</span>
+<span class="nx">require</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">tasksPath</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">/pug</span><span class="dl">'</span><span class="p">)(</span><span class="nx">gulp</span><span class="p">,</span> <span class="nx">plugins</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+
+<span class="c1">//JS Task</span>
+<span class="nx">require</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">tasksPath</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">/js-compile</span><span class="dl">'</span><span class="p">)(</span><span class="nx">gulp</span><span class="p">,</span> <span class="nx">plugins</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+
+<span class="c1">//Default Task</span>
+<span class="nx">require</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">tasksPath</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">/imagemin</span><span class="dl">'</span><span class="p">)(</span><span class="nx">gulp</span><span class="p">,</span> <span class="nx">plugins</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+
+<span class="c1">//Watch Task</span>
+<span class="nx">require</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">tasksPath</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">/watch</span><span class="dl">'</span><span class="p">)(</span><span class="nx">gulp</span><span class="p">,</span> <span class="nx">plugins</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+
+<span class="c1">//Default Task</span>
+<span class="nx">require</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">tasksPath</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">/default</span><span class="dl">'</span><span class="p">)(</span><span class="nx">gulp</span><span class="p">,</span> <span class="nx">plugins</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span></code></pre></figure>
+
+<p>Com essa dependência, conseguimos criar um <code class="highlighter-rouge">arquivo.js</code> para cada tarefa e no <code class="highlighter-rouge">gulpfile.js</code> chamar cada tarefa utilizando o <code class="highlighter-rouge">require</code>.</p>
+
+<p>Enquanto isso, consumimos o <code class="highlighter-rouge">config.json</code> com os caminhos dos diretórios de cada CSS, Imagem, JS, HTML, seja do ambiente de desenvolvimento (<code class="highlighter-rouge">source</code>) ou o destino (<code class="highlighter-rouge">_public</code>).</p>
+
+<p>Abaixo, você visualiza exemplo de duas tarefas, o <code class="highlighter-rouge">browser-sync.js</code> e <code class="highlighter-rouge">stylus.js</code>, onde utilizar um simples <code class="highlighter-rouge">module.exports</code> para exportamos uma função que já recebe como parâmetro, o próprio <code class="highlighter-rouge">gulp</code> além do <code class="highlighter-rouge">config.json</code> e a dependência responsável por carregar todas as demais dependências do Gulp (plugins).</p>
+
+<p><code class="highlighter-rouge">config.json</code></p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+    </span><span class="nl">"tasksPath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./tasks"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stylusSrcFolder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./source/css"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stylusDestFolder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./css"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pugSrcFolder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./source"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pugDestFolder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"jsSrcFolder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./source/js"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"jsDestFolder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./js"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"imgSrcFolder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./source/img"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"imgDestFolder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./img"</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p><code class="highlighter-rouge">browser-sync.js</code></p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">gulp</span><span class="p">,</span> <span class="nx">plugins</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">plugins</span><span class="p">.</span><span class="nx">browserSync</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">browser-sync</span><span class="dl">'</span><span class="p">).</span><span class="nx">create</span><span class="p">();</span>
+
+    <span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="dl">'</span><span class="s1">browser-sync</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+       <span class="nx">plugins</span><span class="p">.</span><span class="nx">browserSync</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+          <span class="na">server</span><span class="p">:</span> <span class="p">{</span>
+             <span class="na">baseDir</span><span class="p">:</span> <span class="nx">config</span><span class="p">.</span><span class="nx">pugDestFolder</span>
+          <span class="p">}</span>
+       <span class="p">});</span>
+
+       <span class="nx">gulp</span><span class="p">.</span><span class="nx">watch</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">stylusSrcFolder</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/**/*.styl</span><span class="dl">"</span><span class="p">,</span> <span class="p">[</span><span class="dl">'</span><span class="s1">stylus</span><span class="dl">'</span><span class="p">]);</span>
+       <span class="nx">gulp</span><span class="p">.</span><span class="nx">watch</span><span class="p">([</span><span class="nx">config</span><span class="p">.</span><span class="nx">pugDestFolder</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/**/*.html</span><span class="dl">"</span><span class="p">,</span> <span class="nx">config</span><span class="p">.</span><span class="nx">pugDestFolder</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/index.html</span><span class="dl">"</span><span class="p">]).</span><span class="nx">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">change</span><span class="dl">"</span><span class="p">,</span> <span class="nx">plugins</span><span class="p">.</span><span class="nx">browserSync</span><span class="p">.</span><span class="nx">reload</span><span class="p">);</span>
+   <span class="p">});</span>
+<span class="p">};</span></code></pre></figure>
+
+<p><code class="highlighter-rouge">stylus.js</code></p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">gulp</span><span class="p">,</span> <span class="nx">plugins</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">jeet</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">jeet</span><span class="dl">'</span><span class="p">),</span>
+          <span class="nx">rupture</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">rupture</span><span class="dl">'</span><span class="p">),</span>
+          <span class="nx">nib</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">nib</span><span class="dl">'</span><span class="p">),</span>
+          <span class="nx">prefixer</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">autoprefixer-stylus</span><span class="dl">'</span><span class="p">);</span>
+
+    <span class="nx">plugins</span><span class="p">.</span><span class="nx">browserSync</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">browser-sync</span><span class="dl">'</span><span class="p">).</span><span class="nx">create</span><span class="p">();</span>
+
+    <span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="dl">'</span><span class="s1">stylus</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">gulp</span><span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">stylusSrcFolder</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">/main.styl</span><span class="dl">'</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">plugins</span><span class="p">.</span><span class="nx">plumber</span><span class="p">())</span>
+            <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">plugins</span><span class="p">.</span><span class="nx">stylus</span><span class="p">({</span>
+                <span class="na">use</span><span class="p">:</span> <span class="p">[</span><span class="nx">prefixer</span><span class="p">(),</span> <span class="nx">jeet</span><span class="p">(),</span> <span class="nx">nib</span><span class="p">(),</span> <span class="nx">rupture</span><span class="p">()],</span>
+                <span class="na">compress</span><span class="p">:</span> <span class="kc">true</span>
+            <span class="p">}))</span>
+            <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">gulp</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">stylusSrcFolder</span><span class="p">))</span>
+            <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">plugins</span><span class="p">.</span><span class="nx">rename</span><span class="p">(</span><span class="dl">'</span><span class="s1">styles.css</span><span class="dl">'</span><span class="p">))</span>
+            <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">gulp</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">stylusDestFolder</span><span class="p">))</span>
+            <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">plugins</span><span class="p">.</span><span class="nx">browserSync</span><span class="p">.</span><span class="nx">reload</span><span class="p">({</span><span class="na">stream</span><span class="p">:</span> <span class="kc">true</span><span class="p">}));</span>
+    <span class="p">});</span>
+<span class="p">};</span></code></pre></figure>
+
+<p>Trabalhando dessa forma, caso surga alguma nova dependência e por consequência uma nova tarefa, basta criarmos um arquivo novo, chamarmos com o require e incluirmos nas demais tarefas, caso seja necessário. Fácil manutenção, fácil atualização, fácil integração!</p>
+
+<h2 id="concluindo">Concluindo..</h2>
+
+<p>Que artigo longo, rapaz! rs’</p>
+
+<p>A minha ideia aqui foi compartilhar um pouco de um workflow simples, porém eficiente atende às minhas necessidades atuais em front-end. Sei que tenho muito a melhorar, adicionar mais algumas coisinhas pra melhorar ainda mais esse workflow. Mas por enquanto, atende às minhas necessidades muito bem.</p>
+
+<p>Ainda é um dos primeiros artigos que escrevo, então sorry se não me expressei tão bem em alguns pontos. Se alguém quiser utilizar, fique a vontade, o código está todo em meu <a href="https://github.com/ednilsonamaral/workflow">GitHub</a>. Peço apenas que dê os devidos créditos! =p</p>
+
+<p>Você também pode visualizar o resultado final desse workflow <a href="https://ednilsonamaral.github.io/workflow-stylus/">nesse link</a>.</p>
+
+<p>Caso tenha alguma dúvida, sugestão, reclamação, please, entre em contato comigo, através de um simples comentário ou criando uma issue nesse <a href="https://github.com/ednilsonamaral/workflow">repositório</a>.</p>
+
+<p>Se gostou ou não, compartilhe com seus amigos front-end! =p</p>
+
+<p>É isso aí pessoal, vaaleu, até mais! =D</p>
+
+<h2 id="referências">Referências</h2>
+
+<ul>
+  <li><a href="http://willianjusten.com.br/falando-sobre-rscss/">Falando sobre RSCSS</a></li>
+  <li><a href="http://willianjusten.com.br/organizando-seu-css-com-itcss/">Organizando seu CSS com ITCSS</a></li>
+  <li><a href="https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/">ITCSS: SCALABLE AND MAINTAINABLE CSS ARCHITECTURE</a></li>
+  <li><a href="http://www.creativebloq.com/web-design/manage-large-css-projects-itcss-101517528">Manage large CSS projects with ITCSS</a></li>
+  <li><a href="http://lucasmaiaesilva.com.br/grids-sem%C3%A2nticos-com-jeet/">Grids Semânticos com Jeet</a></li>
+  <li><a href="http://codepen.io/suissa/pen/RNWeaE">Jeet 5 - Mobile First (Stylus)</a></li>
+  <li><a href="https://www.packtpub.com/books/content/how-to-simplify-your-development-workflow-with-gulp">How to Simplify Your Development Workflow with Gulp</a></li>
+  <li><a href="https://davidwalsh.name/stylus-rem">Stylus PX to REM Mixin</a></li>
+</ul>
+:ET

@@ -1,0 +1,159 @@
+I""7<p>No meu último post falei um pouco sobre a stack MEAN, e o M dessa sigla nada mais é que MongoDB. Mas que parada louca é essa, parça?! Irei explicar nesse post exatamente isso.</p>
+
+<h2 id="sql-vs-nosql">SQL vs NoSQL</h2>
+
+<p>Bem sabemos que existe o modelo relacional de banco de dados, como SQL. Mas e o que vem a ser esse tal de NoSQL?</p>
+
+<p>NoSQL não quer dizer <em>Não SQL</em>, seu conceito é de ser um banco de dados não relacional e de código aberto. Para explicar melhor o que vem a ser NoSQL, irei usar um exemplo dado pelo <a href="https://twitter.com/osuissa">Suissa</a> durante uma aula de MongoDB no curso de <a href="https://github.com/Webschool-io/be-mean-instagram">Be MEAN</a>:</p>
+
+<blockquote>
+  <p>Para entender melhor o NoSQL, pensaremos em uma analogia utilizando cervejas. Aquelas cervejas Pilsens da vida (Skol, Bhrama, Sub-zero) são banco de dados relacionais, iguais. Agora, as cervejas NoSQL são as diferentes, cada uma com suas características marcantes.</p>
+</blockquote>
+
+<p>Os banco de dados em NoSQL são baseados em grafos não relacionais. Ele é ótimo em resolver problemas especificos, de uma forma muito melhor do que banco de dados relacionais.</p>
+
+<p>Uma das principais diferenças entre bancos de dados relacionais e NoSQL é que, enquanto os bancos de dados relacionais nós os estruturamos sabendo quais repostas teremos, quais entradas, o NoSQL o que realmente importa são as perguntas e não as respostas. Ou seja, a normalização de um banco de dados não relacional será de acordo com as perguntas do seu sistema.</p>
+
+<h2 id="mongodb-o-que-é-mesmo">MongoDB, o que é mesmo?</h2>
+
+<blockquote>
+  <p>MongoDB (do inglês humongous, “gigantesco”) é uma aplicação de código aberto, de alta performance, sem esquemas, orientado a documentos. Foi escrito na linguagem de programação C++. Além de orientado a documentos, é formado por um conjunto de documentos JSON. Muitas aplicações podem, dessa forma, modelar informações de modo muito mais natural, pois os dados podem ser aninhados em hierarquias complexas e continuar a ser indexáveis e fáceis de buscar.</p>
+</blockquote>
+
+<p>Ah, sabe mais uma coisa legal do MongoDB, ele não possui JOIN. Ainda não.</p>
+
+<p>E o mais impressionante do MongoDB, ele aceita <strong>JavaScript</strong>! Sua API é uma das mais fáceis de utilizar. Ele possui <strong>schemaless</strong>, por isso não possui <strong>schema</strong>.</p>
+
+<h4 id="mongodb-é-para-programadores-e-não-para-dbas-da-vida-ficadica">MongoDB é para programadores e não para DBA’s da vida! #FicaDica</h4>
+
+<h3 id="como-é-seu-armazenamento">Como é seu armazenamento?</h3>
+
+<p>O MongoDB trabalho com <em>Memory Mapped Files</em>, ou seja, ele vai persistindo os dados sequencialmente no seu hard disk.</p>
+
+<p>Quando criamos um <em>database</em> no MongoDB, ele já pré-aloca 80MB, para que os dados sejam inseridos sequencialmente. Mas ele não vai levantar esses dados pré-alocados diretamente no HD, ele vai para a memória RAM. E, quando a sua memória RAM ter toda sua capacidade usada, existe um carinha chamado <strong>sharding</strong>, que vai quebrar os dados em pequenos pacotes e alocar em outros servidores.</p>
+
+<h3 id="terminologia">Terminologia</h3>
+
+<p>SQL &gt; MongoDB<br />
+Database &gt; Database<br />
+Table &gt; Collection<br />
+Rows &gt; JSON<br />
+Query &gt; Query<br />
+Index &gt; Index<br />
+Partition &gt; Shard</p>
+
+<p>Enquanto no SQL utilizamos tabelas, no MongoDB trabalhamos com coleções (<em>collections</em>). Ao invés de rows, temos documentos JSON.</p>
+
+<p>Já deu pra sentir um pouco da pegada do MongoDB é louca, né? É só o começo, parça! ;)</p>
+
+<h3 id="instalação-e-documentação">Instalação e Documentação</h3>
+
+<p>Para a instalação do MongoDB no seu computador, é muito simples, caso você <strong>não use</strong> Windows. Se você ainda usa Widnows, boa sorte, pois vai precisar! hehe’</p>
+
+<p>Brincadeiras a parte, independente do sistema operacional que você utilize (eu não uso Windows), recomendo fortemente um artigo sobre <a href="https://github.com/Webschool-io/be-mean-instagram/blob/master/Apostila/module-mongodb/pt-br/installation.md">como instalar</a> o MongoDB.</p>
+
+<p><a href="https://docs.mongodb.org/">Nesse link</a>, encontramos a documentação oficial do MongoDB. E mesmo sendo em inglês, indispensável!</p>
+
+<h3 id="começando-os-trabalhos-p">Começando os Trabalhos :p</h3>
+
+<p>Os exemplos que postarei no decorrer desse post, realizei no Debian. Eu já deixei meu MongoDB para iniciar seu serviço já quando ligo o PC. Mas caso aí pra você ele não inicie automaticamente, baste deixar um terminal aberto com o comando <code class="highlighter-rouge">mongod</code> e então abrir outro terminal para trabalhar com o MongoDB.</p>
+
+<p>O <code class="highlighter-rouge">mongod</code> apenas é o comando responsável por iniciar o serviço do MongoDB, então, se ele não inicia automaticamente quando seu PC liga, toda vez que for utilizar o MongoDB deve executar esse comando e só fechar esse terminal quando não trabalhar mais com o MongoDB.</p>
+
+<p>Agora, após deixar o terminal do <code class="highlighter-rouge">mongod</code> aberto, temos outro terminal para utilizarmos o MongoDB. Temos duas maneiras de iniciar o MongoDB:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">mongo</code> &gt; para iniciar o MongoDB direto, então ele conectará no banco de dados <em>test</em>.</li>
+  <li><code class="highlighter-rouge">mongo nome_database</code> &gt; para iniciar o MongoDB já conectado em um banco de dados especifico.</li>
+</ul>
+
+<p>Independente se você conectar no database <code class="highlighter-rouge">test</code> ou diretamente em um database especifico (<code class="highlighter-rouge">mongo nome_database</code>), você poderá lista todos os banco de dados com o <code class="highlighter-rouge">show dbs</code> de qualquer banco de dados conectado. Ou seja, mesmo eu estando conectado no <code class="highlighter-rouge">bancoTest</code>, poderei ver a lista de todos os outros bancos conectados através do <code class="highlighter-rouge">show dbs</code>.</p>
+
+<h3 id="inserindo-documento">Inserindo documento</h3>
+
+<p>Digamos que você inicie o MongoDB com o comando <code class="highlighter-rouge">mongo bancoTeste</code>, e der um <code class="highlighter-rouge">show dbs</code>, verá que o banco <strong>bancoTeste</strong> não está listado. Mas por que? Simples, o MongoDB só cria o seu banco de dados quando for inserido algum objeto dentro de uma coleção.</p>
+
+<p>A sintaxe básica do MongoDB é <code class="highlighter-rouge">db.nome_coleção.função_desejada()</code>.</p>
+
+<p>No MongoDB, temos duas maneiras de inserir novos objetos. Ou é através de uma variável e passando via parâmetro quando chamaos a função <code class="highlighter-rouge">insert</code> ou diretamente como parâmetro.</p>
+
+<h4 id="direto-na-função-insert">Direto na função <code class="highlighter-rouge">insert</code></h4>
+
+<p>Para inserirmos um objeto diretamente como parâmetro da função <code class="highlighter-rouge">insert</code>, é como o exemplo a seguir: <code class="highlighter-rouge">db.colecao.insert({name: "Ednilson"})</code>.</p>
+
+<h4 id="via-variável">Via variável</h4>
+
+<p>Agora, se optarmos por inserirmos um objeto via variável, teremos dois passos:</p>
+
+<p><strong>1.</strong> Criar a variável: <code class="highlighter-rouge">var json = {name: "Ednilson"}</code>;<br />
+<strong>2.</strong> Chamar a função <code class="highlighter-rouge">insert</code> passando como parâmetro a variável criada anteriormente: <code class="highlighter-rouge">db.colecao.insert(json)</code>.</p>
+
+<p>Qual a maneira mais fácil que você identificou de adicionar um objeto na coleção desejada? Via variável, lógico, né! Se não foi via variável, why? Tell me, please! :p</p>
+
+<p>Agora, dê o comando <code class="highlighter-rouge">show dbs</code> e o que acontece? Seu <code class="highlighter-rouge">bancoTeste</code> foi criado com sucesso, parça!</p>
+
+<p>Também podemos criar uma variável e adicionar vários documentos dentro da mesma variável. Mas como? Em forma de array, como no seguinte exemplo: <code class="highlighter-rouge">var array = [{name: "Anderson Silva", age: 45}, {name: "Chris Weidman", age: 25}, {name: "Eli Manning", age: 28}]</code>. E então chamar a função <code class="highlighter-rouge">insert</code>: <code class="highlighter-rouge">db.colecao.insert(array)</code>.</p>
+
+<p>Agora que inseri, como vejo o que foi inserido ou o que tem na minha coleção? Simples também, parça! Basta dar um comando <code class="highlighter-rouge">db.colecao.find()</code>. Apenas com o <code class="highlighter-rouge">find</code>, ele vai lista todos os objetos na coleção. Agora se você quer ver um especifico, o primeiro, por exemplo, basta dar o comando <code class="highlighter-rouge">db.colecao.findOne()</code>.</p>
+
+<p>Acima, vimos como inserir esses objetos na nossa coleção. Porém, eles são estão salvos no banco ainda. Para salvar, basta chamarmos a função <code class="highlighter-rouge">save</code>, da seguinte forma: <code class="highlighter-rouge">db.colecao.save(array)</code>. Se você preferir dar o <code class="highlighter-rouge">save</code> sem o <code class="highlighter-rouge">insert</code>, também é possível.</p>
+
+<h3 id="hora-do-select-sqn">Hora do <code class="highlighter-rouge">SELECT</code>, #SQN!</h3>
+
+<p>Para buscar documentos, temos:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">find()</code>: dando apenas um <code class="highlighter-rouge">db.colecao.find()</code>, sem passar nenhum parâmetro, ele irá mostrar todos os registros na tela.</li>
+  <li><code class="highlighter-rouge">findOne(): ele retorna apenas um único documento: </code>db.colecao.findOne()`.</li>
+</ul>
+
+<p>Irei te recomendar a leitura <a href="http://imasters.com.br/artigo/17308/mongodb/como-utilizar-selects-com-mongodb/?trace=1519021197&amp;source=author-archive">desse artigo</a>, um pouco antigo, mas explica com detalhes como funciona a busca de documentos com MongoDB. #FicaDICA</p>
+
+<h3 id="e-como-fica-o-update">E como fica o UPDATE?</h3>
+
+<p>Atualizar um documento pode ser feito tanto com o <code class="highlighter-rouge">db.colecao.save()</code> como utilizar <code class="highlighter-rouge">db.colecao.update()</code>. No comando <code class="highlighter-rouge">db.colecao.update()</code> nós passamos 3 parâmetros, sendo eles:</p>
+
+<ul>
+  <li>query;</li>
+  <li>modificadores;</li>
+  <li>options.</li>
+</ul>
+
+<p>A sintaxe básica é: <code class="highlighter-rouge">db.colecao.update(query, modificadores, options)</code>.</p>
+
+<p>Antes de exemplificar como funciona o UPDATE no MongoDB, vamos ver o que são e como funcionam os <strong>operadores de modificação</strong>!</p>
+
+<h4 id="operadores-de-modificação">Operadores de Modificação</h4>
+
+<h5 id="set"><code class="highlighter-rouge">$set</code></h5>
+
+<p>Ele modifica um valor ou cria esse valor, caso ele não exista. Sua sintaxe básica é <code class="highlighter-rouge">{$set: {campo: valor}}</code>.</p>
+
+<p>Agora, vamos buscar nossos documentos e copiar um <strong>_id</strong>: <code class="highlighter-rouge">{"_id": ObjectId("56672470c75dad95fecca13c"), "name": "Anderson Silva", "age": 45}</code>.</p>
+
+<p>Nisso, criaremos uma variável <code class="highlighter-rouge">var query = {"_id": ObjectId("56672470c75dad95fecca13c")}</code> contendo a <strong>_id</strong> escolhida. Então, utilizando o <code class="highlighter-rouge">$set</code> iremos adicionar um novo campo no nosso documento: <code class="highlighter-rouge">var mod = {$set: {sex: "Male"}}</code>.</p>
+
+<p>Como vemos no código acima, criamos uma variável <strong>mod</strong> que está nosso modificado <code class="highlighter-rouge">$set</code>. E então, passamos o <code class="highlighter-rouge">db.colecao.update(query, mod)</code> com o query que possui o _id escolhido anteriormente e nosso operador <code class="highlighter-rouge">$set</code>. Agora, ao buscarmos o documento pela query visualizamos que o campo <code class="highlighter-rouge">age</code> foi criado e adicionado o valor especificado na variável <code class="highlighter-rouge">mod</code>.</p>
+
+<h5 id="unset"><code class="highlighter-rouge">$unset</code></h5>
+
+<p>Se temos como adicionar um novo campo em nosso documento, temos como remover esse campo? Sim, utilizando o operador <code class="highlighter-rouge">$unset</code>! Ele funciona como o <code class="highlighter-rouge">$set</code>, porém ao invés de adicionar, ele <strong>remove</strong>!</p>
+
+<p>Sua sintaxe básica é <code class="highlighter-rouge">{$unset: {campo: valor}}</code>.</p>
+
+<h5 id="inc"><code class="highlighter-rouge">$inc</code></h5>
+
+<p>Esse operador incrementa um valor no campo desejado. Caso o campo não exista, esse campo é criado e inserido o valor passado por ele. Sua sintaxe é <code class="highlighter-rouge">{$inc: {campo: valor}}</code>.</p>
+
+<p>Let’s code! Ainda utilzando nosso _id na variável query, iremos aumentar a idade do carinha lá, simples: <code class="highlighter-rouge">var mod = {$inc: {age: 1}}</code>. Ao invés de 45 anos, agora ele tem 46.</p>
+
+<p>E para voltar aos 45 anos? Basta passar um valor negativo: <code class="highlighter-rouge">var mod = {$inc: {age: -1}}</code>!</p>
+
+<p>Além desses operadores citados, temos os operadores de array. Não os citarei aqui no blog, para saber mais, basta acessar a documentação oficial do MongoDB, cujo link tá lá em cima do post! ;)</p>
+
+<h3 id="concluindo">Concluindo</h3>
+
+<p>É fácil trabalhar com MongoDB, não é?! Se eu continuar nesse post, sairá mais uma apostila do que post. Ficou interessado em aprender mais sobre MongoDB, então já sabe, vem acompanhar o curso <a href="https://github.com/Webschool-io/be-mean-instagram/">Be MEAN</a> do <a href="https://twitter.com/osuissa">Suissa</a>!</p>
+
+<p>Qualquer dúvida, sugestão, crítica, por favor, deixe seu comentário logo abaixo. Vaaleu! Até a próxima! :)</p>
+:ET

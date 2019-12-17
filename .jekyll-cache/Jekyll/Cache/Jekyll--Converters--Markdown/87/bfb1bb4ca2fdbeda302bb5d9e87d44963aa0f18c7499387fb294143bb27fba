@@ -1,0 +1,2 @@
+I"�<p>Para linguagens orientadas à objetos, como em C++ e Java, é utilizado um comportamento diferente para compartilhar código entre entidades. Sua herança nada mais é que a capacidade de suas classes em compartilharem seus métodos e atributos entre si. Um exemplo disso, é definir a relação de uma classe com outra através da palavra <code class="highlighter-rouge">extends</code>.</p>
+:ET

@@ -1,0 +1,179 @@
+I"�8<p>Olá! Olá! Olá! Olá! Como é que você está?</p>
+
+<p>Depois de meses sem postar nada no blog, passando dias e mais dias com a mentalidade <strong>preciso melhorar meu tema e postar mais artigos</strong> todo dia e deixando de lado, 2017 não vai acontecer isso! Em 2017, tracei como <strong>meta</strong> postar no mínimo dois artigos por mês, exceto janeiro, que já era (rsrsrs), independente da disponibilidade de tempo devido aos trabalhos.</p>
+
+<p>E nada melhor que começar o “ano” falando sobre o meu mais novo queridinho, <strong>Vue.js</strong>!!</p>
+
+<h2 id="o-que-é-vuejs">O que é Vue.js?</h2>
+
+<p>Primeiramente vamos aprender a pronúncia correta. Fala-se <strong>view</strong> (/vjuː/) e não <strong>vue</strong>. Ele foi criado pelo <a href="https://github.com/yyx990803">Evan You</a> em 2014.</p>
+
+<p>O Vue.js é um framework javascript progressivo, para desenvolvermos interfaces web robustas e complexas. Ele é baseado em componentes reativos para aplicações web modernas. Com ele, como já citado, podemos criar aplicações web iterativas, complexas e robustas.</p>
+
+<p>Ele não é considerado um framework full stack, ou seja do back-end ao front-end. Ele é focado <strong>exclusivamente</strong> para a camada da <strong>view</strong>!</p>
+
+<p>Podemos construir uma aplicação complexa facilmente com Vue.js e trabalhar o back-end bem como entendermos, em qualquer stack.</p>
+
+<p>O Vue.js destaca-se entre outros frameworks principalmente pela sua simplicidade e métodos de como trabalhar, baseado em componentes e focado apenas na view da sua aplicação.</p>
+
+<p>Não irei entrar em detalhes do que é e como ele funciona. Para isso, meu amigo <a href="https://github.com/Halfeld">Igor Luiz</a> e eu estamos desenvolvendo um curso prático de Vue.js pela Webschool.io e estará disponível nas próximas semanas, ainda nesse mês de fevereiro. Então, você não conhece Vue.js? Poderá <strong>estudar de graça</strong>! Assim que as aulas estiverem disponíveis ao público, irei postar um artigo especial aqui no blog! :D</p>
+
+<p>Esse artigo tratará apenas de desenvolvimento de componentes básicos com Vue.js. É necessário ter uma familiriadade básica com Vue.js para dar continuidade na leitura..</p>
+
+<h2 id="o-que-são-componentes-como-pensar-em-componentes">O que são componentes? Como pensar em componentes?</h2>
+
+<p>Tudo são e pode ser um componente(s)! Vejamos a imagem abaixo e vamos analisar com calma.</p>
+
+<p><img src="/assets/img/vue-compoentes.png" alt="Exemplo de Componentes" /></p>
+
+<ol>
+  <li>
+    <p>O <strong>header</strong>, com o logo e um menu simples é um <strong>COMPONENTE</strong>. No Vue.js, se formos pensar em modularização, poderiamos criar mais 2 componentes, 1 para o logotipo e título e mais 1 para o menu ao lado.</p>
+  </li>
+  <li>
+    <p>O <strong>main content</strong>, com o texto e botão é um <strong>COMPONENTE</strong>. Aqui, também poderia dividir em mais 3 componentes: título, texto e botão.</p>
+  </li>
+  <li>
+    <p>O <strong>footer</strong>, com os créditos do projeto é um <strong>COMPONENTE</strong>.</p>
+  </li>
+</ol>
+
+<p>Um simples exemplo de componentes, <strong>tudo pode ser componente, tudo</strong>! No começo pode ser um pouquinho complicado entender esse conceito, mas depois que entender, vai que vai, filhão. Trabalhar com componentes no Vue.js irá facilitar o desenvolvimento de nossa aplicação em 110%. <strong>O Vue.js é para componentes!</strong></p>
+
+<h2 id="vue-cli">vue-cli</h2>
+
+<p>Nesse projeto, utilizei o template do webpack disponibilizado pelo <strong>vue-cli</strong>.</p>
+
+<p>É uma ferramenta com o intuito de facilitar a criação de projetos. Responsável por criar alguns templates para projetos em Vue.js.</p>
+
+<p>Para instalar o <strong>vue-cli</strong> basta executar o seguinte comando: <code class="highlighter-rouge">npm install -g vue-cli</code>.</p>
+
+<p>Para visualizar os templates disponíveis basta executar o seguinte comando: <code class="highlighter-rouge">vue list</code>. E para criar um projeto com um template padrão do <strong>vue-cli</strong>, basta executar o seguinte comando: <code class="highlighter-rouge">vue init nome_template nome_projeto</code>, por exemplo, <code class="highlighter-rouge">vue init webpack vue-webpack</code>.</p>
+
+<p>Ele irá instalar o projeto dividido em vários arquivos e pastas, vamos descobrir o que cada pasta possui e qual é sua responsabilidade.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">build</code>: possui os arquivos de configuração que irão fazer o build da aplicação;</li>
+  <li><code class="highlighter-rouge">dist</code>: após realizar <code class="highlighter-rouge">npm run build</code> o webpack irá compilar o seu projeto para produção, minificando e concatenando todos os arquivos;</li>
+  <li><code class="highlighter-rouge">config</code>: alguns arquivos que precisamos alterar uma coisa ou outra em nosso ambiente;</li>
+  <li><code class="highlighter-rouge">src</code>: é o nosso CÓDIGO FONTE, onde iremos brincar pra caramba.</li>
+</ul>
+
+<h2 id="criando-os-componentes">Criando os componentes</h2>
+
+<p>Para criar um componente em um projeto Vue.js é muito simples. Basta criarmos um arquivo com o nome do nosso componente, por exemplo <code class="highlighter-rouge">Blog.vue</code> e importarmos ele no componente global ou especifico, ou nas configurações da nossa rota. O <code class="highlighter-rouge">Blog.vue</code> possui como código:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;template&gt;</span>
+  <span class="nt">&lt;div&gt;</span>
+    <span class="nt">&lt;h2&gt;</span>Blog<span class="nt">&lt;/h2&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/template&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+<span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+<span class="p">}</span>
+<span class="nt">&lt;/script&gt;</span>
+
+<span class="nt">&lt;style </span><span class="na">scoped</span><span class="nt">&gt;</span>
+<span class="nt">h2</span><span class="p">{</span>
+  <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="m">#c39e88</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+</code></pre></div></div>
+
+<p>Onde, dentro das tags:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">&lt;template&gt;&lt;/template&gt;</code> irá conter o nosso HTML;</li>
+  <li><code class="highlighter-rouge">&lt;script&gt;&lt;/script&gt;</code> irá conter o nosso Javascript, onde a mágica acontece;</li>
+  <li><code class="highlighter-rouge">&lt;style&gt;&lt;/style&gt;</code> irá conter o nosso CSS. Caso você declare <em>scoped</em> como no exemplo acima, as declarações poderão ser utilizadas <strong>apenas</strong> nesse componente.</li>
+</ul>
+
+<p>Esse é o padrão para criarmos componentes com Vue.js. Podemos criar quantos componentes quisermos, à vontade! E, é fácil e simples! ;)</p>
+
+<h2 id="vue-router">vue-router</h2>
+
+<p>Como eu crio as rotas com Vue.js? No Angular.js eu sei fazer, mas e aqui, manolo? Com o <strong>vue-router</strong>!!</p>
+
+<p>Já sabemos que para desenvolver um projeto em Vue.js é simples, com <strong>vue-router</strong> é mais simples ainda! Também já sabemos que estamos compondo nossa aplicação com componentes. Então, ao adicionarmos o <strong>vue-router</strong> ao nosso projeto, o que precisamos fazer é mapear os nossos componentes para as suas respectivas rotas e deixar que o <strong>vue-router</strong> identifique onde deverá rendelizá-las.</p>
+
+<p>Para instalar o <strong>vue-router</strong> na nossa aplicação, basta executarmos os seguintes comandos: <code class="highlighter-rouge">npm install --save vue-router</code>.</p>
+
+<p>Feito isso, precisamos informar a nossa aplicação:</p>
+
+<ul>
+  <li>Quais são as rotas;</li>
+  <li>Informar ao Vue.js que iremos trabalhar/usar o vue-router;</li>
+  <li>Criar as rotas necessárias do projeto;</li>
+  <li>Chamar as rotas na nossa instância Vue.js.</li>
+</ul>
+
+<ol>
+  <li>Primeiramente, devemos importar o <strong>vue-router</strong> ao projeto, mais especificamente em <code class="highlighter-rouge">main.js</code>;</li>
+  <li>Informamos ao Vue.js que iremos utilizar/trabalhar como <strong>vue-router</strong>;</li>
+  <li>Então, criamos as rotas;</li>
+  <li>Por fim, chamamos as rotas na nossa instância Vue.js.</li>
+</ol>
+
+<p>Os 4 passos acima, você pode visualizar com mais calma no código abaixo:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Importanto o Vue e vue-router</span>
+<span class="k">import</span> <span class="nx">Vue</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">VueRouter</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue-router</span><span class="dl">'</span>
+
+<span class="c1">// Importanto os componentes da nossa aplicação</span>
+<span class="k">import</span> <span class="nx">App</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./App.vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">CcAbout</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/About.vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">CcBlog</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/Blog.vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">CcContact</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/Contact.vue</span><span class="dl">'</span>
+
+<span class="c1">// Informamos ao Vue.js que iremos utilizar/trabalhar como vue-router</span>
+<span class="nx">Vue</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">VueRouter</span><span class="p">)</span>
+
+<span class="c1">// Então, criamos as rotas</span>
+<span class="kd">const</span> <span class="nx">routes</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span>
+    <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/about</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">component</span><span class="p">:</span> <span class="nx">CcAbout</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/blog</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">component</span><span class="p">:</span> <span class="nx">CcBlog</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/contact</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">component</span><span class="p">:</span> <span class="nx">CcContact</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+
+<span class="kd">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">VueRouter</span><span class="p">({</span> <span class="nx">routes</span> <span class="p">})</span>
+
+<span class="c1">// Por fim, chamamos as rotas na nossa instância Vue.js</span>
+<span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+  <span class="nx">router</span><span class="p">,</span> <span class="c1">// Por fim, chamamos as rotas na nossa instância Vue.js</span>
+  <span class="c1">// el: '#app',</span>
+  <span class="na">render</span><span class="p">:</span> <span class="nx">h</span> <span class="o">=&gt;</span> <span class="nx">h</span><span class="p">(</span><span class="nx">App</span><span class="p">)</span>
+<span class="p">}).</span><span class="nx">$mount</span><span class="p">(</span><span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Pronto, as nossas rotas estão prontas! Apenas com isso aí? Sim, só isso! Lógico, se seu projeto possui mais rotas, isso vai aumentar. Mas basicamente é assim que criamos rotas com <strong>Vue.js</strong> e <strong>vue-router</strong>! Muito fácil, né?!</p>
+
+<h2 id="build-for-production">Build for production</h2>
+
+<p>Criei os componentes, populei eles com o conteúdo que gostaria; criei as rotas e mapeei os meus componentes. O que falta agora? Verificar o resultado final e publicar!</p>
+
+<p>Se utilizarmos o webpack com vue-cli, temos um NPM Script chamado <code class="highlighter-rouge">npm run build</code> que irá fazer todo o build do seu projeto, minificando e concatenando os arquivos de seu projeto e deixá-los prontos para colocar em produção. Não precisa instalar <strong>NADA</strong> no servidor, basta copiar esses arquivos e já era! Após o webpack realizar o build, ele irá salvar os arquivos necessários na pasta <strong>dist</strong>!</p>
+
+<h2 id="concluindo">Concluindo</h2>
+
+<p>Esse projeto foi apenas um pequeno exemplo de desenvolvimento de componentes com <strong>Vue.js</strong> e <strong>vue-router</strong>. É muito simples e muito fácil. E nada melhor do que praticar desenvolvendo projetos pequenos, entendendo as possibilidades e poderes que temos em mãos para utilizarmos. Com o passar do tempo, conseguiremos desenvolver projetos mais complexos, com inúmeros componentes e rotas, com <strong>Vue.js</strong> e <strong>vue-router</strong>.</p>
+
+<p>O artigo foi simples, porém espero ter deixado a minha ideia! Não quis entrar a fundo com os poderes do vue-router, apenas o básico e essencial, assim bem como o básico e essencial de desenvolver componentes com Vue.js.</p>
+
+<p>Qualquer dúvida, sugestão, reclamação, crítica, por favor, deixe um comentário abaixo que lhe responderei rapidinho!</p>
+
+<p>Você também pode visualizar o resultado final desse projeto através <a href="http://ednilsonamaral.me/vue-components-example/#/">desse link</a> e ver os códigos completos em seu <a href="https://github.com/ednilsonamaral/vue-components-example">repositório oficial</a> no GitHub.</p>
+
+<p>Abraços, até mais! =D</p>
+:ET

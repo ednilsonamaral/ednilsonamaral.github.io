@@ -1,0 +1,112 @@
+I"L3<p>Para linguagens orientadas à objetos, como em C++ e Java, é utilizado um comportamento diferente para compartilhar código entre entidades. Sua herança nada mais é que a capacidade de suas classes em compartilharem seus métodos e atributos entre si. Um exemplo disso, é definir a relação de uma classe com outra através da palavra <code class="highlighter-rouge">extends</code>.</p>
+
+<p>Agora, no JavaScript essa abordagem é um pouco diferente. Para compartilharmos código entre entidades devemos conhecer um pouco sobre protótipos.</p>
+
+<h3 id="protótipos">Protótipos</h3>
+
+<p>Quase todos os objetos, além de sua lista de propriedades, possuem um <em>prototype</em>, ou <strong>protótipo</strong>.</p>
+
+<p>Basicamente, um protótipo é outro objeto que é utilizado como fonte de <em>fallback</em> para as propriedades. Ou seja, assim que um objeto recebe uma chamada em determinada propriedade que ele não possui, seu <em>prototype</em> designado para aquela propriedade vai ser buscado, e, caso não encontre, irá buscar em outro, e assim por diante.</p>
+
+<p>Porém, se nos depararmos com um objeto vazio, o seu protótpio é o ancestral de todos os protótpios, ou seja, a entidade por trás da maioria dos objetos, o <em>Object.prototype</em>.</p>
+
+<blockquote>
+  <p>As relações dos objetos JavaScript formam uma estrutura em forma de árvore, e na raiz dessa estrutura se encontra o Object.prototype. Ele fornece alguns métodos que estão presentes em todos os objetos, como o toString, que converte um objeto para uma representação em string.</p>
+
+  <p>Muitos objetos não possuem o Object.prototype diretamente em seu prototype. Ao invés disso eles têm outro objeto que fornece suas propriedades padrão. Funções derivam do Function.prototype, e arrays derivam do Array.prototype.</p>
+</blockquote>
+
+<h3 id="construtores">Construtores</h3>
+
+<p>Podemos consedirar a maneira mais simples de criar objetos que vai herdar algum <em>prototype</em> é através de um construtor. Para isso, ao chamarmos uma função, basta à invocarmos com a palavra-chave <code class="highlighter-rouge">new</code>, fazendo assim que ela seja um construtor.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">Aluno</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">nome</span><span class="p">,</span> <span class="nx">idade</span><span class="p">)</span> <span class="p">{</span>  
+	<span class="k">this</span><span class="p">.</span><span class="nx">nome</span> <span class="o">=</span> <span class="nx">nome</span><span class="p">;</span>  
+	<span class="k">this</span><span class="p">.</span><span class="nx">idade</span> <span class="o">=</span> <span class="nx">idade</span><span class="p">;</span>  
+<span class="p">};</span>  
+
+<span class="nx">Aluno</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">serie</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">1º Ano</span><span class="dl">"</span><span class="p">;</span>  
+
+<span class="c1">//criando o objeto com o new  </span>
+<span class="kd">var</span> <span class="nx">bruna</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Aluno</span><span class="p">(</span><span class="dl">"</span><span class="s2">Bruna</span><span class="dl">"</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>  
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bruna</span><span class="p">);</span>  
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bruna</span><span class="p">.</span><span class="nx">serie</span><span class="p">);</span>  </code></pre></figure>
+
+<p>O <em>prototype</em> de um construtor é o <code class="highlighter-rouge">Function.prototype</code>, onde sua propriedade <em>prototype</em> será o <em>prototype</em> de instâncias criadas através dele, porém não será seu próprio <em>prototype</em>. Enquanto outros objetos têm um <em>prototype</em> que pode ser obtido através do <code class="highlighter-rouge">Object.getPrototypeOf</code>.</p>
+
+<p>Vale ressaltar que devemos notar a diferença entrea a maneira que um <em>prototype</em> é associado a um construtor e a maneira que outros objetos têm um <em>prototype</em>.</p>
+
+<p>Além disso, nessa aborgadem de invocarmos o <code class="highlighter-rouge">new</code>, se não o invocarmos, o <code class="highlighter-rouge">this</code> dentro da função irá apenas se referenciar ao objeto global, assim podendo sobreescrever algumas variáveis que foram declaradas anteriormente.</p>
+
+<p>No exemplo a seguir, vemos mais uma possibilidade de herança:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">criaAluno</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">nome</span><span class="p">,</span> <span class="nx">idade</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="k">return</span> <span class="p">{</span>  
+        <span class="na">nome</span><span class="p">:</span> <span class="nx">nome</span><span class="p">,</span>  
+        <span class="na">idade</span><span class="p">:</span> <span class="nx">idade</span><span class="p">,</span>  
+        <span class="na">serie</span><span class="p">:</span> <span class="dl">"</span><span class="s2">1º Ano</span><span class="dl">"</span>  
+    <span class="p">};</span>  
+<span class="p">};</span>  
+
+<span class="kd">var</span> <span class="nx">bruna</span> <span class="o">=</span> <span class="nx">criaAluno</span><span class="p">(</span><span class="dl">"</span><span class="s2">Bruna</span><span class="dl">"</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>  
+<span class="kd">var</span> <span class="nx">jose</span> <span class="o">=</span> <span class="nx">criaAluno</span><span class="p">(</span><span class="dl">"</span><span class="s2">José</span><span class="dl">"</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>  
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bruna</span><span class="p">);</span>  
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jose</span><span class="p">);</span>  
+</code></pre></div></div>
+
+<p>O exemplo acima demonstra, que, ao invés de criarmos um objeto para cada aluno, crio um único objeto, que irá retornar outro objeto, com os campos. Então, a cada novo aluno, basta chamarmos essa função e setarmos os valores dos campos.</p>
+
+<h3 id="utilizando-call-e-apply">Utilizando <code class="highlighter-rouge">call</code> e <code class="highlighter-rouge">apply</code></h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">Aluno</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">nome</span><span class="p">,</span> <span class="nx">idade</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="k">this</span><span class="p">.</span><span class="nx">nome</span> <span class="o">=</span> <span class="nx">nome</span><span class="p">;</span>  
+    <span class="k">this</span><span class="p">.</span><span class="nx">idade</span> <span class="o">=</span> <span class="nx">idade</span><span class="p">;</span>  
+<span class="p">};</span>  
+
+<span class="nx">Aluno</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">serie</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">1º Ano</span><span class="dl">"</span><span class="p">;</span>  
+
+<span class="c1">//criando o objeto com o new  </span>
+<span class="kd">var</span> <span class="nx">bruna</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Aluno</span><span class="p">(</span><span class="dl">"</span><span class="s2">Bruna</span><span class="dl">"</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>  
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bruna</span><span class="p">);</span>  
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bruna</span><span class="p">.</span><span class="nx">serie</span><span class="p">);</span>  
+
+<span class="c1">//criando através de um objeto vazio e utilizando __proto__  </span>
+<span class="kd">var</span> <span class="nx">jose</span> <span class="o">=</span> <span class="p">{};</span>  
+<span class="nx">jose</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">=</span> <span class="nx">Aluno</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>  
+
+<span class="c1">//então, passamos como contexto e invocamos com o call ou apply  </span>
+<span class="nx">Aluno</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">jose</span><span class="p">,</span> <span class="dl">"</span><span class="s2">José</span><span class="dl">"</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>  
+<span class="c1">//Aluno.apply(jose, ["José", 6]);  </span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jose</span><span class="p">);</span>  
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">jose</span><span class="p">.</span><span class="nx">serie</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>No exemplo acima temos os mesmos métodos e atributos vistos anteriormente. Porém, agora, utilizamos a função <code class="highlighter-rouge">Aluno</code> para herdamos nossos outros objetos e protótipos.</p>
+
+<p>Note que para <code class="highlighter-rouge">bruna</code> invocamos <code class="highlighter-rouge">new</code>; enquanto <code class="highlighter-rouge">jose</code> criamos um objeto vazio, passamos como contexto e invocamos através de <code class="highlighter-rouge">call</code> ou <code class="highlighter-rouge">apply</code>.</p>
+
+<h3 id="como-fica-a-compatibilidade-com-os-navegadores-ie">Como fica a compatibilidade com os navegadores? (IE)</h3>
+
+<p>Infelizmente (SQN), a ES5 funciona <em>parcialmente</em> em versões do IE da 9 para as mais atuais. Na versão 9, funciona parcialmente. Porém, caso você seja um carinha chato, do tipo que curte <em>Graceful Degradation</em>, vai de <a href="https://github.com/es-shims/es5-shim">shim</a>. Mas, se você for legal e adepto a <em>Progressive Enhancement</em>, então não terás muitos problemas.</p>
+
+<p><img src="https://raw.githubusercontent.com/ednilsonamaral/be-mean-artigos/master/img/es5.jpg" alt="Compatibilidade ECMAScript5" /></p>
+
+<h3 id="concluindo">Concluindo</h3>
+
+<p>Como vimos, existem várias formas heranças no JavaScript, baseado em protótipo. E, antes de sair escrevendo códigos complexos, devemos estar claros quanto ao entendimetno de protótipos e como funcionam heranças neles.</p>
+
+<p>Um ponto vital no qual devemos pensar quando pensamos em desempenho de nossa aplicação, para evitar algumas dores de cabeça, podemos utilizar closures ao invés de <em>prototypes</em>. Isso se diz necessário quando temos um número grande de uma cadeia de protótipos.</p>
+
+<p>Esse artigo é uma introdução à herança em JS, espero que tenha sido o mais claro e objetivo possível. Se encontrarem algum errinho, <em>please</em>, diz aí, de boa! Até mais!! :)</p>
+
+<h3 id="fontes">Fontes</h3>
+
+<p><a href="https://github.com/braziljs/eloquente-javascript/blob/817711f1145f331ac7a5e08c4de1fa987b886a21/chapters/06-a-vida-secreta-dos-objetos.md">A vida secreta dos objetos - Eloquente JavaScript</a><br />
+<a href="https://www.youtube.com/watch?v=1Y0nSEMvTt0">Desvendando a linguagem JavaScript - #15 - Herança - Parte 1 - Rodrigo Branas</a><br />
+<a href="https://www.youtube.com/watch?v=hDhoO86cfh8">Desvendando a linguagem JavaScript - #15 - Herança - Parte 2 - Rodrigo Branas</a><br />
+<a href="http://loopinfinito.com.br/2012/05/04/heranca-em-javascript-parte-1/">Herança em JavaScript parte I - Loop Infinito</a><br />
+<a href="http://loopinfinito.com.br/2013/02/05/heranca-em-javascript-parte-2/">Herança em JavaScript parte II - Loop Infinito</a><br />
+<a href="http://frontinbrazil.com.br/entendendo-heranca-no-javascript/">Entendendo herança no JavaScript</a><br />
+<a href="https://github.com/es-shims/es5-shim">ES5 - Shim</a></p>
+:ET

@@ -1,0 +1,126 @@
+I"�5<p>Salve salve <em>peoples</em>, tudo na paz?</p>
+
+<p>Nas últimas semanas, além dos trabalhos e projetos que já atuo, fiquei envolvido com a leitura e implementação do livro <strong>Construindo uma Aplicação E-commerce com MEAN</strong>. E hoje, lhes apresento um review desse livro, cujo autor é o <a href="https://github.com/amejiarosario">Adrian Meijia</a>, lançado em inglês pela Packt Publishing em novembro de 2015 e traduzido para português pela <a href="http://novatec.com.br/livros/ecommerce-mean/">Novatec</a> em junho de 2016.</p>
+
+<p>Se você estava ou ainda esteja na dúvida de comprar esse livro ou não, descubra a resposta para essa dúvida lendo esse post! =)</p>
+
+<p>Eu tive o prazer de ganhar de presente esse livro da <a href="http://novatec.com.br/livros/ecommerce-mean/">Novatec</a> e da <a href="http://webschool.io/">Webschool.io</a>, muito obrigado Novatec e tio <a href="https://twitter.com/osuissa">Suissa</a> por me proporem todo esse conhecimento com esse <strong>excelente</strong> livro! Não só a mim, mas também ao meu amigo <a href="https://github.com/hc3">Eliel</a>, que também ganhou o livro.</p>
+
+<p>Vou apresentar uma visão geral do livro e minhas opiniões a respeito. Não vou entrar em detalhes complexos de como são os códigos do livro ou o que poderia ser utilizado no lugar, alguma melhoria, mimimimi. Isso cabe a você, caro leitor, lendo esse livro! :D</p>
+
+<h2 id="o-livro">O Livro</h2>
+
+<p><img src="/assets/img/meanshop.jpg" alt="Livro Construindo uma Aplicação E-commerce com MEAN" /></p>
+
+<p>Quem vê o tamanho e espessura do livro se engana, ele é muito objetivo e faz jus ao título. Ele é indicado para programadores com um conhecimento básico em JavaScript e queira expandir esses conhecimentos.</p>
+
+<p>É dado uma introdução a cada tecnologia que dá nome a stack MEAN. Cita exemplos de empresas que migraram para o NodeJS além de mencionar motivos e benefícios de optarem pelo NodeJS e porque desistiram de frameworks <em>enterprise</em>, como Spring MVC, Java e RoR.</p>
+
+<p>Não fica preso a ensinar apenas a stack MEAN, desde conhecimentos básicos e introdutórios a várias tecnologias utilizadas para desenvolver uma aplicação de ecommerce.</p>
+
+<p>Ao contrário de muitos cursos que encontramos hoje no mercado, ele começa com o front-end, na parte de AngularJS. Para quem é crú mesmo com MEAN. Mostrando algumas diretivas e módulos básicos e essenciais para qualquer aplicação.</p>
+
+<p>Nos mostra como utilizar o módulo <code class="highlighter-rouge">ui-router</code> no AngularJS e todos os seus benefícios. Até então, eu conhecia apenas o <code class="highlighter-rouge">ng-route</code>. Agora, só usarei o <code class="highlighter-rouge">ui-router</code>.</p>
+
+<p>Não entra em detalhes de Style Guide, como o do John Papa, isso é com você, filhote. Mas nos mostra uma visão enorme do poder do AngularJS. A versão utilizada no livro é a 1.x.</p>
+
+<p>Ainda nos mostra como utilizar <code class="highlighter-rouge">factory</code> e <code class="highlighter-rouge">services</code> para criamos nossas funções únicas vinculadas aos controllers ou outros componentes usando o <em>Dependency Injection</em>. Antes de ingressar no back-end, ainda nos mostra um CRUD no AngularJS, que lá na frente, quando chegarmos ao back-end, será apenas refatorado quando necessário.</p>
+
+<p>O capítulo específico de MongoDB e Mongoose, particularmente, me deu uma percepção que estava fazendo uma revisão das aulas de MongoDB do curso <a href="http://webschool.io/">Be MEAN</a>, do <a href="https://twitter.com/osuissa">tio Suissa</a>. Conteúdo excelente, linguagem simples, muito direta e objetiva.</p>
+
+<p>Após apresentado sobre AngularJS e MongoDB, chegamos ao back-end, com NodeJS e ExpressJS. Aqui é apresentado como é e como funciona uma API RESTful. Até então eu ainda tinha uma dúvida ou outra sobre o que era e como funcionava uma API RESTful. No livro, Adrian nos mostra os conceitos básicos introdutórios dela e como funciona uma API do tipo RESTful, e ainda, faz uma pequena comparação com outras metodologias, como SOAP, por exemplo.</p>
+
+<p>A partir desse momento sempre realizamos testes, com TDD e BDD. A cada requisição importante para nossa aplicação, realizamos um teste. No front-end, também realizamos testes, os famosos <code class="highlighter-rouge">e2e - end to end</code>. Para testes de unidade, utilizamos o Karma e Mocha/Chai/SinonJS. Já para os testes fim a fim, no AngularJS, utilizamos o Protractor.</p>
+
+<p>Front-end e back-end prontos, bastou conectarmos o AngularJS à API REST do ExpressJS.</p>
+
+<p>Com isso pronto, começou a fase de implementação de novos recursos, como por exemplo, upload de imagens com <code class="highlighter-rouge">ng-file-upload</code> e <code class="highlighter-rouge">connect-multiparty</code>.</p>
+
+<p>Tudo pronto? Não! Temos ainda uma visão sobre autorização e autenticação. O que é cada um e uma visão de alguns tipos de autenticação disponível atualmente, como por sessão, JWT, OAuth, PassportJS, MemoryStage e MongoStore. Além, é claro, de estratégias e rotas de autenticação. Afinal, em uma aplicação ecommerce não podemos deixar apenas uma opção de autenticação para o usuário.</p>
+
+<p>Uma das partes que mais fiquei surpreso foi a de checkout! Eu não fazia a mínima ideia de como isso seria desenvolvido em JS. Já vi alguns cases em PHP, mas JS não, ainda. Eis que sou apresentado ao carinha chamado <code class="highlighter-rouge">ngCart</code>, módulo para AngularJS. Ao invés de desenvolvermos um módulo de checkout do zero, basta utilizarmos ele no nosso front-end e voilà. No back-end, também me surpreendi pelo módulo utilizado. Foi nos apresentado o <a href="https://www.braintreepayments.com">Braintree</a>, para receber pagamentos via cartão de crédito/débito e PayPal.</p>
+
+<p>Pra não conhece o <a href="https://www.braintreepayments.com">Braintree</a>:</p>
+
+<p><em>“Uma maneira simples, robusto para aceitar pagamentos ou permitir a compra de quase qualquer lugar - em seu aplicativo móvel ou online. No topo da amplitude de clientes PayPal e Venmo, nossas integrações fáceis dará acesso a vários métodos de pagamento, preços simples, proteção de alto nível e suporte de classe mundial”.</em></p>
+
+<p>Fiquei um pouquinho triste com ele, poxa, ainda não funciona no Brasil! Que pena! E falando nisso, não conheço um módulo nacional a nível Braintree para NodeJS. Se você conhece algum, por favor, deixe seu comentário aí! :)</p>
+
+<p><img src="/assets/img/tela01.png" alt="Exemplo de tela do projeto" /></p>
+
+<p><img src="/assets/img/tela02.png" alt="Exemplo de tela do projeto" /></p>
+
+<h2 id="deploy-do-projeto">Deploy do Projeto</h2>
+
+<p>Como o livro foi escrito e a aplicação exemplo foi desenvolvida em meados de 2015, as versões dos pacotes e dependências utilizar são um pouco antigas. Isso causou uma certa dor de cabeça durante o deploy.</p>
+
+<p>Tentei o deploy no Heroku e DigitalOcean. No Heroku foi onde encontrei maiores problemas. O pacote <code class="highlighter-rouge">generator-angular-fullstack</code> sofreu com deploy no Heroku para várias pessoas, não fui o único. E a maioria das respostas que encontrei para isso é devido a versão antiga desse pacote apresenta inúmeros erros de deploy no Heroku.</p>
+
+<p>Já na DigitalOcean ainda sofri com alguns erros. Em várias tentativas, sejam em droplets com imagens prontas da MEAN Stack ou em um droplet configuranto tudo do zerto, mesmo seguindo todos os passos do livro vários processos foram <strong>killed</strong> durante a instalação. Isso ocorreu devido a pacotes <em>decrapeted</em> e versões antigas. Ou seja, DigitalOcean também não foi possível realizar o deploy.</p>
+
+<p>Agora, o OpenShift, estou na lista de espera para liberarem meu acesso. Assim que liberarem meu acesso, tentarei efetuar o deploy lá também.</p>
+
+<p>Ou seja, já aprendi mais uma coisinha aqui, trabalhar com versões antigas de pacotes e dependências pode me trazer uma certa baita dor de cabeça futuramente, amiguinhos! rsrs’</p>
+
+<h2 id="tradução">Tradução</h2>
+
+<p><img src="/assets/img/wdys.gif" alt="What did you say?" /></p>
+
+<p>A tradução em si está boa. Porém faço algumas ressalvas. Jamais ouvi falar de <strong>views</strong> como <strong>visões</strong>, aí tá errado, eu acho. No decorrer do livro eu via <strong>visões</strong> e já lia <strong>view</strong>. Essa tradução para <strong>visões</strong> não foi a melhor escolha, poderia ter ficado com <strong>view</strong> mesmo. Assim como <strong>factory</strong> como <strong>fábrica</strong> também não fiquei satisfeito. Traduzir <strong>controllers</strong> para <strong>controladores</strong>, tudo bem.</p>
+
+<p>Outro detalhe que achei que não caiu bem foi traduzir <strong>promises</strong> para <strong>promessas</strong>! Não colou! rsrs’</p>
+
+<p>Por mais que seja termos que estejamos acostumados em uma aplicação em AngularJS, não ficou nada agradável ler dessa forma tais funcionalidades.</p>
+
+<p>Mas de uma maneira geral, a tradução do livro em si está tudo de acordo, uma ótima tradução. Inclusive, algumas notas da Novatec sobre a tradução, versões de pacotes e dependências. Show!</p>
+
+<p>Tem quem goste e ame o Grunt, tem quem odeie. Particularmente não gosto e prefiro mil vezes o Gulp. E tenho minhas opiniões a respeito de cada ferramenta.</p>
+
+<p>Mas não burro pra ficar de mimimi por qual ferramenta eu prefiro trabalhar pra deixar de aprender o que me foi proposto ou se existe uma melhor que a outra. Apesar de não gostar do Grunt, me dei bem com ele, tranquilão!</p>
+
+<p>Por que ponto negativo, então fdp? Porque se fosse eu, faria com Gulp! :p</p>
+
+<p><strong>Que fique claro</strong>, eu não gosto do Grunt. Você pode gostar ou não, é com você. Afinal, não existe melhor ou pior. Existe a que cada um utiliza a tecnologia na qual se familiriza mais e na qual de adequa mais ao seu projeto.</p>
+
+<p>Não precisamos ficar discutindo à toa, de mimimi à toa, por conta disso.</p>
+
+<p>Mais uma vez, <strong>que fique claro</strong>, para essa aplicação ecommerce, o Grunt caiu como uma luva, assim como eu tenho certeza que o Gulp também cairia!</p>
+
+<h2 id="próximos-passos">Próximos passos</h2>
+
+<p><img src="/assets/img/nowwhat.gif" alt="Now what?" /></p>
+
+<p>Após absorver todo esse conhecimento, o que fazer, o que comer, como viver? rsrs’</p>
+
+<p>Você pode visualizar todos os códigos que utilizei no meu <a href="https://github.com/ednilsonamaral/livro-ecommerce-mean">repositório no GitHub</a>.E também, caso queira ver ele online, basta acessar <a href="https://meanshopapp.herokuapp.com/">https://meanshopapp.herokuapp.com/</a> para ver os meus resultados. Eu segui a risca o que foi proposto no livro.</p>
+
+<p>Me deparei com situações que melhorias em algumas coisas, mas preferi deixar essas melhorias pro final, após concluir o livro.</p>
+
+<p>Se você notar, duas situações na qual está instável na aplicação publicada, login com redes sociais e checkout com Braintree não estão funcionando. O checkout não vai funcionar mesmo, com Braintree não. Já o login com redes sociais, espero implementar nas próximas semanas.</p>
+
+<p>Além disso tudo, juntamente com o <a href="https://twitter.com/osuissa">tio Suissa</a> e <a href="https://github.com/hc3">Eliel</a>, estamos preparando uma surpresinha sobre a continuação do conteúdo abordado nesse livro. Aguardem, que em breve, teremos mais novidades! xD</p>
+
+<p><em>vamos refatorar? - eis a questão</em></p>
+
+<p>A partir de agora iremos dar ínico a refatoração e evolução dessa criançinha! Vamos iniciar nos próximos dias/semanas o processo de refatoração utilizando módulos atômicos! Aguarde por novidades e a continuação do primeiro ecommerce em MEAN do Brasil! =D</p>
+
+<h2 id="concluindo">Concluindo</h2>
+
+<p><img src="/assets/img/ok.gif" alt="Chuck Norris approves!!" /></p>
+
+<p>O básico de uma aplicação ecommerce foi nos apresentado e cumpriu com o objetivo do livro. Porém, ele vai além. Ele nos ensina a stack MEAN, testes com TDD e BDD, ferramentas úteis que podemos utilizar para desenvolvermos qualquer aplicação; nos ensina como realizar o deploy de nossa aplicação, e ainda dá sugestões de implementação de novos recursos para enriquecer nossa aplicação. Tem mais ainda, quer automatizar o deploy? Ele ensina também, com Capistrano!</p>
+
+<p>O conteúdo do livro é excelente, de altíssimo nível. Se você estava em dúvida em <a href="http://novatec.com.br/livros/ecommerce-mean/">comprar</a> ou não, apenas <a href="http://novatec.com.br/livros/ecommerce-mean/">compre</a>. Você aprenderá inúmeras coisas. Digo por experiência própria. Conheci a stack MEAN no último trimestre de 2015 e, agora, menos de um ano após, já aprendi a desenvolver um ecommerce com essa lindeza, vê se pode uma coisas dessa, rapaz!</p>
+
+<p>Eu era fichinha em JS, agora sou menos fichinha do que antes! :p</p>
+
+<p>Esse livro não fica atrelado apenas ao título, ensinar MEAN. Esquece isso quando <a href="http://novatec.com.br/livros/ecommerce-mean/">comprar esse livro</a>. Ele vai muito além, te garanto!</p>
+
+<p>Caso tenha alguma dúvida, sugestão, reclamação, please, entre em contato comigo, através de um simples comentário ou através das redes sociais.</p>
+
+<p>Se gostou ou não, compartilhe com seus amigos desenvolvedores, full stacks JS, front-ends, back-ends! =p</p>
+
+<p>É isso aí pessoal, vaaleu, até mais! =D</p>
+
+<p><img src="/assets/img/vlwflw.gif" alt="Vaaleu, Faalo!" /></p>
+:ET

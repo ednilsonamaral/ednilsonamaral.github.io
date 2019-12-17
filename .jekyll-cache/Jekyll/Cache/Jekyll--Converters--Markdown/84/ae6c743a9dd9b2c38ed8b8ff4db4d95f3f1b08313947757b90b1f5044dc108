@@ -1,0 +1,51 @@
+I"�<p>Basicamente é uma forma de gerenciamento autómática de memória. Onde o <em>garbage</em> ou simplesmente coletor, tenta recuperar lixo, ou seja, recuperar a memória ocupada por objetos que não estão mais em uso pelo sistema.</p>
+
+<p>Esse processo é automático e invisível ao programador. O JavaScript usa o <em>garbage collection</em> (coleta de lixo) para recuperar a memória ocupada por <em>strings</em>, <em>objects</em>, <em>arrays</em> e funções que não estão mais em uso.</p>
+
+<p>Isso é uma vantagem ao programador que não precisa se preocupar em liberar memória.</p>
+
+<p>Podemos destacar como característica fundamental de <em>garbage collection</em> que ele deve ser capaz de determinar quando é seguro recuperar memória. Ele nunca vai recuperar objetos que ainda estão em uso.</p>
+
+<h2 id="como-é-a-execução-de-funções-e-armazenamento-de-variáveis-com-javascript">Como é a execução de funções e armazenamento de variáveis com JavaScript</h2>
+
+<p>Diferentemente de outras linguagens de baixo nível, como C, por exemplo, o JavaScript não possui gerenciamento de memória primitivas.</p>
+
+<p>Os valores do JavaScript são armazenados (alocados) quando objetos, <em>strings</em>, etc., são criados. E, após seu uso, essa memória na qual foi alocado é liberada. Esse processo de liberar memória do que não está mais em uso é o <em>garbage collection</em>, mencionado acima.</p>
+
+<p>As alocações de variáveis no JavaScript não feitas conforme elas são declaras, conforme o exemplo abaixo:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span> <span class="c1">// aloca memória para um número  </span>
+<span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">azerty</span><span class="dl">"</span><span class="p">;</span> <span class="c1">// aloca memória para uma string  </span>
+
+<span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span>  
+  <span class="na">a</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>  
+  <span class="na">b</span><span class="p">:</span> <span class="kc">null</span>  
+<span class="p">};</span> <span class="c1">// aloca memória para um objeto e seus valores contidos  </span>
+
+<span class="c1">// (assim como o objeto) aloca memória para o vetor e   </span>
+<span class="c1">// seus valores contidos  </span>
+<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="dl">"</span><span class="s2">abra</span><span class="dl">"</span><span class="p">];</span>  
+</code></pre></div></div>
+
+<p>Como podemos observar no exemplo acima, ele aloca na memória conforme vamos declarando nossas variáveis.</p>
+
+<p>As funções, também são alocadas conforme são declaradas. No caso de funçoes, ele aloca como um objeto que pode ser chamado.</p>
+
+<p>Definir uma função não basta para executá-la. Definir é simplesmente dar um nome a função e especificar o que será feito quando tal função for chamada.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">media</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span>  
+
+<span class="c1">//ou  </span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">media</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">));</span>  
+</code></pre></div></div>
+
+<p>Podemos chamar a função das duas maneiras acima. Ou também, chamar uma função dentro de outra função. As funções são objetos, e, esses objetos têm métodos.</p>
+
+<h2 id="fontes">Fontes</h2>
+
+<p><a href="http://docstore.mik.ua/orelly/webprog/jscript/ch04_05.htm#IXT-4-56957">Garbage Collection - Docstore - O’Reilly - JavaScript The Definitive Guide</a><br />
+<a href="http://v8project.blogspot.com.br/2015/08/getting-garbage-collection-for-free.html">Getting Garbage Collection for Free</a><br />
+<a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Memory_Management#Garbage_collection">Garbage Collection - Mozilla Developer Network</a><br />
+<a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Fun%C3%A7%C3%B5es#Calling_functions">Funções - Mozilla Developer Network</a></p>
+:ET

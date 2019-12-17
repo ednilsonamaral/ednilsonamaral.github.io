@@ -1,0 +1,155 @@
+I"�4<p>Salve salve seres humaninhos, tudo na paz?! :)</p>
+
+<p>Quem aí nunca sofreu ao fazer um <em>pull</em> no repositório que está trabalhando e se deparou com uma indentação horrível, certos arquivos com 2 espaços, outros com 4 espaços, outros espaços misturado? Quem nunca?</p>
+
+<p>E o pior disso tudo, quanto mais membros na equipe, maior esse problema será encontrado se não houver um padrão para todos.</p>
+
+<p>Tudo bem, a equipe pode muito bem decidir ter as mesmas configurações nos editores para o projeto X, aí não haveria problemas disso e tal. Mas não tem como automatizar isso?</p>
+
+<p>Sim, tem!!! =D</p>
+
+<p>Aqui entra em cena o <a href="http://editorconfig.org/">EditorConfig</a>. Ele ajuda nós, desenvolvedores, a mantermos um padrão e uma certa consistência nos estilos de nossos códigos, independente da IDE ou do editor de código que trabalhemos.</p>
+
+<p>Em uma equipe de desenvolvimento é comum cada um trabalhar com sua IDE ou editor de código preferido. E cada IDE ou editor de código possui uma configuração diferente.</p>
+
+<p>Mas, se no inicio de nosso projeto, já utilizarmos o EditorConfig, esses problemas acabam.</p>
+
+<p>Vejamos abaixo como usufruir desse queridinho..</p>
+
+<p>Trabalhar com o EditorConfig é muito simples, alguns editores não necessitam de plugin para que ele funcione. Outros já necessitam.</p>
+
+<h2 id="instalando-o-plugin-no-atom">Instalando o plugin no Atom</h2>
+
+<p>No Atom, você pode instalar de duas maneiras:</p>
+
+<ul>
+  <li>Via terminal, com o comando <code class="highlighter-rouge">apm install editorconfig</code>;</li>
+  <li>Através do menu <code class="highlighter-rouge">Configurações &gt; Instalar &gt; Pesquisar</code> por <code class="highlighter-rouge">editorconfig</code>.</li>
+</ul>
+
+<p>Após instalado, basta reiniciar o Atom que ele já funcionará normalmente! :)</p>
+
+<h2 id="instalando-o-plugin-no-sublime">Instalando o plugin no Sublime</h2>
+
+<p>O queridinho das américas, Sublime, também é muito simples instalar o plugin do EditorConfig:</p>
+
+<ul>
+  <li>Basta pressionar <code class="highlighter-rouge">CTRL + SHIFT + P</code> e ir até o <em>Package Control</em> e procurar por EditorConfig.</li>
+</ul>
+
+<p>Assim como no Atom, após instalado basta reiniciar o Sublime que irá funcionar! :)</p>
+
+<h2 id="instalando-o-plugin-em-outros-editores-de-código-e-ides">Instalando o plugin em outros editores de código e IDEs</h2>
+
+<p>Atualmente, a infinidade de IDEs e editores de código que possuem plugin para o EditorConfig é um pouquinho grande. Pow, tem plugin até pra Notepad++ e NetBeans.</p>
+
+<p>Basta ir no site oficial e <a href="http://editorconfig.org/#download">ver a lista</a> de IDEs e editores de código que possuem o plugin, seguir as instruções de instalação e serem felizes! :)</p>
+
+<h2 id="usufruindo-dessa-belezinha">Usufruindo dessa belezinha</h2>
+
+<p>Para usufruir dessa belezinha é muito simples, na raiz do diretório do projeto, basta criarmos um arquivo nomeado <code class="highlighter-rouge">.editorconfig</code> e setarmos as configurações.</p>
+
+<p>Abaixo, um exemplo de configuração básica dele:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#</span> <span class="nx">EditorConfig</span> <span class="nx">is</span> <span class="nx">awesome</span><span class="p">:</span> <span class="nx">http</span><span class="p">:</span><span class="c1">//EditorConfig.org</span>
+
+<span class="err">#</span> <span class="nx">top</span><span class="o">-</span><span class="nx">most</span> <span class="nx">EditorConfig</span> <span class="nx">file</span>
+<span class="nx">root</span> <span class="o">=</span> <span class="kc">true</span>
+
+<span class="err">#</span> <span class="nx">Unix</span><span class="o">-</span><span class="nx">style</span> <span class="nx">newlines</span> <span class="kd">with</span> <span class="nx">a</span> <span class="nx">newline</span> <span class="nx">ending</span> <span class="nx">every</span> <span class="nx">file</span>
+<span class="p">[</span><span class="o">*</span><span class="p">]</span>
+<span class="nx">end_of_line</span> <span class="o">=</span> <span class="nx">lf</span>
+<span class="nx">insert_final_newline</span> <span class="o">=</span> <span class="kc">true</span>
+
+<span class="err">#</span> <span class="nx">Matches</span> <span class="nx">multiple</span> <span class="nx">files</span> <span class="kd">with</span> <span class="nx">brace</span> <span class="nx">expansion</span> <span class="nx">notation</span>
+<span class="err">#</span> <span class="nb">Set</span> <span class="k">default</span> <span class="nx">charset</span>
+<span class="p">[</span><span class="o">*</span><span class="p">.{</span><span class="nx">js</span><span class="p">,</span><span class="nx">py</span><span class="p">}]</span>
+<span class="nx">charset</span> <span class="o">=</span> <span class="nx">utf</span><span class="o">-</span><span class="mi">8</span>
+
+<span class="err">#</span> <span class="mi">4</span> <span class="nx">space</span> <span class="nx">indentation</span>
+<span class="p">[</span><span class="o">*</span><span class="p">.</span><span class="nx">py</span><span class="p">]</span>
+<span class="nx">indent_style</span> <span class="o">=</span> <span class="nx">space</span>
+<span class="nx">indent_size</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="err">#</span> <span class="nx">Tab</span> <span class="nx">indentation</span> <span class="p">(</span><span class="nx">no</span> <span class="nx">size</span> <span class="nx">specified</span><span class="p">)</span>
+<span class="p">[</span><span class="nx">Makefile</span><span class="p">]</span>
+<span class="nx">indent_style</span> <span class="o">=</span> <span class="nx">tab</span>
+
+<span class="err">#</span> <span class="nx">Indentation</span> <span class="nx">override</span> <span class="k">for</span> <span class="nx">all</span> <span class="nx">JS</span> <span class="nx">under</span> <span class="nx">lib</span> <span class="nx">directory</span>
+<span class="p">[</span><span class="o">*</span><span class="p">.</span><span class="nx">js</span><span class="p">]</span>
+<span class="nx">indent_style</span> <span class="o">=</span> <span class="nx">space</span>
+<span class="nx">indent_size</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="err">#</span> <span class="nx">Matches</span> <span class="nx">the</span> <span class="nx">exact</span> <span class="nx">files</span> <span class="nx">either</span> <span class="kr">package</span><span class="p">.</span><span class="nx">json</span> <span class="nx">or</span> <span class="p">.</span><span class="nx">travis</span><span class="p">.</span><span class="nx">yml</span>
+<span class="p">[{</span><span class="kr">package</span><span class="p">.</span><span class="nx">json</span><span class="p">,.</span><span class="nx">travis</span><span class="p">.</span><span class="nx">yml</span><span class="p">}]</span>
+<span class="nx">indent_style</span> <span class="o">=</span> <span class="nx">space</span>
+<span class="nx">indent_size</span> <span class="o">=</span> <span class="mi">2</span>
+</code></pre></div></div>
+
+<p>Visualizando o código acima, temos:</p>
+
+<ul>
+  <li>Linha 4: seta a configuração de <code class="highlighter-rouge">root = true</code> para que o editor de código ou IDE aceite as configurações do <code class="highlighter-rouge">.editorconfig</code> em todos os arquivos, acima das configurações da IDE ou editor de código;</li>
+  <li>Nele, podemos definir como as quebras de linha serão representadas, através dos <code class="highlighter-rouge">lf</code>, <code class="highlighter-rouge">cr</code> ou <code class="highlighter-rouge">crlf</code>;</li>
+  <li>Podemos definir nosso <em>charset</em>;</li>
+  <li>No trecho <code class="highlighter-rouge">[*.py]</code>, definimos que todos os arquivos que possuem a extensão <code class="highlighter-rouge">.py</code> terão 4 espaços, representados pela <strong>tecla de espaço</strong>;</li>
+  <li>Enquanto nos trechos <code class="highlighter-rouge">[*.js]</code> e <code class="highlighter-rouge">[{package.json,.travis.yml}]</code> definimos que todos os arquivos de JS, o <code class="highlighter-rouge">package.json</code> e o arquivo <code class="highlighter-rouge">travis.yml</code> irá ter 2 espaços representado pela <strong>tecla de espaço</strong>.</li>
+</ul>
+
+<p>Agora, vamos a um exemplo com outros tipos de arquivo:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#</span> <span class="nx">EditorConfig</span> <span class="nx">is</span> <span class="nx">awesome</span><span class="p">:</span> <span class="nx">http</span><span class="p">:</span><span class="c1">//EditorConfig.org</span>
+
+<span class="err">#</span> <span class="nx">top</span><span class="o">-</span><span class="nx">most</span> <span class="nx">EditorConfig</span> <span class="nx">file</span>
+<span class="nx">root</span> <span class="o">=</span> <span class="kc">true</span>
+
+<span class="err">#</span> <span class="nx">Quebra</span> <span class="nx">de</span> <span class="nx">linhas</span>
+<span class="p">[</span><span class="o">*</span><span class="p">]</span>
+<span class="nx">end_of_line</span> <span class="o">=</span> <span class="nx">lf</span>
+<span class="nx">insert_final_newline</span> <span class="o">=</span> <span class="kc">true</span>
+
+<span class="err">#</span> <span class="nx">Definindo</span> <span class="nx">charset</span>
+<span class="p">[</span><span class="o">*</span><span class="p">.{</span><span class="nx">js</span><span class="p">,</span><span class="nx">pug</span><span class="p">,</span><span class="nx">html</span><span class="p">}]</span>
+<span class="nx">charset</span> <span class="o">=</span> <span class="nx">utf</span><span class="o">-</span><span class="mi">8</span>
+
+<span class="err">#</span> <span class="nx">Indenta</span><span class="err">çã</span><span class="nx">o</span> <span class="nx">via</span> <span class="nx">TAB</span><span class="p">,</span> <span class="nx">para</span> <span class="nx">pug</span> <span class="nx">e</span> <span class="nx">html</span>
+<span class="p">[</span><span class="o">*</span><span class="p">.{</span><span class="nx">pug</span><span class="p">,</span><span class="nx">html</span><span class="p">}]</span>
+<span class="nx">indent_style</span> <span class="o">=</span> <span class="nx">tab</span>
+<span class="nx">indent_size</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="err">#</span> <span class="nx">Arquivos</span> <span class="nx">JS</span> <span class="nx">e</span> <span class="nx">CSS</span>
+<span class="p">[</span><span class="o">*</span><span class="p">.{</span><span class="nx">js</span><span class="p">,</span><span class="nx">css</span><span class="p">,</span><span class="nx">styl</span><span class="p">}]</span>
+<span class="nx">indent_style</span> <span class="o">=</span> <span class="nx">tab</span>
+<span class="nx">indent_size</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="err">#</span> <span class="nx">Demais</span> <span class="nx">arquivos</span> <span class="nx">importantes</span>
+<span class="p">[</span><span class="o">*</span><span class="p">.</span><span class="nx">json</span><span class="p">]</span>
+<span class="nx">indent_style</span> <span class="o">=</span> <span class="nx">tab</span>
+<span class="nx">indent_size</span> <span class="o">=</span> <span class="mi">2</span>
+</code></pre></div></div>
+
+<p>Ficou mais claro nesse exemplo? Acho que sim, né! Bom, vamos a explicação desse exemplo:</p>
+
+<ul>
+  <li>Nele, defino o <em>charset</em> de arquivos JS, PUG (Jade) e HTML;</li>
+  <li>Defino também, 4 espaços para arquivos PUG (Jade) e HTML, representados pela <strong>tecla de TAB</strong>;</li>
+  <li>E para os arquivos de CSS, Stylus e JS, defino 2 espaços, representados pela <strong>tecla de TAB</strong>;</li>
+  <li>Assim como para os demais arquivos com extensão <code class="highlighter-rouge">.json</code>, defino 2 espaços, representados pela <strong>tecla de TAB</strong>.</li>
+</ul>
+
+<p>Viu como é simples, sem complicações? Agora, você tem o poder em suas mãos. Seja em equipe ou sozinho, o EditorConfig é <strong>indispensável</strong>! Caso você queira explorar ainda mais os poderes do EditorConfig, basta entrar no site e dar uma olhada na <a href="http://editorconfig.org/">documentação oficial</a> dele.</p>
+
+<h2 id="concluindo">Concluindo</h2>
+
+<p>O poder que o EditorConfig nos fornece pode parecer muito simples, mas não é. Ele em si, é simples. Porém o que podemos fazer com ele é de muito valor para nossos projetos de desenvolvimento.</p>
+
+<p>Sua configuração é muito simples, em poucos minutos você padroniza os espaçamentos com facilidade. A curva de aprendizado para utilizar o EditorConfig é muito baixa. Hoje em dia, a cada novo projeto que estou/contribuo, um dos primeiros arquivos que crio é o <code class="highlighter-rouge">.editorconfig</code>.</p>
+
+<p>Não perca tempo, comece a usar você também! =D</p>
+
+<p>Caso tenha alguma dúvida, sugestão, reclamação, please, entre em contato comigo, através de um simples comentário ou através das redes sociais.</p>
+
+<p>Se gostou ou não, compartilhe com seus amigos front-end e desenvolvedores em geral! =p</p>
+
+<p>É isso aí pessoal, vaaleu, até mais! =D</p>
+:ET

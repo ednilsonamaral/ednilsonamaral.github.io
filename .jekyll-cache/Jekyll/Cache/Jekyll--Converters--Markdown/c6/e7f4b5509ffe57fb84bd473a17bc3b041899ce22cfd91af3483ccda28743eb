@@ -1,0 +1,598 @@
+I"�<p>Olá! Olá! Olá! Olá! Como é que você está?</p>
+
+<p>Hoje, nesse pequenino artigo, iremos aprender como construir uma API com Hapi.js, um novo framework para Node.js, além de utilizarmos o MongoDB como nosso banco de dados, além de realizarmos o deploy no Heroku e MLab. Então, borá codar!</p>
+
+<h2 id="o-que-é-esse-hapijs">O que é esse Hapi.js?</h2>
+
+<p>Fazendo uso da própria definição do Hapi.js, ele é:</p>
+
+<blockquote>
+  <p>A rich framework for building applications and services</p>
+</blockquote>
+
+<p>Ou seja, é um rico framework Node.js para criarmos aplicações e serviços! Ele é similar ao Express.js, porém, um pouco mais flexível. Ele é open source, desenvolvido por Eran Hammer, Arquiteto de Plataforma Móvel no Walmart e responsável pela construção de inúmeras APIs móveis para o Walmart.</p>
+
+<p>O Hapi.js foi desenvolvido principalmente com o objetivo e resposta para os problemas enfrentados pelos desenvolvedores que utilizavam o Express.js.</p>
+
+<p>Se fizermos uma comparação rápida entre Express.js vs Hapi.js, inúmeros desenvolvedores afirmam que o Hapi.js é uma escolha sábia. Eis os motivos:</p>
+
+<ul>
+  <li>O Hapi.js usa um mecanismo de roteamento diferente, onde podemos fazer pesquisar mais ráidas, levando em consideração a ordem de registro;</li>
+  <li>A sua curva de aprendizado é baixíssima, comparada ao Express.js;</li>
+  <li>Porém, ambos, Express.js e Hapi.js são bons para resolvermos nossos problemas.</li>
+</ul>
+
+<p>Vai de você, caro desenvolvedor, testar o Express.js e o Hapi.js, e concluir qual será melhor para você e sua aplicação!</p>
+
+<p>Ah, a documentação oficial do Hapi.js possui tradução para o português, <a href="https://hapijs.com/tutorials?lang=pt_BR">nesse link</a>.</p>
+
+<h2 id="iniciando-o-projeto">Iniciando o Projeto</h2>
+
+<p>A API que iremos construir hoje é para um ecommerce. Iremos construir uma collection de Categorias e Produtos.</p>
+
+<p>Supondo que já tenhamos criado um novo projeto com <code class="highlighter-rouge">npm init</code>, vamos instalar nossas dependências, com o comando a seguir: <code class="highlighter-rouge">npm install --save hapi mongoose nodemon moment</code>.</p>
+
+<p>O Mongoose será o responsável por manipularmos nossas collections e documentos no MongoDB, enquanto o Nodemon servirá para darmos o <em>start</em> em nosso servidor. Já o Moment.js iremos trabalhar com as datas.</p>
+
+<h2 id="estrutura-de-diretórios-e-arquivos">Estrutura de Diretórios e Arquivos</h2>
+
+<p>Iremos desenvolver nossa aplicação modularizada, conforme exemplo abaixo:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>| config  
+...| db.js  
+| helpers  
+...| constants.js  
+| models  
+...| Categorie.js  
+...| Product.js  
+| routes  
+...| categorie.js  
+...| product.js
+| app.js
+</code></pre></div></div>
+
+<h2 id="levantando-o-servidor">Levantando o servidor</h2>
+
+<p>Primeiro de tudo, precisamos levantar o nosso servidor em Hapi.js, para isso, iremos criar um arquivo na raiz do projeto nomeado <code class="highlighter-rouge">app.js</code>. O nome desse arquivo fica a seu critério.</p>
+
+<ol>
+  <li>Importar o Hapi;</li>
+  <li>Chamar uma função nativa dele, o <code class="highlighter-rouge">Hapi.Server()</code>;</li>
+  <li>Criar as configurações de conexão do nosso servidor;</li>
+  <li>Dar o <em>start</em> em nosso servidor.</li>
+</ol>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">Hapi</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">hapi</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">server</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Hapi</span><span class="p">.</span><span class="nx">Server</span><span class="p">()</span>
+
+<span class="nx">server</span><span class="p">.</span><span class="nx">connection</span><span class="p">({</span>
+	<span class="na">host</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">HOST</span> <span class="o">||</span> <span class="dl">'</span><span class="s1">0.0.0.0</span><span class="dl">'</span><span class="p">,</span>
+	<span class="na">port</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span> <span class="o">||</span> <span class="mi">3000</span><span class="p">,</span>
+	<span class="na">routes</span><span class="p">:</span> <span class="p">{</span> <span class="na">cors</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}</span>
+<span class="p">})</span>
+
+<span class="nx">server</span><span class="p">.</span><span class="nx">start</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">throw</span> <span class="nx">err</span>
+	<span class="p">}</span>
+
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Servidor rodando em </span><span class="p">${</span><span class="nx">server</span><span class="p">.</span><span class="nx">info</span><span class="p">.</span><span class="nx">uri</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>Nas configurações de conexão do nosso servidor, definimos o <em>host</em>, pegando de <code class="highlighter-rouge">process.env.HOST</code> <strong>OU</strong> <code class="highlighter-rouge">0.0.0.0</code>. Irá fará com que o servidor funcione localmente, via <code class="highlighter-rouge">localhost</code>, ou então, publicado no Heroku, por exemplo. Para a porta, segue a mesma lógica. Já em <code class="highlighter-rouge">routes: { cors: true }</code> ativado o CORS em nossa API.</p>
+
+<p>Para dar o start em nosso servidor, apenas chamamos essa função <code class="highlighter-rouge">server.start()</code>. Ele já sabe que se houver configurações de conexão, irá vir de <code class="highlighter-rouge">server.connection</code>, por isso é que não precisamos passar o <code class="highlighter-rouge">server.connection</code> como parâmetro para o <code class="highlighter-rouge">server.start()</code>.</p>
+
+<h2 id="criando-a-configuração-do-banco-de-dados">Criando a configuração do banco de dados</h2>
+
+<p>Pensando em desenvolver aplicações modularizadas, todas as configurações necessárias para o servidor, iremos criar dentro da pasta <code class="highlighter-rouge">./config</code>. A configuração de nosso banco de dados não será diferente, iremos criar um arquivo <code class="highlighter-rouge">./config/db.js</code>:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">Mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">mongoose</span><span class="dl">'</span><span class="p">)</span>
+
+<span class="kd">const</span> <span class="nx">dbName</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">mongodb://localhost/webschool-vuejs-ecommerce-api</span><span class="dl">'</span>
+
+<span class="nx">Mongoose</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="nx">dbName</span><span class="p">)</span>
+<span class="nx">Mongoose</span><span class="p">.</span><span class="nb">Promise</span> <span class="o">=</span> <span class="nb">global</span><span class="p">.</span><span class="nb">Promise</span>
+<span class="kd">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">Mongoose</span><span class="p">.</span><span class="nx">connection</span>
+
+<span class="nx">db</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">error</span><span class="dl">'</span><span class="p">,</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">console</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Erro de conexão!</span><span class="dl">'</span><span class="p">))</span>
+
+<span class="nx">db</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="dl">'</span><span class="s1">open</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Conexão com banco de dados realizada com sucesso!</span><span class="dl">'</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="nx">exports</span> <span class="o">=</span> <span class="nx">db</span>
+</code></pre></div></div>
+
+<p>Ao definirmos nossas configurações de banco de dados, precisamos importá-la em nosso <code class="highlighter-rouge">./app.js</code>:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./config/db</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Antes de partirmos para a etapa de definirmos os schemas, iremos criar um <em>helper</em>, chamado de <code class="highlighter-rouge">./helpers/constants.js</code>. Nesse arquivo iremos criar algumas <strong>constantes</strong> para utilizarmos em toda a nossa API e evitarmos de repetir código, com isso iremos facilitar a manutenção do mesmo.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="dl">'</span><span class="s1">URI</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/api/v1</span><span class="dl">'</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>A primeira constante que criamos é a URI. Nela poderemos definir parte da nossa URI, e, quando precisarmos alterar iremos fazer isso apenas nesse arquivo, economizando tempo demais de manutenção.</p>
+
+<p>Criado esse arquivo de helper, basta importarmos ele em nosso <code class="highlighter-rouge">./app.js</code>:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">Constants</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./helpers/constants</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="definindo-os-schemas">Definindo os schemas</h2>
+
+<p>Agora iremos definir os nossos schemas, para as <strong>Categorias</strong> e <strong>Produtos</strong>. Notem que as nomenclaturas dos códigos serão realizadas em inglês, pois é uma boa prática que venho seguindo nos últimos projetos e incentivo vocês demais a codarem em inglês. Assim, qualquer dev, no mundo todo, pode contribuir com seu código, até mesmo visualizá-lo e/ou utilizá-lo em algum projeto.</p>
+
+<p>Vamos definir nosso schema de <strong>Categorias</strong>:</p>
+
+<p><code class="highlighter-rouge">./models/Categorie.js</code></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">Mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">mongoose</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">Schema</span> <span class="o">=</span> <span class="nx">Mongoose</span><span class="p">.</span><span class="nx">Schema</span>
+
+<span class="kd">const</span> <span class="nx">_schema</span> <span class="o">=</span> <span class="p">{</span>
+		<span class="na">name</span><span class="p">:</span> <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="na">required</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">unique</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}</span>
+	<span class="p">,</span> <span class="na">status</span><span class="p">:</span> <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="nb">Boolean</span><span class="p">,</span> <span class="na">required</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}</span>
+	<span class="p">,</span> <span class="na">created_at</span><span class="p">:</span> <span class="nb">Date</span>
+	<span class="p">,</span> <span class="na">updated_at</span><span class="p">:</span> <span class="nb">Date</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">CategorieSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">(</span><span class="nx">_schema</span><span class="p">)</span>
+
+<span class="kd">const</span> <span class="nx">Model</span> <span class="o">=</span> <span class="nx">Mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="dl">'</span><span class="s1">Categorie</span><span class="dl">'</span><span class="p">,</span> <span class="nx">CategorieSchema</span><span class="p">)</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">Model</span>
+</code></pre></div></div>
+
+<p>Criamos nosso schema com alguns campos básicos, de String e Boolean, além de já exportamos ele como um Model do Mongoose, pronto para ser usados em nossas rotas.</p>
+
+<p>Agora, vamos definir nosso schema de <strong>Products</strong>:</p>
+
+<p><code class="highlighter-rouge">./models/Product.js</code></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">Mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">mongoose</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">Schema</span> <span class="o">=</span> <span class="nx">Mongoose</span><span class="p">.</span><span class="nx">Schema</span>
+
+<span class="kd">const</span> <span class="nx">_schema</span> <span class="o">=</span> <span class="p">{</span>
+		<span class="na">name</span><span class="p">:</span> <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="na">required</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">unique</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}</span>
+	<span class="p">,</span> <span class="na">id_categorie</span><span class="p">:</span> <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="nx">Schema</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">,</span> <span class="na">required</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">ref</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Categorie</span><span class="dl">'</span> <span class="p">}</span>
+	<span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="nb">Number</span><span class="p">,</span> <span class="na">required</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}</span>
+	<span class="p">,</span> <span class="na">qtd</span><span class="p">:</span> <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="nb">Number</span><span class="p">,</span> <span class="na">min</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">max</span><span class="p">:</span> <span class="mi">999</span> <span class="p">}</span>
+	<span class="p">,</span> <span class="na">status</span><span class="p">:</span> <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="nb">Boolean</span><span class="p">,</span> <span class="na">required</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}</span>
+	<span class="p">,</span> <span class="na">created_at</span><span class="p">:</span> <span class="nb">Date</span>
+	<span class="p">,</span> <span class="na">updated_at</span><span class="p">:</span> <span class="nb">Date</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">ProductSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">(</span><span class="nx">_schema</span><span class="p">)</span>
+
+<span class="kd">const</span> <span class="nx">Model</span> <span class="o">=</span> <span class="nx">Mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="dl">'</span><span class="s1">Product</span><span class="dl">'</span><span class="p">,</span> <span class="nx">ProductSchema</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">Model</span>
+</code></pre></div></div>
+
+<h2 id="criando-as-rotas">Criando as rotas</h2>
+
+<p>Definido nossos schemas e já os tendo exportados como Models do Mongoose, estamos prontos para prosseguirmos e criarmos as nossas rotas.</p>
+
+<h3 id="categorias">Categorias</h3>
+
+<p>As primeiras rotas que iremos criar são as de <strong>Categorias</strong>. Primeiramente, precisamos importar as bibliotecas e serviços que iremos utilizar durante a criação de nossas rotas.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">CONSTANTS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../helpers/constants</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">URI</span> <span class="o">=</span> <span class="s2">`</span><span class="p">${</span><span class="nx">CONSTANTS</span><span class="p">.</span><span class="nx">URI</span><span class="p">}</span><span class="s2">/categories`</span>
+<span class="kd">const</span> <span class="nx">CategorieModel</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">`../models/Categorie`</span><span class="p">)</span>
+
+<span class="kd">const</span> <span class="nx">Moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">moment</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">getCurrentDateWithoutTimezone</span> <span class="o">=</span> <span class="nx">Moment</span><span class="p">().</span><span class="nx">format</span><span class="p">(</span><span class="dl">'</span><span class="s1">YYYY-MM-DDTHH:mm:ss</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Importamos também o <strong>Moment.js</strong> para tratar as nossas datas. Então, já deixaremos preparados a <code class="highlighter-rouge">getCurrentDateWithoutTimezone</code> que irá pegar a data atual, não do servidor, mas sim horário local, sem timezone. Muitas APIs desenvolvidas pegam a data do servidor e isso pode ser diferente do horário da região de onde o usuário está conectado. Isso pode trazer problemas. E, para não termos complicações e gerar inúmeras linhas de código para tratarmos as datas, utilizamos o <a href="">Moment.js</a> que já cuida disso, facilmente. Agora, com o <code class="highlighter-rouge">getCurrentDateWithoutTimezone</code> podemos automatizar os campos <code class="highlighter-rouge">created_at</code> e <code class="highlighter-rouge">updated_at</code>.</p>
+
+<p>Todas as rotas de <strong>Categorias</strong> precisaremos exportá-las para serem acessadas de nosso <code class="highlighter-rouge">./app.js</code>, então, iremos codar as nossas rotas dentro de um <code class="highlighter-rouge">module.exports</code>, sendo um array de objetos.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">[</span>
+	<span class="c1">// Get all categories</span>
+	<span class="p">{</span>
+		<span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">GET</span><span class="dl">'</span><span class="p">,</span>
+		<span class="na">path</span><span class="p">:</span> <span class="nx">URI</span><span class="p">,</span>
+		<span class="na">handler</span><span class="p">:</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">reply</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+			<span class="nx">CategorieModel</span><span class="p">.</span><span class="nx">find</span><span class="p">((</span><span class="nx">error</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">reply</span><span class="p">({</span>
+						<span class="na">error</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+						<span class="na">data</span><span class="p">:</span> <span class="nx">error</span><span class="p">,</span>
+						<span class="na">statusCode</span><span class="p">:</span> <span class="mi">401</span><span class="p">,</span>
+						<span class="na">statusText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">NOK</span><span class="dl">'</span><span class="p">,</span>
+					<span class="p">}).</span><span class="nx">code</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					<span class="nx">reply</span><span class="p">({</span>
+						<span class="na">error</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+						<span class="na">data</span><span class="p">:</span> <span class="nx">data</span><span class="p">,</span>
+						<span class="na">statusCode</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+						<span class="na">statusText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">OK</span><span class="dl">'</span>
+					<span class="p">}).</span><span class="nx">code</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+				<span class="p">}</span>
+			<span class="p">})</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>O método acima é o famoso <strong>GET</strong>, declarado em <code class="highlighter-rouge">method</code>, irá retornar todas as categorias cadastradas.</p>
+
+<p>Em <code class="highlighter-rouge">path</code> definimos qual é a URL da nossa rota. Chamamos <code class="highlighter-rouge">URI</code> pois já definimos a mesma lá no inicio do arquivo, visto que iremos utilizar em todas as rotas de <strong>Categorias</strong>. E, pensando em deixar o código mais fácil para manutenções possível, atribuir uma <code class="highlighter-rouge">const</code> para nossa <em>URI</em> é de extrema importância e boa prática a ser seguida.</p>
+
+<p>Já o <code class="highlighter-rouge">handler</code> é o nosso método manipulador, uma função que aceita dois parâmetros, o <code class="highlighter-rouge">request</code> e <code class="highlighter-rouge">reply.</code> O parâmetro <code class="highlighter-rouge">request</code> já é conhecido por quem desenvolve APIs, ele é um objeto com todos os detalhes referentes a solicitação do usuário, como parâmetros, carga, informações de autenticação, <em>headers</em>, etc. Podemos declarar o <code class="highlighter-rouge">request</code> em nosso <code class="highlighter-rouge">handler</code> tanto como <code class="highlighter-rouge">req</code> ou propriamente <code class="highlighter-rouge">request</code>, ambas as formas ele irá funcionar corretamente.</p>
+
+<p>O parâmetro <code class="highlighter-rouge">reply</code> é a resposta da nossa requisição. Nele, podemos mostrar um JSON seguido do <code class="highlighter-rouge">statusCode</code> da requisição com <code class="highlighter-rouge">.code(200)</code>. Dentro da nossa função do <code class="highlighter-rouge">handler</code>, fazemos um <strong>.find</strong> através mo Mongoose em <code class="highlighter-rouge">CategorieModel</code> que é o model da <strong>Categoria</strong>. Então, lançamos uma condição simples, onde se houver <code class="highlighter-rouge">error</code> ele dá como <code class="highlighter-rouge">reply</code> uma coisa, caso contrário, o <code class="highlighter-rouge">reply</code> será diferente. Essa condição iremos utilizar de forma idêntica nas outras rotas.</p>
+
+<p>Após o nosso <code class="highlighter-rouge">GET</code>, vamos criar as rotas de <code class="highlighter-rouge">POST</code>, <code class="highlighter-rouge">PUT</code> e <code class="highlighter-rouge">DELETE</code>, além, é claro, de mais um <code class="highlighter-rouge">GET</code> passando o <code class="highlighter-rouge">_id</code> como parâmetro.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Get categorie by id</span>
+<span class="p">{</span>
+	<span class="nl">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">GET</span><span class="dl">'</span><span class="p">,</span>
+	<span class="nx">path</span><span class="p">:</span> <span class="nx">URI</span> <span class="o">+</span> <span class="s2">`/{id}`</span><span class="p">,</span>
+	<span class="nx">handler</span><span class="p">:</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">reply</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+		<span class="nx">CategorieModel</span><span class="p">.</span><span class="nx">findById</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">reply</span><span class="p">({</span>
+					<span class="na">error</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+					<span class="na">data</span><span class="p">:</span> <span class="nx">error</span><span class="p">,</span>
+					<span class="na">statusCode</span><span class="p">:</span> <span class="mi">401</span><span class="p">,</span>
+					<span class="na">statusText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">NOK</span><span class="dl">'</span><span class="p">,</span>
+				<span class="p">}).</span><span class="nx">code</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+				<span class="nx">reply</span><span class="p">({</span>
+					<span class="na">error</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+					<span class="na">data</span><span class="p">:</span> <span class="nx">data</span><span class="p">,</span>
+					<span class="na">statusCode</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+					<span class="na">statusText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">OK</span><span class="dl">'</span>
+				<span class="p">}).</span><span class="nx">code</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+			<span class="p">}</span>
+		<span class="p">})</span>
+	<span class="p">}</span>
+<span class="p">},</span>
+
+<span class="c1">// Create a new categorie</span>
+<span class="p">{</span>
+	<span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+	<span class="na">path</span><span class="p">:</span> <span class="nx">URI</span><span class="p">,</span>
+	<span class="na">handler</span><span class="p">:</span> <span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">reply</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+		<span class="kd">const</span> <span class="nx">categorie</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CategorieModel</span><span class="p">({</span>
+				<span class="na">name</span><span class="p">:</span> <span class="nx">request</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">name</span>
+			<span class="p">,</span> <span class="na">status</span><span class="p">:</span> <span class="nx">request</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">status</span>
+			<span class="p">,</span> <span class="na">created_at</span><span class="p">:</span> <span class="nx">getCurrentDateWithoutTimezone</span>
+		<span class="p">})</span>
+
+		<span class="nx">categorie</span><span class="p">.</span><span class="nx">save</span><span class="p">((</span><span class="nx">error</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">reply</span><span class="p">({</span>
+						<span class="na">error</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+						<span class="na">data</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Já existe uma categoria registrada com esse nome!</span><span class="dl">'</span><span class="p">,</span>
+						<span class="na">statusCode</span><span class="p">:</span> <span class="mi">403</span><span class="p">,</span>
+						<span class="na">statusText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">NOK</span><span class="dl">'</span><span class="p">,</span>
+					<span class="p">}).</span><span class="nx">code</span><span class="p">(</span><span class="mi">403</span><span class="p">)</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					<span class="nx">reply</span><span class="p">({</span>
+						<span class="na">error</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+						<span class="na">data</span><span class="p">:</span> <span class="nx">error</span><span class="p">,</span>
+						<span class="na">statusCode</span><span class="p">:</span> <span class="mi">401</span><span class="p">,</span>
+						<span class="na">statusText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">NOK</span><span class="dl">'</span><span class="p">,</span>
+					<span class="p">})</span>
+				<span class="p">}</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+				<span class="nx">reply</span><span class="p">({</span>
+					<span class="na">error</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+					<span class="na">data</span><span class="p">:</span> <span class="nx">data</span><span class="p">,</span>
+					<span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Nova categoria cadastrada com sucesso!</span><span class="dl">'</span><span class="p">,</span>
+					<span class="na">statusCode</span><span class="p">:</span> <span class="mi">201</span><span class="p">,</span>
+					<span class="na">statusText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">OK</span><span class="dl">'</span>
+				<span class="p">}).</span><span class="nx">code</span><span class="p">(</span><span class="mi">201</span><span class="p">)</span>
+			<span class="p">}</span>
+		<span class="p">})</span>
+	<span class="p">}</span>
+<span class="p">},</span>
+
+<span class="c1">// Update a categorie by id</span>
+<span class="p">{</span>
+	<span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">PUT</span><span class="dl">'</span><span class="p">,</span>
+	<span class="na">path</span><span class="p">:</span> <span class="nx">URI</span> <span class="o">+</span> <span class="s2">`/{id}`</span><span class="p">,</span>
+	<span class="na">handler</span><span class="p">:</span> <span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">reply</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+		<span class="kd">const</span> <span class="nx">_id</span> <span class="o">=</span> <span class="p">{</span> <span class="na">_id</span><span class="p">:</span> <span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span> <span class="p">}</span>
+
+		<span class="kd">const</span> <span class="nx">categorie</span> <span class="o">=</span> <span class="p">{</span>
+				<span class="na">name</span><span class="p">:</span> <span class="nx">request</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">name</span>
+			<span class="p">,</span> <span class="na">status</span><span class="p">:</span> <span class="nx">request</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">status</span>
+			<span class="p">,</span> <span class="na">updated_at</span><span class="p">:</span> <span class="nx">getCurrentDateWithoutTimezone</span>
+		<span class="p">}</span>
+
+		<span class="nx">CategorieModel</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">_id</span><span class="p">,</span> <span class="nx">categorie</span><span class="p">,</span> <span class="p">{</span> <span class="na">multi</span><span class="p">:</span> <span class="kc">false</span> <span class="p">},</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">reply</span><span class="p">({</span>
+					<span class="na">error</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+					<span class="na">data</span><span class="p">:</span> <span class="nx">error</span><span class="p">,</span>
+					<span class="na">statusCode</span><span class="p">:</span> <span class="mi">401</span><span class="p">,</span>
+					<span class="na">statusText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">NOK</span><span class="dl">'</span><span class="p">,</span>
+				<span class="p">}).</span><span class="nx">code</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+				<span class="nx">reply</span><span class="p">({</span>
+					<span class="na">error</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+					<span class="na">data</span><span class="p">:</span> <span class="nx">data</span><span class="p">,</span>
+					<span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Categoria editada com sucesso!</span><span class="dl">'</span><span class="p">,</span>
+					<span class="na">statusCode</span><span class="p">:</span> <span class="mi">204</span><span class="p">,</span>
+					<span class="na">statusText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">OK</span><span class="dl">'</span>
+				<span class="p">}).</span><span class="nx">code</span><span class="p">(</span><span class="mi">204</span><span class="p">)</span>
+			<span class="p">}</span>
+		<span class="p">})</span>
+	<span class="p">}</span>
+<span class="p">},</span>
+
+<span class="c1">// Delete a categorie by id</span>
+<span class="p">{</span>
+	<span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">DELETE</span><span class="dl">'</span><span class="p">,</span>
+	<span class="na">path</span><span class="p">:</span> <span class="nx">URI</span> <span class="o">+</span> <span class="s2">`/{id}`</span><span class="p">,</span>
+	<span class="na">handler</span><span class="p">:</span> <span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">reply</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+		<span class="kd">const</span> <span class="nx">_id</span> <span class="o">=</span> <span class="p">{</span> <span class="na">_id</span><span class="p">:</span> <span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span> <span class="p">}</span>
+
+		<span class="nx">CategorieModel</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">_id</span><span class="p">,</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">reply</span><span class="p">({</span>
+					<span class="na">error</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+					<span class="na">data</span><span class="p">:</span> <span class="nx">error</span><span class="p">,</span>
+					<span class="na">statusCode</span><span class="p">:</span> <span class="mi">401</span><span class="p">,</span>
+					<span class="na">statusText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">NOK</span><span class="dl">'</span><span class="p">,</span>
+				<span class="p">}).</span><span class="nx">code</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+				<span class="nx">reply</span><span class="p">({</span>
+					<span class="na">error</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+					<span class="na">data</span><span class="p">:</span> <span class="nx">data</span><span class="p">,</span>
+					<span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Categoria deletada com sucesso!</span><span class="dl">'</span><span class="p">,</span>
+					<span class="na">statusCode</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+					<span class="na">statusText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">OK</span><span class="dl">'</span>
+				<span class="p">}).</span><span class="nx">code</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+			<span class="p">}</span>
+		<span class="p">})</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>As demais rotas, independente do método, seguem o mesmo padrão da nossa primeira rota, o <code class="highlighter-rouge">GET</code>, uma ou outra coisa que será diferente.</p>
+
+<p>Note que nos métodos de <code class="highlighter-rouge">PUT</code>, <code class="highlighter-rouge">DELETE</code> e nosso segundo <code class="highlighter-rouge">GET</code>, o nosso <code class="highlighter-rouge">path</code> está diferente. Ele está <code class="highlighter-rouge">path: URI + '/{id}'</code>, ou seja, estamos passando o <code class="highlighter-rouge">id</code> como parâmetro para a nossa requisição. E para “pegar” esse parâmetro e utilizá-lo nas consultas, basta utilizarmos o seguinte recurso <code class="highlighter-rouge">request.params.id</code>.</p>
+
+<p>Visando melhorar cada vez mais nossos códigos e deixá-lo o mais modularizado possível, ainda podemos criar um <code class="highlighter-rouge">helper</code> para as funções que usaremos <code class="highlighter-rouge">reply</code>, de error e sucesso, assim não precisaremos fazer isso em toda rota, basta chamarmos a função que fará o resto. Porém, não farei isso aqui, deixarei isso como um desafio para vocês, caros amiguinhos!</p>
+
+<p>Pronto, temos as rotas de <strong>Categorias</strong> criadas com sucesso, de uma forma simples.</p>
+
+<h3 id="produtos">Produtos</h3>
+
+<p>Agora, só precisamos criar nossas rotas de <strong>Produtos</strong> que já podemos brincar com a nossa API. A lógica é a mesma que utilizamos na criação das rotas de <strong>Categorias</strong>, então, ao invés de repetir novamente as explicações, segue os códigos das rotas.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">CONSTANTS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../helpers/constants</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">URI</span> <span class="o">=</span> <span class="s2">`</span><span class="p">${</span><span class="nx">CONSTANTS</span><span class="p">.</span><span class="nx">URI</span><span class="p">}</span><span class="s2">/products`</span>
+<span class="kd">const</span> <span class="nx">ProductModel</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">`../models/Product`</span><span class="p">)</span>
+
+<span class="kd">const</span> <span class="nx">Moment</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">moment</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">getCurrentDateWithoutTimezone</span> <span class="o">=</span> <span class="nx">Moment</span><span class="p">().</span><span class="nx">format</span><span class="p">(</span><span class="dl">'</span><span class="s1">YYYY-MM-DDTHH:mm:ss</span><span class="dl">'</span><span class="p">)</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">[</span>
+	<span class="c1">// Get all products</span>
+	<span class="p">{</span>
+		<span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">GET</span><span class="dl">'</span><span class="p">,</span>
+		<span class="na">path</span><span class="p">:</span> <span class="nx">URI</span><span class="p">,</span>
+		<span class="na">handler</span><span class="p">:</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">reply</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+			<span class="nx">ProductModel</span><span class="p">.</span><span class="nx">find</span><span class="p">((</span><span class="nx">error</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">reply</span><span class="p">({</span>
+						<span class="na">error</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+						<span class="na">data</span><span class="p">:</span> <span class="nx">error</span><span class="p">,</span>
+						<span class="na">statusCode</span><span class="p">:</span> <span class="mi">401</span><span class="p">,</span>
+						<span class="na">statusText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">NOK</span><span class="dl">'</span><span class="p">,</span>
+					<span class="p">}).</span><span class="nx">code</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					<span class="nx">reply</span><span class="p">({</span>
+						<span class="na">error</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+						<span class="na">data</span><span class="p">:</span> <span class="nx">data</span><span class="p">,</span>
+						<span class="na">statusCode</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+						<span class="na">statusText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">OK</span><span class="dl">'</span>
+					<span class="p">}).</span><span class="nx">code</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+				<span class="p">}</span>
+			<span class="p">})</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+	<span class="c1">// Get product by id</span>
+	<span class="p">{</span>
+		<span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">GET</span><span class="dl">'</span><span class="p">,</span>
+		<span class="na">path</span><span class="p">:</span> <span class="nx">URI</span> <span class="o">+</span> <span class="s2">`/{id}`</span><span class="p">,</span>
+		<span class="na">handler</span><span class="p">:</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">reply</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+			<span class="nx">ProductModel</span><span class="p">.</span><span class="nx">findById</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">reply</span><span class="p">({</span>
+						<span class="na">error</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+						<span class="na">data</span><span class="p">:</span> <span class="nx">error</span><span class="p">,</span>
+						<span class="na">statusCode</span><span class="p">:</span> <span class="mi">401</span><span class="p">,</span>
+						<span class="na">statusText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">NOK</span><span class="dl">'</span><span class="p">,</span>
+					<span class="p">}).</span><span class="nx">code</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					<span class="nx">reply</span><span class="p">({</span>
+						<span class="na">error</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+						<span class="na">data</span><span class="p">:</span> <span class="nx">data</span><span class="p">,</span>
+						<span class="na">statusCode</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+						<span class="na">statusText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">OK</span><span class="dl">'</span>
+					<span class="p">}).</span><span class="nx">code</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+				<span class="p">}</span>
+			<span class="p">})</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+	<span class="c1">// Create a new product</span>
+	<span class="p">{</span>
+		<span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+		<span class="na">path</span><span class="p">:</span> <span class="nx">URI</span><span class="p">,</span>
+		<span class="na">handler</span><span class="p">:</span> <span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">reply</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+			<span class="kd">const</span> <span class="nx">product</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ProductModel</span><span class="p">({</span>
+					<span class="na">name</span><span class="p">:</span> <span class="nx">request</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">name</span>
+				<span class="p">,</span> <span class="na">id_categorie</span><span class="p">:</span> <span class="nx">request</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">id_categorie</span>
+				<span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="nx">request</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">price</span>
+				<span class="p">,</span> <span class="na">qtd</span><span class="p">:</span> <span class="nx">request</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">qtd</span>
+				<span class="p">,</span> <span class="na">status</span><span class="p">:</span> <span class="nx">request</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">status</span>
+				<span class="p">,</span> <span class="na">created_at</span><span class="p">:</span> <span class="nx">getCurrentDateWithoutTimezone</span>
+			<span class="p">})</span>
+
+			<span class="nx">product</span><span class="p">.</span><span class="nx">save</span><span class="p">((</span><span class="nx">error</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">reply</span><span class="p">({</span>
+							<span class="na">error</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+							<span class="na">data</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Já existe um produto registrado com esse nome!</span><span class="dl">'</span><span class="p">,</span>
+							<span class="na">statusCode</span><span class="p">:</span> <span class="mi">403</span><span class="p">,</span>
+							<span class="na">statusText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">NOK</span><span class="dl">'</span><span class="p">,</span>
+						<span class="p">}).</span><span class="nx">code</span><span class="p">(</span><span class="mi">403</span><span class="p">)</span>
+					<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+						<span class="nx">reply</span><span class="p">({</span>
+							<span class="na">error</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+							<span class="na">data</span><span class="p">:</span> <span class="nx">error</span><span class="p">,</span>
+							<span class="na">statusCode</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+							<span class="na">statusText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">NOK</span><span class="dl">'</span><span class="p">,</span>
+						<span class="p">})</span>
+					<span class="p">}</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					<span class="nx">reply</span><span class="p">({</span>
+						<span class="na">error</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+						<span class="na">data</span><span class="p">:</span> <span class="nx">data</span><span class="p">,</span>
+						<span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Novo produto cadastrado com sucesso!</span><span class="dl">'</span><span class="p">,</span>
+						<span class="na">statusCode</span><span class="p">:</span> <span class="mi">201</span><span class="p">,</span>
+						<span class="na">statusText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">OK</span><span class="dl">'</span>
+					<span class="p">}).</span><span class="nx">code</span><span class="p">(</span><span class="mi">201</span><span class="p">)</span>
+				<span class="p">}</span>
+			<span class="p">})</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+	<span class="c1">// Update a product by id</span>
+	<span class="p">{</span>
+		<span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">PUT</span><span class="dl">'</span><span class="p">,</span>
+		<span class="na">path</span><span class="p">:</span> <span class="nx">URI</span> <span class="o">+</span> <span class="s2">`/{id}`</span><span class="p">,</span>
+		<span class="na">handler</span><span class="p">:</span> <span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">reply</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+			<span class="kd">const</span> <span class="nx">_id</span> <span class="o">=</span> <span class="p">{</span> <span class="na">_id</span><span class="p">:</span> <span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span> <span class="p">}</span>
+
+			<span class="kd">const</span> <span class="nx">product</span> <span class="o">=</span> <span class="p">{</span>
+					<span class="na">name</span><span class="p">:</span> <span class="nx">request</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">name</span>
+				<span class="p">,</span> <span class="na">id_categorie</span><span class="p">:</span> <span class="nx">request</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">id_categorie</span>
+				<span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="nx">request</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">price</span>
+				<span class="p">,</span> <span class="na">qtd</span><span class="p">:</span> <span class="nx">request</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">qtd</span>
+				<span class="p">,</span> <span class="na">status</span><span class="p">:</span> <span class="nx">request</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">status</span>
+				<span class="p">,</span> <span class="na">updated_at</span><span class="p">:</span> <span class="nx">getCurrentDateWithoutTimezone</span>
+			<span class="p">}</span>
+
+			<span class="nx">ProductModel</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">_id</span><span class="p">,</span> <span class="nx">product</span><span class="p">,</span> <span class="p">{</span> <span class="na">multi</span><span class="p">:</span> <span class="kc">false</span> <span class="p">},</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">reply</span><span class="p">({</span>
+						<span class="na">error</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+						<span class="na">data</span><span class="p">:</span> <span class="nx">error</span><span class="p">,</span>
+						<span class="na">statusCode</span><span class="p">:</span> <span class="mi">401</span><span class="p">,</span>
+						<span class="na">statusText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">NOK</span><span class="dl">'</span><span class="p">,</span>
+					<span class="p">}).</span><span class="nx">code</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					<span class="nx">reply</span><span class="p">({</span>
+						<span class="na">error</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+						<span class="na">data</span><span class="p">:</span> <span class="nx">data</span><span class="p">,</span>
+						<span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Produto editado com sucesso!</span><span class="dl">'</span><span class="p">,</span>
+						<span class="na">statusCode</span><span class="p">:</span> <span class="mi">204</span><span class="p">,</span>
+						<span class="na">statusText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">OK</span><span class="dl">'</span>
+					<span class="p">}).</span><span class="nx">code</span><span class="p">(</span><span class="mi">204</span><span class="p">)</span>
+				<span class="p">}</span>
+			<span class="p">})</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+	<span class="c1">// Delete a product by id</span>
+	<span class="p">{</span>
+		<span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">DELETE</span><span class="dl">'</span><span class="p">,</span>
+		<span class="na">path</span><span class="p">:</span> <span class="nx">URI</span> <span class="o">+</span> <span class="s2">`/{id}`</span><span class="p">,</span>
+		<span class="na">handler</span><span class="p">:</span> <span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">reply</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+			<span class="kd">const</span> <span class="nx">_id</span> <span class="o">=</span> <span class="p">{</span> <span class="na">_id</span><span class="p">:</span> <span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span> <span class="p">}</span>
+
+			<span class="nx">ProductModel</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">_id</span><span class="p">,</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">reply</span><span class="p">({</span>
+						<span class="na">error</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+						<span class="na">data</span><span class="p">:</span> <span class="nx">error</span><span class="p">,</span>
+						<span class="na">statusCode</span><span class="p">:</span> <span class="mi">401</span><span class="p">,</span>
+						<span class="na">statusText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">NOK</span><span class="dl">'</span><span class="p">,</span>
+					<span class="p">}).</span><span class="nx">code</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					<span class="nx">reply</span><span class="p">({</span>
+						<span class="na">error</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+						<span class="na">data</span><span class="p">:</span> <span class="nx">data</span><span class="p">,</span>
+						<span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Produto deletado com sucesso!</span><span class="dl">'</span><span class="p">,</span>
+						<span class="na">statusCode</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+						<span class="na">statusText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">OK</span><span class="dl">'</span>
+					<span class="p">}).</span><span class="nx">code</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+				<span class="p">}</span>
+			<span class="p">})</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<h2 id="efetuando-testes-locais-com-postman">Efetuando testes locais com Postman</h2>
+
+<p>Agora sim, temos uma API pronta para testarmos. Se executarmos no terminal o comando <code class="highlighter-rouge">nodemon app.js</code>, já estando com o serviço do <code class="highlighter-rouge">mongod</code> em execução, teremos o seguinte resultado:</p>
+
+<p><img src="/assets/img/nodemon_app_ecommerce_api.png" alt="Imagem do terminal executando e levantando o servidor" /></p>
+
+<p>Vamos então, utilizar o Postman para efetuarmos testes em nossas rotas, que criamos acima:</p>
+
+<p><img src="/assets/img/get_all_categories_ecommerce_api.png" alt="Exemplo de GET Categorias via Postman" /></p>
+
+<p>No exemplo acima, estamos fazendo um <code class="highlighter-rouge">GET</code> para retornar todas as categorias cadastradas em nosso banco de dados. Vamos verificar agora, como ficaria um <code class="highlighter-rouge">POST</code> para criarmos uma nova categoria.</p>
+
+<p><img src="/assets/img/post_categorie_erro_ecommerce_api.png" alt="Exemplo de POST Categorias com registro duplicado via Postman" /></p>
+
+<p>Vale a pena ressaltar aqui, que, tanto em <code class="highlighter-rouge">POST</code> e/ou <code class="highlighter-rouge">PUT</code> podemos enviar o <em>body</em> como um <code class="highlighter-rouge">form-data</code> ou <code class="highlighter-rouge">json</code> através do <em>raw</em>.</p>
+
+<p>No exemplo desse <code class="highlighter-rouge">POST</code> estamos enviando uma nova categoria com o mesmo nome de uma já existente em nosso banco de dados. E, como definimos em nosso model lá no ínicio o nome é <code class="highlighter-rouge">unique: true</code>, ou seja, deverá ser único. Por isso, como já tratamos isso em nossas rotas, ele devolve uma mensagem amigável ao invés do erro gigantesco do banco. Já o campo <code class="highlighter-rouge">status</code> é do tipo <code class="highlighter-rouge">Boolean</code>, nele declaramos 1 para categorias <strong>ativadas</strong> e 0 para categorias <strong>desativadas</strong>.</p>
+
+<p>Esses erros, como o de registro duplicado, poderiamos muito bem tratar com o Mongoose, através de suas validações e tudo mais. Porém, penso que dessa forma perderiamos em performance na nossa API, então já tratamos dela na própria API. Isso vai de desenvolvedor para desenvolvedor, se você preferir tratar os erros através do Mongoose, ok, sem problemas. Continuemos..</p>
+
+<p>Mas e como ficaria um <code class="highlighter-rouge">POST</code> sem erros? Bâmo vê..</p>
+
+<p><img src="/assets/img/post_categorie_ecommerce_api.png" alt="Exemplo de POST Categorias via Postman" /></p>
+
+<p>Já o <code class="highlighter-rouge">PUT</code> ficaria da seguinte forma:</p>
+
+<p><img src="/assets/img/put_categorie_ecommerce_api.png" alt="Exemplo de PUT Categorias via Postman" /></p>
+
+<p>O <code class="highlighter-rouge">GET</code> <em>by id</em> e <code class="highlighter-rouge">DELETE</code> basta passar na URL da requisição o <code class="highlighter-rouge">_id</code> da categoria desejada que irá retornar os da categoria ou deletar a mesma, respectivamente.</p>
+
+<p><img src="/assets/img/get_by_id_categorie_ecommerce_api.png" alt="Exemplo de GET by id Categorias via Postman" /></p>
+
+<p><img src="/assets/img/delete_categorie_ecommerce_api.png" alt="Exemplo de DELETE Categorias via Postman" /></p>
+
+<h2 id="concluindo">Concluindo</h2>
+
+<p>Prontinho, temos nossa API desenvolvida com Hapi.js e MongoDB para consumirmos em um aplicativo web e/ou mobile. Agora, você pode realizar o <em>deploy</em> para produção no Heroku, DigitalOcean, AWS, Google Cloud, <em>whatever</em>, que irá funcionar perfeitamente.</p>
+
+<p>Desenvolvemos uma API simples, aplicando os conceitos mais básicos do Hapi.js, porém conceitos importantes que te deixará preparado para desenvolver APIs de mais simples à robustas e copmlexas com Hapi.js e MongoDB.</p>
+
+<p>O artigo em si ficou um pouco extenso, porém deu para mostrar a vocês a ideia de trabalharmos com essa belezinha do Hapi.js. Tem coisas nesses códigos que ainda podemos melhorar, modularizar mais algumas coisinhas, criar mais alguns <em>helpers</em>, etc. Agora é com você, de desenvolver uma API com Hapi.js e MongoDB.</p>
+
+<p>Todos os códigos que utilizei nesse artigo pode ser encontrado <a href="https://github.com/ednilsonamaral/vuejs-ecommerce-api">nesse repositório</a> no GitHub. Se vocês gostaram, dêem um star, fiquem à vontade para sugerir melhorias de códigos, PRs são aceitos! Também, já publiquei essa API no Heroku e o banco de dados na MLab.</p>
+
+<p>Não perca tempo, comece a usar você também o Hapi.js e nos conte como foi a experiência. Caso tenha alguma dúvida, sugestão, reclamação, please, entre em contato comigo, através de um simples comentário ou via redes sociais. Se gostou ou não, compartilhe com seus amiguinhos desenvolvedores! =p</p>
+
+<p>É isso aí pessoal, vaaleu, até mais! =D</p>
+
+<h2 id="referências-e-links-importantes">Referências e Links importantes</h2>
+
+<p><a href="https://hapijs.com/tutorials?lang=pt_BR">- Documentação oficial do Hapi.js em PT-BR</a><br />
+<a href="https://github.com/ednilsonamaral/vuejs-ecommerce-api">- Repositório oficial com todos os códigos</a></p>
+:ET

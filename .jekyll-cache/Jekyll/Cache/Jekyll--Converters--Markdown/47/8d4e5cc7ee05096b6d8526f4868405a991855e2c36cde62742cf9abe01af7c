@@ -1,0 +1,290 @@
+I"JY<h2 id="qual-a-diferença-entre-autenticação-e-autorização">Qual a diferença entre Autenticação e Autorização?</h2>
+
+<p>Tentarei responder essa pergunta dando um exemplo. Quando vamos logar em um determinado sistema com nosso usuário e senha, enviamos ao server uma solicitação de <strong>autenticação</strong>, para que seja feito um processo de verificação da nossa identididade. Assim sendo, nossa identidade identificada, então, receberemos <strong>autorização</strong> ou não para realizarmos determinadas tarefas.</p>
+
+<p>Mesmo <strong>autenticação</strong> e <strong>autorização</strong> sejam ligadas entre si, elas são diferentes. De uma forma resumida, <strong>autenticação</strong> irá verificar a identidade de um usuário, enquanto a <strong>autorização</strong> vai determinar o acesso desse usuário e quais recursos e operações são concedidas a ele.</p>
+
+<h2 id="descreva-aqui-o-passo-a-passo-como-criar-um-usuário-administrador-e-um-usuário-comum">Descreva aqui o passo-a-passo como criar um usuário administrador e um usuário comum</h2>
+
+<p>Para criarmos usuários no MongoDB, devemos utilizar a função <code class="highlighter-rouge">db.createUser()</code>. A sintaxe básica para a criação de um novo usuário no MongoDB é a seguinte:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{ user: "&lt;name&gt;",  
+  pwd: "&lt;cleartext password&gt;",  
+  customData: { &lt;any information&gt; },  
+  roles: [  
+    { role: "&lt;role&gt;", db: "&lt;database&gt;" },  
+  ]  
+}  
+</code></pre></div></div>
+
+<p>Onde iremos informar o nome, senha, algumas informações adicionas no <code class="highlighter-rouge">customData</code>, se quisermos ou não. Os campos de nome, senha e roles são obrigatórios, já o campo customData é opcional. Em <code class="highlighter-rouge">roles</code> iremos informar quais os privilégios para esse usuário e em qual <code class="highlighter-rouge">database</code> ele irá ter tais privilégios.</p>
+
+<h3 id="criando-usuário-comum">Criando Usuário Comum</h3>
+
+<p>Se passarmos durante o comando <code class="highlighter-rouge">db.createUser()</code> sem nenhum <code class="highlighter-rouge">role</code>, informando apenas o nome do database que o usuário vai ter autorização de acesso, então, o MongoDB vai retornar um erro, como visto no trecho a seguir:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>admin&gt; db.createUser(  
+		{  
+			user: "comum",  
+			pwd: "comum123",  
+			roles: [{db: "admin"}]  
+		}  
+	)  
+
+2015-12-03T21:57:07.174-0200 E QUERY    [thread1] Error: couldn't add user: Missing expected field "role" :  
+_getErrorWithCode@src/mongo/shell/utils.js:23:13  
+DB.prototype.createUser@src/mongo/shell/db.js:1225:11  
+@(shell):1:1  
+</code></pre></div></div>
+
+<p>O erro acima diz que é necessário passar algum valor no campo <code class="highlighter-rouge">role</code>. Então, devemos criar um usuário comum, do tipo apenas leitura da seguinte forma:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>admin&gt; db.createUser(  
+		{  
+			user: "comum",  
+			pwd: "comum123",  
+			roles: [{role: "read", db: "admin"}]  
+		}  
+	)  
+
+Successfully added user: {  
+  "user": "comum",  
+  "roles": [  
+    {  
+      "role": "read",  
+      "db": "admin"  
+    }  
+  ]  
+}  
+</code></pre></div></div>
+
+<h3 id="criando-usuário-administrador">Criando Usuário Administrador</h3>
+
+<p>Para criarmos um usuário administrador o processo é o mesmo. Só muda o array role. No exemplo a seguir utilizo o <code class="highlighter-rouge">userAdminAnyDatabase</code> que tem os mesmos privilégios do role <code class="highlighter-rouge">userAdmin</code>. A diferença entre eles é que o <code class="highlighter-rouge">userAdminAnyDatabase</code> é aplicável a todos os bancos em um cluster.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>admin&gt; db.createUser(  
+		{  
+			user: "userFoda",  
+			pwd: "foda321",  
+			roles: [{role: "userAdminAnyDatabase", db: "admin"}]  
+		}  
+	)  
+
+Successfully added user: {  
+  "user": "userFoda",  
+  "roles": [  
+    {  
+      "role": "userAdminAnyDatabase",  
+      "db": "admin"  
+    }  
+  ]  
+}  
+</code></pre></div></div>
+
+<p>Então, assim, listamos os usuários criados:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>admin&gt; db.system.users.find()  
+{  
+  "_id": "admin.TesteAdmin",  
+  "user": "TesteAdmin",  
+  "db": "admin",  
+  "credentials": {  
+    "SCRAM-SHA-1": {  
+      "iterationCount": 10000,  
+      "salt": "GnomEunpcaUNPDR5X4ztuw==",  
+      "storedKey": "h+t/LNSbi621xrZIrVKDCXVhD8c=",  
+      "serverKey": "qh4JmtNei6712TTl1xDcTsLI8Iw="  
+    }  
+  },  
+  "roles": [  
+    {  
+      "role": "userAdminAnyDatabase",  
+      "db": "admin"  
+    }  
+  ]  
+}  
+{  
+  "_id": "admin.comum",  
+  "user": "comum",  
+  "db": "admin",  
+  "credentials": {  
+    "SCRAM-SHA-1": {  
+      "iterationCount": 10000,  
+      "salt": "JDqV1XQcJ9PVKd6rPNKPwQ==",  
+      "storedKey": "5UQNVA94E++61ShBzOpXgVc5iHg=",  
+      "serverKey": "hgI0LAWXL5jLoY9oGBygbx0kyuE="  
+    }  
+  },  
+  "roles": [  
+    {  
+      "role": "read",  
+      "db": "admin"  
+    }  
+  ]  
+}  
+{  
+  "_id": "admin.userFoda",  
+  "user": "userFoda",  
+  "db": "admin",  
+  "credentials": {  
+    "SCRAM-SHA-1": {  
+      "iterationCount": 10000,  
+      "salt": "8PSlbiYYVXbe1K2FEBbEZQ==",  
+      "storedKey": "QAUumSjFFjakYkgoFV58Z7+P3k8=",  
+      "serverKey": "Ev/kr3Pymj+HBqoqap+/KTXUmK4="  
+    }  
+  },  
+  "roles": [  
+    {  
+      "role": "userAdminAnyDatabase",  
+      "db": "admin"  
+    }  
+  ]  
+}  
+Fetched 3 record(s) in 7ms  
+</code></pre></div></div>
+
+<h2 id="cluster-administration-roles">Cluster Administration Roles</h2>
+
+<p>Caso tenhamos um cluster e queiramos ter um usuário com privilégios de atuar em vários databases, não precisamos ter um usuário para cada servidor. Para resolver isso, temos o <strong>cluster administrator roles</strong>. Eles não são limitados a réplicas e shardings.</p>
+
+<p>Os roles possíveis para os privilégios em um usuários admin de um cluster são:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">clusterAdmin</code>: É o maior privilégio para usuários admini em clusters. Inclui todos os privilégios que serão listados e explicados abaixo. Também, possui o privilégio da ação de <code class="highlighter-rouge">dropDatabase</code>.</li>
+  <li><code class="highlighter-rouge">clusterManager</code>: Fornece o gerenciamento e monitoramento das ações no cluster. Um usúário com esse <code class="highlighter-rouge">role</code> pode acessar as configurações de databases locais, que são usadas em réplicas e shardings. Como um todo, são fornecidas ações desde <code class="highlighter-rouge">addShard</code> até <code class="highlighter-rouge">resync</code>. Suas ações fornecidas para todos os databases no cluster vão desde <code class="highlighter-rouge">enableSharding</code> até <code class="highlighter-rouge">splitVector</code>. Além, é claro, de <code class="highlighter-rouge">insert</code>, <code class="highlighter-rouge">remove</code> e <code class="highlighter-rouge">update</code>. Basicamente, aqui o cara faz de um tudo no cluster.</li>
+  <li><code class="highlighter-rouge">clusterMonitor</code>: Fornece <strong>apenas</strong> leitura (<code class="highlighter-rouge">read-only</code>) para ferramentas de monitoramento no cluster. Um exemplo de ferramenta para monitoramento é o <a href="https://www.mongodb.com/cloud">MongoDB Cloud Manager</a>. Suas ações vão desde <code class="highlighter-rouge">connPoolStats</code>, <code class="highlighter-rouge">netstat</code> à <code class="highlighter-rouge">serverStatus</code> e <code class="highlighter-rouge">shardingState</code>. De uma forma resumidade, aqui o cara só vai ficar olhando o que está sendo feito no cluster.</li>
+  <li><code class="highlighter-rouge">hostManager</code>: Já com este <code class="highlighter-rouge">role</code> é possível monitorar e gerenciar os servers.</li>
+</ul>
+
+<h2 id="privilege-actions">Privilege Actions</h2>
+
+<p>As <em>privilege actions</em> ou ações de privilégio definem quais são as operações que determinado usuário pode executar ou não através de algum recurso.</p>
+
+<p>No MongoDB um privilégio dispõe de um recurso e as ações que são permitidas para esses recursos. Além disso, o MongoDB fornece algumas funções integradas com uma combinação de recursos pré-definidos e ações permitidas, como veremos abaixo.</p>
+
+<h3 id="ações-de-escrita">Ações de Escrita</h3>
+
+<ul>
+  <li><code class="highlighter-rouge">find</code>: para buscar documentos em uma determinada coleção;</li>
+  <li><code class="highlighter-rouge">insert</code>: para inserir novos documentos em uma determina coleção;</li>
+  <li><code class="highlighter-rouge">remove</code>: para remover documentos em uma determinada coleção;</li>
+  <li><code class="highlighter-rouge">update</code>: para atualizar documentos em uma determinada coleção.</li>
+</ul>
+
+<h3 id="ações-de-gerenciamento-de-databases">Ações de Gerenciamento de Databases</h3>
+
+<ul>
+  <li><code class="highlighter-rouge">changeCustomData</code>: aqui o usuário pode alterar as informações contidas no <code class="highlighter-rouge">custom information</code> de qualquer usuário da database que ele possui privilégios;</li>
+  <li><code class="highlighter-rouge">changeOwnCustomData</code>: aqui o usuário pode alterar suas próprias informações de forma personalizada;</li>
+  <li><code class="highlighter-rouge">changeOwnPassword</code>: aqui o usuário pode alterar a sua senha de acesso;</li>
+  <li><code class="highlighter-rouge">changePassword</code>: aqui o usuário pode alterar a senha de acesso de qualquer usuário da database que ele possui privilégios;</li>
+  <li><code class="highlighter-rouge">createCollection</code>: aqui o usuário pode criar uma nova coleção na database que possui privilégios;</li>
+  <li><code class="highlighter-rouge">createIndex</code>: aqui o usuário pode criar uma nova index na database que possui privilégios;</li>
+  <li><code class="highlighter-rouge">createRole</code>: aqui o usuário pode criar novas roles na database que possui privilégios;</li>
+  <li><code class="highlighter-rouge">createUser</code>: pode criar novos usuários na database que possui privilégios;</li>
+  <li><code class="highlighter-rouge">dropCollection</code>: pode deletar uma coleção na database que possui privilégios;</li>
+  <li><code class="highlighter-rouge">dropRole</code>: pode deletar uma ou mais roles na database que possui privilégios;</li>
+  <li><code class="highlighter-rouge">dropUser</code>: pode deletar um usuário na database que possui privilégios;</li>
+  <li><code class="highlighter-rouge">emptycapped</code>: aqui o usuário é capaz de remover todos os documentos de uma determinada coleção utilizando o comando <code class="highlighter-rouge">emptycapped</code>;</li>
+  <li><code class="highlighter-rouge">enableProfiler</code>: é possível utilizar o comando <code class="highlighter-rouge">db.setProfilingLevel()</code>, que nada mais é que modificar o nível de perfil do usuário atual para capturar dados sobre o seu desempenho;</li>
+  <li><code class="highlighter-rouge">grantRole</code>: aqui é possível alterar qualquer role no database para qualquer usuário de qualquer databade do sistema;</li>
+  <li><code class="highlighter-rouge">killCursors</code>: o usuário pode matar os cursores em determinadas coleções;</li>
+  <li><code class="highlighter-rouge">revokeRole</code>: o usuário pode remover qualquer role de qualquer usuário de qualquer database no sistema;</li>
+  <li><code class="highlighter-rouge">unlock</code>: é possível utilizar o comando <code class="highlighter-rouge">db.fsyncUnlock()</code>, que nada mais é que desbloquear um serviço para que seja possível escrever e/ou inverter o funcionamento de uma operação no MongoDB. Normalmente é utilizada em uma sequência de operações de backups de databases;</li>
+  <li><code class="highlighter-rouge">viewRole</code>: o usuário visualiza as informações de qualquer role na database que possui privilégios;</li>
+  <li><code class="highlighter-rouge">viewUser</code>: o usuário visualiza as informações de qualquer usuário na database que possui privilégios.</li>
+</ul>
+
+<h3 id="ações-de-gerenciamento-de-deployment-implantação">Ações de Gerenciamento de Deployment (Implantação)</h3>
+
+<ul>
+  <li><code class="highlighter-rouge">authSchemaUpgrade</code>: o usuário pode dar um upgrade em processos de sistemas existentes que usam autenticação e autorização entre as versões 2.4 à 2.6 e de 2.6 à 3.0;</li>
+  <li><code class="highlighter-rouge">cleanupOrphaned</code>: é possível utilizar o comando <code class="highlighter-rouge">cleanupOphaned</code> no cluster. Esse comando faz com que seja excluído de um shard documentos órfãos cujo seus valores não pertençam a esse shard;</li>
+  <li><code class="highlighter-rouge">cpuProfiler</code>: o usuário pode ativar e utilizar o CPU profiler no cluster;</li>
+  <li><code class="highlighter-rouge">inprog</code>: o usuário pode utilizar o comando <code class="highlighter-rouge">db.currentOp()</code> que irá retornar as operações ativas e pendentes no cluster;</li>
+  <li><code class="highlighter-rouge">invalidateUserCache</code>: é possível liberar informações do usuário do cache na memória RAM, incluindo a remoção de credenciais e papéis de cada usuário. Com isso é possível limpar o cache do usuário em qualquer momento;</li>
+  <li><code class="highlighter-rouge">killop</code>: é possível finalizar uma determinada operação, sendo que deve ser especificada pelo seu ID;</li>
+  <li><code class="highlighter-rouge">planCacheRead</code>: o usuário pode visualizar os planos de list e querys para o cache na database ou coleções;</li>
+  <li><code class="highlighter-rouge">planCacheWrite</code>: o usuário pode escrever e/ou limpar e/ou modificar os planos de list e querys para cache nas coleções e databases;</li>
+  <li><code class="highlighter-rouge">storageDetails</code>: o usuário pode utilizar o comando <code class="highlighter-rouge">storageDetails</code> nas coleções ou databases que possui privilégios.</li>
+</ul>
+
+<h3 id="ações-de-replications">Ações de Replications</h3>
+
+<ul>
+  <li><code class="highlighter-rouge">appendOplogNote</code>: o usuário pode adicionar algumas notas ao <code class="highlighter-rouge">oplog</code> no cluster;</li>
+  <li><code class="highlighter-rouge">replSetConfigure</code>: o usuário pode configurar uma <code class="highlighter-rouge">replica_set</code> no cluster;</li>
+  <li><code class="highlighter-rouge">replSetGetStatus</code>: o usuário pode ver o status atual da replica no cluster;</li>
+  <li><code class="highlighter-rouge">replSetHeartbeat</code>: é possível utilizar o comando <code class="highlighter-rouge">replSetHeartbeat</code>, que serve para determinadas funcionalidades em um conjunto de replicas;</li>
+  <li><code class="highlighter-rouge">replSetStateChange</code>: o usuário pode alterar/gerenciar o estado atual da réplica no cluster;</li>
+  <li><code class="highlighter-rouge">resync</code>: é possível utilizar o comando <code class="highlighter-rouge">resync</code> no cluster, para resincronizar a replica primária e secundária (master - slave), nunca replicas em conjunto.</li>
+</ul>
+
+<h3 id="ações-de-sharding">Ações de Sharding</h3>
+
+<ul>
+  <li><code class="highlighter-rouge">addShard</code>: é possível adicionar um shard no cluster;</li>
+  <li><code class="highlighter-rouge">enableSharding</code>: o usuário consegue ativar um shard na database ou coleções em uso;</li>
+  <li><code class="highlighter-rouge">flushRouterConfig</code>: é possível limpar as informaçoẽs do cluster que estão em cache e recarrega os metadados do cluster;</li>
+  <li><code class="highlighter-rouge">getShardMap</code>: é um comando interno que suporta algumas funcionalidades de sharding;</li>
+  <li><code class="highlighter-rouge">getShardVersion</code>: é um comando interno que suporta algumas funcionalidades de sharding;</li>
+  <li><code class="highlighter-rouge">listShards</code>: retorna a lista de shards configurados;</li>
+  <li><code class="highlighter-rouge">moveChunk</code>: é um comando de administração interno, capaz de mover os chunks entre os shards;</li>
+  <li><code class="highlighter-rouge">removeShard</code>: remove um shard do cluster;</li>
+  <li><code class="highlighter-rouge">shardingState</code>: é um comando de administração que mostra o estado dos shardings no cluster;</li>
+  <li><code class="highlighter-rouge">splitChunk</code>: é um comando de administração interno, capaz de dividir os chunks das coleções ou databases;</li>
+  <li><code class="highlighter-rouge">splitVector</code>: é um comando interno que suporta operações de metadados nos cluster que possuem shards.</li>
+</ul>
+
+<h3 id="ações-dos-administração-de-servidores">Ações dos Administração de Servidores</h3>
+
+<ul>
+  <li><code class="highlighter-rouge">applicationMessage</code>: é possível postar uma mensagem personalizada para o log de auditoria, através do comando <code class="highlighter-rouge">logApplicationMessage</code>;</li>
+  <li><code class="highlighter-rouge">closeAllDatabases</code>: o usuário pode fechar todas as databases no cluster;</li>
+  <li><code class="highlighter-rouge">collMod</code>: é possível adicionar um conjunto de <em>flags</em> para modificar o comportamento do MongoDB;</li>
+  <li><code class="highlighter-rouge">compact</code>: é possível regravar e desfragmentar todos os dados e indices em uma coleção do database;</li>
+  <li><code class="highlighter-rouge">connPoolSync</code>: é um comando interno aplicável no cluster;</li>
+  <li><code class="highlighter-rouge">convertToCapped</code>: é possível converter uma coleção <code class="highlighter-rouge">not-capped</code> para <code class="highlighter-rouge">capped</code> dentro da database;</li>
+  <li><code class="highlighter-rouge">dropDatabase</code>: é possível apagar um database;</li>
+  <li><code class="highlighter-rouge">dropIndex</code>: é possível apagar um indice de uma determinada coleção no database;</li>
+  <li><code class="highlighter-rouge">fsync</code>: força o serviço <code class="highlighter-rouge">mongod</code> para que dê um <em>flush</em> em todas as escritas pendentes na camada de armazenamento em disco, sendo aplicável no cluster;</li>
+  <li><code class="highlighter-rouge">getParameter</code>: é um comando de administração interno capaz de recuperar o valor das opções configuradas anteriormente, aplicável no cluster;</li>
+  <li><code class="highlighter-rouge">hostInfo</code>: retorna informações sobre o server que o MongoDB está rodando atualmente, aplicável no cluster;</li>
+  <li><code class="highlighter-rouge">logRotate</code>: é um comando de administração interno capaz de fazer um “gira gira” nos logs do MongoDB para que o mesmo não concentre os logs em um único arquivo, assim não consumindo muito espaço em disco;</li>
+  <li><code class="highlighter-rouge">reIndex</code>: apaga todos os indices de um coleção e as cria novamente;</li>
+  <li><code class="highlighter-rouge">renameCollectionSameDB</code>: renomeia uma coleção no database em uso;</li>
+  <li><code class="highlighter-rouge">repairDatabase</code>: checa e repara um database que apresente inconsistência no armazenamento dos dados;</li>
+  <li><code class="highlighter-rouge">setParameter</code>: é possível alterar alguns parâmetros no cluster;</li>
+  <li><code class="highlighter-rouge">shutdown</code>: limpa todos os databases e encerra seus processos;</li>
+  <li><code class="highlighter-rouge">touch</code>: carrega os dados da camada de armazenamento de dados em memória.</li>
+</ul>
+
+<h3 id="ações-de-diagnósticos">Ações de Diagnósticos</h3>
+
+<ul>
+  <li><code class="highlighter-rouge">collStats</code>: retorna uma variedade de estatísticas de armazenamento de uma determina coleção;</li>
+  <li><code class="highlighter-rouge">connPoolSync</code>: é um comando interno aplicável no cluster;</li>
+  <li><code class="highlighter-rouge">cursorInfo</code>: retorna algumas informações a respeito do cursor;</li>
+  <li><code class="highlighter-rouge">dbHash</code>: é um comando com suporte há algumas configurações no servidor;</li>
+  <li><code class="highlighter-rouge">dbStats</code>: retorna uma variedade de estatísticas sobre o database em uso;</li>
+  <li><code class="highlighter-rouge">diagLogging</code>: é um comando adicional capaz de retornar dados adicionais para fins de diagnósticos;</li>
+  <li><code class="highlighter-rouge">getCmdLineOpts</code>: é possível utilizar o comando <code class="highlighter-rouge">getCmdLineOpts</code> no cluster;</li>
+  <li><code class="highlighter-rouge">getLog</code>: é possível utilizar o comando <code class="highlighter-rouge">getLog</code> no cluster;</li>
+  <li><code class="highlighter-rouge">indexStats</code>: na versão 3.0 do MongoDB esse comando foi removido, porém, anteriormente, era possível retornar algumas estatísticas sobre os indices de determinadas coleções do database;</li>
+  <li><code class="highlighter-rouge">listDatabases</code>:  lista os databases com algumas estatísticas básicas;</li>
+  <li><code class="highlighter-rouge">listCollections</code>: lista todas as coleções do database com algumas estatísticas básicas;</li>
+  <li><code class="highlighter-rouge">listIndexes</code>: lista todos os indices de determina coleção com algumas estatísticas básicas;</li>
+  <li><code class="highlighter-rouge">netstat</code>: é possível utilizar o comando <code class="highlighter-rouge">netstat</code>, aplicável ao mongos;</li>
+  <li><code class="highlighter-rouge">serverStatus</code>: retorna algumas estatísticas sobre o status do servidor;</li>
+  <li><code class="highlighter-rouge">validate</code>: verifica as estruturas de nomes das coleções e indices, retorna uma representação disso em disco;</li>
+  <li><code class="highlighter-rouge">top</code>: é um comando de administração interno capaz de retornar estatísticas de uso para cada coleção do database.</li>
+</ul>
+
+<h3 id="ações-internas">Ações Internas</h3>
+
+<ul>
+  <li><code class="highlighter-rouge">anyAction</code>: permite qualquer ação em um recurso especifico;</li>
+  <li><code class="highlighter-rouge">internal</code>: permite ações internas em circunstâncias excepcionais.</li>
+</ul>
+:ET
