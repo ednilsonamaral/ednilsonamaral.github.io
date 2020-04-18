@@ -4,7 +4,7 @@ title: Sobre
 permalink: /sobre/
 ---
 
-Olá, sou **Ednilson Amaral**! Tenho 27 anos, moro em **Itapeva/SP** e trabalho como **Desenvolvedor Full Stack Javascript**, remotamente. Sou pai do *baby boy* Rodrigo, apaixonado por tudo que é relacionado à tecnologias web, e, também, sou atleta de Jiu Jitsu, amante de NFL, comida japonesa, UFC, games, filmes, séries *(geek detected)*. Aqui você pode ver um pouco sobre mim, sobre minhas habilidades, meu blog, portfolio e projetos pessoais.
+Olá, sou **Ednilson Amaral**! Tenho 28 anos, resido em **Itapeva/SP**. Sou pai do *baby boy* Rodrigo, apaixonado por tudo que é relacionado à tecnologias web, e, também, sou atleta de Jiu Jitsu, amante de NFL, comida japonesa, UFC, games, filmes, séries. Aqui você pode ver um pouco sobre mim, sobre minhas habilidades, meu blog, portfolio e projetos pessoais.
 
 O que mais me atrai são projetos desafiadores, o que não consigo fazer e vou atrás de como fazer da maneira correta, com as melhores práticas e sempre aprendendendo coisas novas.
 
@@ -14,8 +14,7 @@ Sempre estou estudando algo novo, e nunca canso de estudar. **Afinal, o que apre
 
 Meu primeiro contato com HTML e CSS foi quando eu tinha 16 anos. Porém, minha carreira profissional começou como Suporte de TI, na mesma idade. Paralelamente, eu desenvolvia projetos web como freelancer. Durante a faculdade, devido a grande demanda de tempo que me custou trabalhar e estudar ao mesmo tempo, deixei um pouco de lado o desenvolvimento web e foquei meus estudos na faculdade. Em 2014, eu retornei com força todal ao desenvolvimento web e me atualizei do que havia perdido. Desde então, nunca mais parei!
 
-Atualmente trabalho como **Desenvolvedor Full Stack Javascript**, remotamente. Atuando em projetos de front-end e/ou sistemas web completos; APIs REST com NodeJS + Express + MongoDB; dashboards e SPAs com AngularJS ou VueJS; aplicativos híbridos com Ionic; temas para Wordpress; temas para OpenCart, etc.
-
+Atualmente trabalho como **Desenvolvedor Full Stack Javascript**, remotamente. Além de atuar como freelancer em projetos de front-end e/ou sistemas web completos; back-end em APIs REST com NodeJS + Express + MongoDB; dashboards e SPAs com AngularJS ou VueJS ou ReactJS; aplicativos híbridos com Ionic; aplicativos com React Natvie; temas para Wordpress; temas para OpenCart, etc.
 
 
 ## Habilidades  
@@ -29,9 +28,10 @@ Atualmente trabalho como **Desenvolvedor Full Stack Javascript**, remotamente. A
 
 #### Ferramentas, Frameworks, Stacks e Metodologias Fron-End  
 
-* AngularJS  / jQuery  / Vue.js  
+* AngularJS  / jQuery  / Vue.js / ReactJS  
 * [MEAN](https://github.com/Webschool-io/be-mean-instagram)  
 * [Ionic](ionicframework.com)  
+* React Native  
 * Frameworks CSS - Bootstrap  / Jeet   
 * Geradores Estáticos - Jekyll   
 * Template Engine - Jade   
