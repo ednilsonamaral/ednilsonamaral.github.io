@@ -1,0 +1,221 @@
+I"�+<p>Olá, sou <strong>Ednilson Amaral</strong>! Tenho 28 anos, resido em <strong>Itapeva/SP</strong>. Sou pai do <em>baby boy</em> Rodrigo, apaixonado por tudo que é relacionado à tecnologias web, e, também, sou atleta de Jiu Jitsu, amante de NFL, comida japonesa, UFC, games, filmes, séries. Aqui você pode ver um pouco sobre mim, sobre minhas habilidades, meu blog, portfolio e projetos pessoais.</p>
+
+<p>O que mais me atrai são projetos desafiadores, o que não consigo fazer e vou atrás de como fazer da maneira correta, com as melhores práticas e sempre aprendendendo coisas novas.</p>
+
+<p>Tenho facilidade em fazer novas amizades e ter comunicação entre equipes, e, nada melhor que trabalhar em equipe para compartilharmos conhecimento e experiências em prol de sempre evoluirmos como pessoa e profissionais.</p>
+
+<p>Sempre estou estudando algo novo, e nunca canso de estudar. <strong>Afinal, o que aprendemos é o único capital que não perdemos, ninguém pode tirar isso de nós!</strong></p>
+
+<p>Meu primeiro contato com HTML e CSS foi quando eu tinha 16 anos. Porém, minha carreira profissional começou como Suporte de TI, na mesma idade. Paralelamente, eu desenvolvia projetos web como freelancer. Durante a faculdade, devido a grande demanda de tempo que me custou trabalhar e estudar ao mesmo tempo, deixei um pouco de lado o desenvolvimento web e foquei meus estudos na faculdade. Em 2014, eu retornei com força todal ao desenvolvimento web e me atualizei do que havia perdido. Desde então, nunca mais parei!</p>
+
+<p>Atualmente trabalho como <strong>Desenvolvedor Full Stack Javascript</strong>, remotamente. Além de atuar como freelancer em projetos de front-end e/ou sistemas web completos; back-end em APIs REST com NodeJS + Express + MongoDB; dashboards e SPAs com AngularJS ou VueJS ou ReactJS; aplicativos híbridos com Ionic; aplicativos com React Natvie; temas para Wordpress; temas para OpenCart, etc.</p>
+
+<h2 id="habilidades">Habilidades</h2>
+
+<h3 id="front-end">Front-End</h3>
+
+<ul>
+  <li>HTML/HTML5</li>
+  <li>CSS/CSS3</li>
+  <li>JavaScript</li>
+</ul>
+
+<h4 id="ferramentas-frameworks-stacks-e-metodologias-fron-end">Ferramentas, Frameworks, Stacks e Metodologias Fron-End</h4>
+
+<ul>
+  <li>AngularJS  / jQuery  / Vue.js / ReactJS</li>
+  <li><a href="https://github.com/Webschool-io/be-mean-instagram">MEAN</a></li>
+  <li><a href="ionicframework.com">Ionic</a></li>
+  <li>React Native</li>
+  <li>Frameworks CSS - Bootstrap  / Jeet</li>
+  <li>Geradores Estáticos - Jekyll</li>
+  <li>Template Engine - Jade</li>
+  <li>Préprocessadores CSS - SASS  / Stylus</li>
+  <li>Mobile First / Responsive Web Design</li>
+  <li>Atomic Design</li>
+  <li>CMS - Wordpress</li>
+  <li>JS Task Runners - Gulp  / NPM Scripts</li>
+  <li>Bundles - Webpack</li>
+</ul>
+
+<h3 id="back-end">Back-End</h3>
+
+<ul>
+  <li>NodeJS / Express.js / Hapi.js</li>
+</ul>
+
+<h4 id="deploy">Deploy</h4>
+
+<ul>
+  <li>DigitalOcean</li>
+  <li>Heroku</li>
+  <li>MongoLab</li>
+</ul>
+
+<h3 id="banco-de-dados---relacional-e-nosql">Banco de Dados - Relacional e NoSQL</h3>
+
+<ul>
+  <li>MySQL</li>
+  <li>SQLite</li>
+  <li>MongoDB  / Mongoose</li>
+  <li>SQL Server e SQL Express</li>
+</ul>
+
+<h3 id="sistemas-de-controle-de-versão">Sistemas de Controle de Versão</h3>
+
+<ul>
+  <li>Git</li>
+  <li>GitHub</li>
+  <li>GitHub Pages</li>
+  <li>BitBucket</li>
+  <li>GitLab</li>
+</ul>
+
+<h3 id="metodologias-ágeis">Metodologias Ágeis</h3>
+
+<ul>
+  <li>Scrum</li>
+  <li>Extreme Programming</li>
+  <li>Kanban</li>
+</ul>
+
+<h3 id="negócios-e-startup">Negócios e Startup</h3>
+
+<ul>
+  <li>Lean Canvas</li>
+  <li>Business Model Canvas</li>
+</ul>
+
+<h3 id="it-service-management-itsm">IT Service Management (ITSM)</h3>
+
+<ul>
+  <li>ITIL Foundation (<em>não certificado, apenas fundamentos e funcionalidades básicas</em>)</li>
+</ul>
+
+<h3 id="sistemas-operacionais">Sistemas Operacionais</h3>
+
+<ul>
+  <li>Comandos Unix</li>
+  <li>Linux (<em>Mint, Ubuntu, incluindo Ubuntu Server para ferramentas como Squid e Samba, Debian :heart:</em>)</li>
+  <li>Windows (<em>desde o Windows ME até as versões mais recentes, incluindo Windows Server para ferramentas como AD e proxy</em>)</li>
+  <li>Mac OS X</li>
+</ul>
+
+<h2 id="experiências-profissionais">Experiências Profissionais</h2>
+
+<p><strong>Desenvolvedor Fullstack JavaScript</strong> - <em>[ABR/2017 ~ JUL/2018]</em><br />
+<a href="https://www.betfellows.com/">Clube de Apostas - Betfellows</a></p>
+<blockquote>
+  <p>Desenvolvidmento de APIs em Node.js e front-end em Vue.js + Nuxt.js.</p>
+</blockquote>
+
+<p><strong>Desenvolvedor Fullstack JavaScript</strong> - <em>[JUN/2017 ~ DEZ/2017]</em><br />
+<a href="https://www.manatee.art.br/">Manatee</a></p>
+<blockquote>
+  <p>Desenvolvidmento de APIs e editor de vídeos com Node.js e Electron.js.</p>
+</blockquote>
+
+<p><strong>Desenvolvedor Mobile</strong> - <em>[FEV/2017 ~ DEZ/2017]</em><br />
+<a href="https://www.advanced-dh.com/">ADH - Advanced Digital Health</a></p>
+<blockquote>
+  <p>Desenvolvimento de aplicações mobile híbridas com Ionic.</p>
+</blockquote>
+
+<p><strong>Desenvolvedor Fullstack JavaScript (Junior)</strong> - <em>[AGO/2016 ~ JAN/2017]</em><br />
+AIDAX</p>
+<blockquote>
+  <p>Desenvolvimento de aplicações com Vue.js, implementações de layouts com HTML e CSS. Instalação e configurações de servidores (VPS) para deploy de projetos em NodeJS, utilizando Express.js.</p>
+</blockquote>
+
+<p><strong>Desenvolvedor Front-End Junior</strong> - <em>[FEV/2016 ~ NOV/2017]</em><br />
+EWTI</p>
+<blockquote>
+  <p>Desenvolvimento de aplicações web, com foco no Front-End, utilizando HTML, CSS, JavaScript. Também, desenvolvimento de layouts utilizando Bootstrap e Jade, implementações de layout em projetos de ecommerce utilizando OpenCart e criação de animações em HTML e CSS.</p>
+</blockquote>
+
+<p><strong>Analista de Suporte I</strong> - <em>[NOV/2014 ~ OUT/2015]</em><br />
+G&amp;P Projetos e Sistemas</p>
+<blockquote>
+  <p>Aqui continuei no mesmo projeto da PRODESP, do trabalho anterior. Houve apenas uma mudança de empresa.</p>
+</blockquote>
+
+<p><strong>Técnico de Suporte de TI Pleno 2</strong> - <em>[JAN/2014 ~ NOV/2014]</em><br />
+Asyst International + Rhealeza Informática</p>
+<blockquote>
+  <p>Implantação de Novos Projetos de TI nos novos Postos Poupatempo no Estado de São Paulo, pela PRODESP. Treinamento de novos Técnicos aos sistemas e normas de TI dentro do Poupatempo. Suporte de primeiro e segundo nível. Instalação, configuração e monitoramento de Sistemas.</p>
+</blockquote>
+
+<p><strong>Auxiliar de Secretaria</strong> - <em>[DEZ/2013 ~ JAN/2014]</em><br />
+Colégio Leme Presbiteriano de Itapeva</p>
+<blockquote>
+  <p>Atendimento ao público; trabalho e monitoramento de sistemas ERP; abertura e fechamento de caixa; desenvolvimento e fechamento de Ficha 100; criação e manutenção de planilhas de RH; entre outras atividades.</p>
+</blockquote>
+
+<p><strong>Empreendimento (startup) FAIL</strong> - <em>[NOV/2012 ~ NOV/2013]</em></p>
+<blockquote>
+  <p>Esse periodo, junto com mais dois colegas, tentamos abrir uma startup de desenvolvimento de software. Porém, não sabiamos nada sobre empreendedorimos, apenas sobre PHP. E pensavamos que o sistema deveria estar 100%, e não sabiamos o que era um simples MVP. Resultado? Fechamos as portas por falta de experiência. Fica aqui, os erros aprendidos e nunca mais serão cometidos!</p>
+</blockquote>
+
+<p><strong>Estagiário de Sistemas de Informação</strong> - <em>[OUT/2010 ~ OUT/2012]</em><br />
+Secretaria Municipal da Educação de Itapeva</p>
+<blockquote>
+  <p>Atendimento ao público; desenvolvimento de soluções ERP voltadas para a Gestão Escolar; suporte de primeiro nível; treinamento a novos usuários de soluções ERP.</p>
+</blockquote>
+
+<p><strong>Assistente Administrativo</strong> - <em>[MAR/2010 ~ JUN/2010]</em><br />
+FAIT - Faculdade de Ciências Sociais e Agrárias de Itapeva</p>
+<blockquote>
+  <p>Atendimento ao público; trabalho e monitoramento de sistemas ERP; abertura e fechamento de caixa; recebimento de taxas e boletos; criação e manutenção de planilhas financeiras e analiticas; entre outras atividades.</p>
+</blockquote>
+
+<p><strong>Técnico de Infórmática</strong> - <em>[AGO/2008 ~ FEV/2010]</em><br />
+FAIT - Faculdade de Ciências Sociais e Agrárias de Itapeva</p>
+<blockquote>
+  <p>Monitoramento e atualizações de sistemas ERP; montagem e manutenção de computadores e servidores; monitoramento e atualizações de infraestrutura e redes; treinamento de novas ferramentas para discentes e docentes; manutenção do site da instituição, desenvolvido com Joomla!; entre outras atividades.</p>
+</blockquote>
+
+<p><strong>Auxiliar de Secretaria</strong> - <em>[MAR/2008 ~ JUL/2008]</em><br />
+FAIT - Faculdade de Ciências Sociais e Agrárias de Itapeva</p>
+<blockquote>
+  <p>Atendimento ao público; trabalho com sistemas ERP; emissão de declarações e históricos escolares; criação e manutenção de planilhas acadêmicas; entre outras atividades.</p>
+</blockquote>
+
+<h2 id="formação">Formação</h2>
+
+<p><strong>Bacharel em Sistemas de Informação</strong>, concluído em dezembro de 2013.<br />
+FAIT - Faculdade de Ciências Sociais e Agrárias de Itapeva</p>
+
+<p><strong>Técnico em Hardware</strong>, concluído em 2008.<br />
+CENAIC - Itapeva</p>
+
+<h2 id="cursos-ministrados">Cursos Ministrados</h2>
+
+<ul>
+  <li><a href="https://www.youtube.com/playlist?list=PL77JVjKTJT2hpxOjdD6VDc1JDXAKs08z5">Vue.js na Prática</a>, pela <a href="http://webschool.io/">Webschool.io</a>, juntamente com o <a href="https://github.com/Halfeld">Igor Luiz</a>.</li>
+</ul>
+
+<h2 id="cursos">Cursos</h2>
+
+<ul>
+  <li>Gestão Estratégica de TI - ITIL, pela Escola Virtual Fundação Bradesco;</li>
+  <li>Apreender a Empreender, pelo EaD Sebrae;</li>
+  <li>Iniciando um Pequeno e Grande Negócio, pelo EaD Sebrae;</li>
+  <li>Planejamento Estratégico, pela Endeavor;</li>
+  <li>MEI - Micro Empreendedor Individual, pelo EaD Sebrae;</li>
+  <li><a href="https://github.com/Webschool-io/be-mean-instagram">Be MEAN</a> (em andamento);</li>
+  <li>JavaScript Road Trip, pela CodeSchool.</li>
+</ul>
+
+<h2 id="contatos">Contatos</h2>
+
+<ul>
+  <li><a href="https://github.com/ednilsonamaral">GitHub</a></li>
+  <li><a href="https://br.linkedin.com/in/ednilson-amaral-02a984106">LinkedIn</a></li>
+  <li><strong>Telegram:</strong> @ednilsonamaral</li>
+  <li><strong>Skype:</strong> ednilson_amaral</li>
+</ul>
+
+<p>Você pode visualizar meu portfolio <a href="/portfolio">aqui</a>. E, você também pode ver meu currículo completo <a href="https://github.com/ednilsonamaral/resume">aqui</a>.</p>
+
+<p>Se você tem alguma sugestão, crítica ou reclamação, por favor, entre em contato comigo. Se você está procurando um desenvolvedor web profissional, que trabalha com eficiência e qualidade, seja projeto front-end, aplicativos web com MEAN/MEVN Stack, ou aplicativos híbridos com Ionic, por favor, entre em contato comigo para conversarmos e fecharmos uma parceria. Basta me enviar um e-mail para <strong>ednilsonamaral.ti@gmail.com</strong> ou me chamar no Hangouts com esse mesmo e-mail. Ou então, pode me chamar direto no Skype, meu nickname é <strong>ednilson_amaral</strong>. Thanks a lot!</p>
+:ET
