@@ -14,7 +14,7 @@ Sempre estou estudando algo novo, e nunca canso de estudar. **Afinal, o que apre
 
 Meu primeiro contato com HTML e CSS foi quando eu tinha 16 anos. Porém, minha carreira profissional começou como Suporte de TI, na mesma idade. Paralelamente, eu desenvolvia projetos web como freelancer. Durante a faculdade, devido a grande demanda de tempo que me custou trabalhar e estudar ao mesmo tempo, deixei um pouco de lado o desenvolvimento web e foquei meus estudos na faculdade. Em 2014, eu retornei com força todal ao desenvolvimento web e me atualizei do que havia perdido. Desde então, nunca mais parei!
 
-Atualmente trabalho como **Desenvolvedor Full Stack Javascript**, remotamente. Além de atuar como freelancer em projetos de front-end e/ou sistemas web completos; back-end em APIs REST com NodeJS + Express + MongoDB; dashboards e SPAs com AngularJS ou VueJS ou ReactJS; aplicativos híbridos com Ionic; aplicativos com React Natvie; temas para Wordpress; temas para OpenCart, etc.
+Atualmente trabalho como **Software Developer** na [FitDance](https://www.fitdance.com/).
 
 
 ## Habilidades  
@@ -28,10 +28,9 @@ Atualmente trabalho como **Desenvolvedor Full Stack Javascript**, remotamente. A
 
 #### Ferramentas, Frameworks, Stacks e Metodologias Fron-End  
 
-* AngularJS  / jQuery  / Vue.js / ReactJS  
+* AngularJS  / jQuery  / Vue.js / React / React Native  
 * [MEAN](https://github.com/Webschool-io/be-mean-instagram)  
-* [Ionic](ionicframework.com)  
-* React Native  
+* [Ionic 2+](ionicframework.com)  
 * Frameworks CSS - Bootstrap  / Jeet   
 * Geradores Estáticos - Jekyll   
 * Template Engine - Jade   
@@ -40,19 +39,21 @@ Atualmente trabalho como **Desenvolvedor Full Stack Javascript**, remotamente. A
 * Atomic Design   
 * CMS - Wordpress  
 * JS Task Runners - Gulp  / NPM Scripts   
-* Bundles - Webpack
+* Bundles - Webpack  
+* Testes Unitários - TDD
 
 
 ### Back-End  
 
-* NodeJS / Express.js / Hapi.js
+* NodeJS / Express.js / Hapi.js / TypeScript
 
 
 #### Deploy  
 
 * DigitalOcean  
 * Heroku  
-* MongoLab
+* MongoLab  
+* AWS Beanstalk
 
 
 ### Banco de Dados - Relacional e NoSQL  
@@ -60,7 +61,14 @@ Atualmente trabalho como **Desenvolvedor Full Stack Javascript**, remotamente. A
 * MySQL
 * SQLite   
 * MongoDB  / Mongoose   
-* SQL Server e SQL Express
+* SQL Server e SQL Express  
+* Firebase  
+* PostgreSQL
+
+
+#### ORM
+
+* Sequelize
 
 
 ### Sistemas de Controle de Versão  
@@ -69,7 +77,8 @@ Atualmente trabalho como **Desenvolvedor Full Stack Javascript**, remotamente. A
 * GitHub  
 * GitHub Pages  
 * BitBucket  
-* GitLab
+* GitLab  
+* CD/CI
 
 
 ### Metodologias Ágeis  
@@ -99,6 +108,10 @@ Atualmente trabalho como **Desenvolvedor Full Stack Javascript**, remotamente. A
 
 
 ## Experiências Profissionais
+
+**Software Developer** - *[FEV/2020 ~ atual]*  
+[FitDance](https://www.fitdance.com/)
+> Desenvolvimento de softwares, desde back-end até front-end e mobile.
 
 
 **Desenvolvedor Fullstack JavaScript** - *[ABR/2017 ~ JUL/2018]*  
